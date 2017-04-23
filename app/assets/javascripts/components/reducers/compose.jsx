@@ -67,6 +67,7 @@ function clearAll(state) {
     map.set('is_submitting', false);
     map.set('in_reply_to', null);
     map.set('privacy', state.get('default_privacy'));
+    map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
   });
 };
@@ -76,8 +77,8 @@ function appendMedia(state, media) {
     map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
     map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
+    map.update('text', oldText => `${oldText.trim()} ${media.get('text_url')}`);
     map.set('focusDate', new Date());
-    map.update('text', oldText => `${oldText.trim()} ${media.get('text_url')}`.trim() + ' ');
   });
 };
 
