@@ -9,7 +9,7 @@ class AccountMetaController < ApplicationController
     @account.account_metadata.get_meta_by_account_id
   end
 
-  def create
+  def create(key ,value)
     @account.account_metadata.create(key: key, value: value)
     redirect_to account_path(@account)
   end
