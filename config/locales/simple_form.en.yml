@@ -8,6 +8,7 @@ en:
         header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
         locked: Requires you to manually approve followers and defaults post privacy to followers-only
         note: At most 160 characters
+        area: select your area
       imports:
         data: CSV file exported from another Mastodon instance
       sessions:
@@ -34,6 +35,7 @@ en:
         severity: Severity
         type: Import type
         username: Username
+        area: area
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow

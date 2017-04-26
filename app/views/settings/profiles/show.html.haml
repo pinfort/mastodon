@@ -3,10 +3,16 @@
 
 = simple_form_for @account, url: settings_profile_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: @account
+= areas = {}
+= area_ids = []
+= Rails.application.config.account_meta["areas"] do |area|
+  = area_ids.push(area["id"])
+  = areas[area["id"]] = area["area-name"]
 
   .fields-group
     = f.input :display_name, placeholder: t('simple_form.labels.defaults.display_name')
     = f.input :note, placeholder: t('simple_form.labels.defaults.note')
+    = f.input :area, collection: area_ids, wrapper: :with_label, include_blank: false, label_method: lambda { |area_id| areas[area_id] }, hint: t('simple_form.hints.defaults.area')
     = f.input :avatar, wrapper: :with_label, hint: t('simple_form.hints.defaults.avatar')
     = f.input :header, wrapper: :with_label, hint: t('simple_form.hints.defaults.header')
 
