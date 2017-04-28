@@ -10,7 +10,7 @@ class CreateAccountMetadata < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :account_metadata, [:username, :domain], unique: true
+    add_index :account_metadata, [:account_id], unique: true
     add_index :account_metadata, [:key, :value], unique: false
   end
 end
