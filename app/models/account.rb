@@ -62,7 +62,7 @@ class Account < ApplicationRecord
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
 
   # Account meta data
-  has_many :account_metadata, dependent: :destroy
+  # has_many :account_metadata, dependent: :destroy
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
