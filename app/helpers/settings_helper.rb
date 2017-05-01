@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative('account_area_helper')
+include AccountAreaHelper
+
 module SettingsHelper
   HUMAN_LOCALES = {
     en: 'English',
