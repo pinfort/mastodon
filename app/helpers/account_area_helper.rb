@@ -5,7 +5,7 @@ module AccountAreaHelper
   HUMAN_AREAS = yaml["areas"]
 
   def human_area(area_id)
-    HUMAN_AREAS[area_id]
+    HUMAN_AREAS[area_id]["area-name"]
   end
 
   def area_id_list
