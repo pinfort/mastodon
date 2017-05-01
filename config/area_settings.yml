@@ -1,6 +1,5 @@
-meta:  
-  areas:
-  - id: 0
+areas:
+  - area-id: 0
     area-name: 未設定
     area-short-name: 未
     area-eng-name: unknown
@@ -9,7 +8,7 @@ meta:
     bg-green: 0
     bg-blue: 0
     bg-alpha: 0
-  - id: 1
+  - area-id: 1
     area-name: 神戸
     area-short-name: 神
     area-eng-name: kobe
@@ -18,7 +17,7 @@ meta:
     bg-green: 0
     bg-blue: 0
     bg-alpha: 0
-  - id: 2
+  - area-id: 2
     area-name: 阪神
     area-short-name: 阪
     area-eng-name: hanshin
@@ -27,7 +26,7 @@ meta:
     bg-green: 200
     bg-blue: 51
     bg-alpha: 0.9
-  - id: 3
+  - area-id: 3
     area-name: 丹波
     area-short-name: 丹
     area-eng-name: tanba
@@ -36,7 +35,7 @@ meta:
     bg-green: 0
     bg-blue: 0
     bg-alpha: 0
-  - id: 4
+  - area-id: 4
     area-name: 但馬
     area-short-name: 但
     area-eng-name: tajima
@@ -45,7 +44,7 @@ meta:
     bg-green: 0
     bg-blue: 0
     bg-alpha: 0
-  - id: 5
+  - area-id: 5
     area-name: 西播
     area-short-name: 西
     area-eng-name: seiban
@@ -54,7 +53,7 @@ meta:
     bg-green: 0
     bg-blue: 0
     bg-alpha: 0
-  - id: 6
+  - area-id: 6
     area-name: 東播
     area-short-name: 東
     area-eng-name: touban
@@ -63,7 +62,7 @@ meta:
     bg-green: 0
     bg-blue: 0
     bg-alpha: 0
-  - id: 7
+  - area-id: 7
     area-name: 淡路
     area-short-name: 淡
     area-eng-name: awaji
