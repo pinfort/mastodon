@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module UserMetaHelper
+module AccountAreaHelper
   yaml = YAML.load_file("#{Rails.root}/config/area_settings.yml")
   HUMAN_AREAS = yaml["areas"]
 
