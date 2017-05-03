@@ -11,6 +11,7 @@ module SettingsHelper
     fa: '٧رس�,
     fi: 'Suomi',
     fr: 'Français',
+    he: 'עברית',
     hr: 'Hrvatski',
     hu: 'Magyar',
     id: 'Bahasa Indonesia',
