@@ -1,4 +1,4 @@
-.account__header__area_wrapper{
+.account__header__area-wrapper{
     display: block;
     margin: -33px 0px 0px -65px;
     padding: 0px;
@@ -6,7 +6,7 @@
     line-width: 20px;
 }
 
-.account__header__area_unknown{
+.account__header__area-unknown{
     will-change: transform;
     font-size: 20px;
     background-color: rgba(200,200,200,0.9);
@@ -18,7 +18,7 @@
     display: inline-block;
 }
 
-.account__header__area_kobe{
+.account__header__area-kobe{
     will-change: transform;
     font-size: 20px;
     background-color: rgba(255,180,255,0.9);
@@ -30,7 +30,7 @@
     display: inline-block;
 }
 
-.account__header__area_hanshin{
+.account__header__area-hanshin{
     will-change: transform;
     font-size: 20px;
     background-color: rgba(200,200,51,0.9);
@@ -42,7 +42,7 @@
     display: inline-block;
 }
 
-.account__header__area_tanba{
+.account__header__area-tanba{
     will-change: transform;
     font-size: 20px;
     background-color: rgba(160,160,160,0.9);
@@ -54,7 +54,7 @@
     display: inline-block;
 }
 
-.account__header__area_tajima{
+.account__header__area-tajima{
     will-change: transform;
     font-size: 20px;
     background-color: rgba(170,80,80,0.9);
@@ -66,7 +66,7 @@
     display: inline-block;
 }
 
-.account__header__area_seiban{
+.account__header__area-seiban{
     will-change: transform;
     font-size: 20px;
     background-color: rgba(140,190,250,0.9);
@@ -78,7 +78,7 @@
     display: inline-block;
 }
 
-.account__header__area_touban{
+.account__header__area-touban{
     will-change: transform;
     font-size: 20px;
     background-color: rgba(250,190,140,0.9);
@@ -90,7 +90,7 @@
     display: inline-block;
 }
 
-.account__header__area_awaji{
+.account__header__area-awaji{
     will-change: transform;
     font-size: 20px;
     background-color: rgba(170,80,170,0.9);
