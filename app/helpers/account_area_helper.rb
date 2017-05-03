@@ -8,6 +8,14 @@ module AccountAreaHelper
     HUMAN_AREAS[area_id]["area-name"]
   end
 
+  def get_area_eng_name(area_id)
+    HUMAN_AREAS[area_id]["area-eng-name"]
+  end
+
+  def get_area_short_name(area_id)
+    HUMAN_AREAS[area_id]["area-short-name"]
+  end
+
   def area_id_list
     Array(0...HUMAN_AREAS.length)
   end
