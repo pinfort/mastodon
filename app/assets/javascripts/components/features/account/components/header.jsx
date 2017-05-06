@@ -77,24 +77,68 @@ Avatar.propTypes = {
 class Area extends React.Component {
   constructor(props) {
     super(props);
-    var fs = require('fs'),
-    yaml = require('yaml');
-    var yamlData = fs.readFileSync('../../../../../../config/area_settings.yml','utf8');
-    var this.config = yaml.eval(yamlData);
+    // var fs = require('fs');
+    // var yaml = require('js-yaml');
+    // var yamlData = fs.readFileSync(__dirname + '/../../../../../../config/area_settings.yml','utf8');
+    // this.config = yaml.safeLoad(yamlData);
+    this.config = [
+      {
+        "area-eng-name": "unknown",
+        "area-short-name": "未"
+      },
+      {
+        "area-eng-name": "kobe",
+        "area-short-name": "神"
+      },
+      {
+        "area-eng-name": "hanshin",
+        "area-short-name": "阪"
+      },
+      {
+        "area-eng-name": "tanba",
+        "area-short-name": "丹"
+      },
+      {
+        "area-eng-name": "tajima",
+        "area-short-name": "但"
+      },
+      {
+        "area-eng-name": "seiban",
+        "area-short-name": "西",
+      },
+      {
+        "area-eng-name": "touban",
+        "area-short-name": "東",
+      },
+      {
+        "area-eng-name": "awaji",
+        "area-short-name": "淡"
+      }
+    ];
+    this.get_area_className = this.get_area_className.bind(this);
+    this.get_area_short_name = this.get_area_short_name.bind(this);
   }
 
   get_area_className(area_id){
+    console.log(this.config);
+    console.log(area_id);
+    if (isNaN(area_id)) {
+      area_id = 0;
+    }
     return ("account_header_area-" + this.config[area_id]["area-eng-name"]);
   }
 
   get_area_short_name(area_id){
+    if (isNaN(area_id)) {
+      area_id = 0;
+    }
     return (this.config[area_id]["area-short-name"]);
   }
 
   render() {
     return (
       <span className="account__header__area-wrapper">
-        <span className={this.get_area_className(this.props.get('area'))}>{this.get_area_short_name(this.props.get('area'))}</span>
+        <span className={this.get_area_className(this.props.areaId)}>{this.get_area_short_name(this.props.areaId)}</span>
       </span>
     );
   }
@@ -108,9 +152,6 @@ class Header extends React.Component {
     if (!account) {
       return null;
     }
-
-    var area = new Area(account);
-    let area_span = area.render();
 
     let displayName = account.get('display_name');
     let info        = '';
@@ -153,7 +194,7 @@ class Header extends React.Component {
         <div style={{ padding: '20px 10px' }}>
           <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
 
-          {area_span}
+          <Area areaId={account.get('area')} />
           <span style={{ display: 'inline-block', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
           <span className='account__header__username' style={{ fontSize: '14px', fontWeight: '400', display: 'block', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
           <div style={{ fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
