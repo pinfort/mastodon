@@ -125,7 +125,7 @@ class Area extends React.Component {
     if (isNaN(area_id)) {
       area_id = 0;
     }
-    return ("account_header_area-" + this.config[area_id]["area-eng-name"]);
+    return ("account__header__area-" + this.config[area_id]["area-eng-name"]);
   }
 
   get_area_short_name(area_id){
