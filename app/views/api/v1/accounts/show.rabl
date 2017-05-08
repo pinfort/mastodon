@@ -1,6 +1,6 @@
 object @account
 
-attributes :id, :username, :acct, :display_name, :locked, :created_at
+attributes :id, :username, :acct, :display_name, :locked, :created_at, :area
 
 node(:note)            { |account| Formatter.instance.simplified_format(account) }
 node(:url)             { |account| TagManager.instance.url_for(account) }
