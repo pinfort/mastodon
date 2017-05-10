@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-area_settings = YAML.load(
-    File.read("#{Rails.root}/config/area_settings.yml")
-)
+json_file_path = "#{Rails.root}/app/assets/javascripts/area_settings.json"
+area_settings = open(json_file_path) do |io|
+  JSON.load(io)
+end
 Rails.application.config.account_area = area_settings["areas"]

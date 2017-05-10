@@ -77,51 +77,12 @@ Avatar.propTypes = {
 class Area extends React.Component {
   constructor(props) {
     super(props);
-    // var fs = require('fs');
-    // var yaml = require('js-yaml');
-    // var yamlData = fs.readFileSync(__dirname + '/../../../../../../config/area_settings.yml','utf8');
-    // this.config = yaml.safeLoad(yamlData);
-    this.config = [
-      {
-        "area-eng-name": "unknown",
-        "area-short-name": "未"
-      },
-      {
-        "area-eng-name": "kobe",
-        "area-short-name": "神"
-      },
-      {
-        "area-eng-name": "hanshin",
-        "area-short-name": "阪"
-      },
-      {
-        "area-eng-name": "tanba",
-        "area-short-name": "丹"
-      },
-      {
-        "area-eng-name": "tajima",
-        "area-short-name": "但"
-      },
-      {
-        "area-eng-name": "seiban",
-        "area-short-name": "西",
-      },
-      {
-        "area-eng-name": "touban",
-        "area-short-name": "東",
-      },
-      {
-        "area-eng-name": "awaji",
-        "area-short-name": "淡"
-      }
-    ];
+    this.config = require("../../../../area_settings.json")['areas'];
     this.get_area_className = this.get_area_className.bind(this);
     this.get_area_short_name = this.get_area_short_name.bind(this);
   }
 
   get_area_className(area_id){
-    console.log(this.config);
-    console.log(area_id);
     if (isNaN(area_id)) {
       area_id = 0;
     }
