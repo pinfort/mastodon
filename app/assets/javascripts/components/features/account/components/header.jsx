@@ -105,6 +105,10 @@ class Area extends React.Component {
   }
 }
 
+Area.propTypes = {
+  areaId: PropTypes.number.isRequired
+};
+
 class Header extends React.Component {
 
   render () {
