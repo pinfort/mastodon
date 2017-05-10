@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 module AccountAreaHelper
-  yaml = YAML.load_file("#{Rails.root}/config/area_settings.yml")
-  HUMAN_AREAS = yaml["areas"]
+  json_file_path = "#{Rails.root}/app/assets/javascripts/area_settings.json"
+  conf = open(json_file_path) do |io|
+    JSON.load(io)
+  end
+  HUMAN_AREAS = conf["areas"]
 
   def human_area(area_id)
     HUMAN_AREAS[area_id]["area-name"]
