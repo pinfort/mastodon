@@ -25,6 +25,8 @@ module SettingsHelper
     pt: 'Português',
     'pt-BR': 'Português do Brasil',
     ru: '�уѺий',
+    th: '�าษา๸�ย',
+    tr: 'Türkçe',
     uk: 'Українька',
     'zh-CN': '简体中�,
     'zh-HK': '繫�中於�香港,
