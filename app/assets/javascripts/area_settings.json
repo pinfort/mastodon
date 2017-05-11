@@ -47,6 +47,12 @@
       "area-name": "淡路",
       "area-short-name": "淡",
       "area-eng-name": "awaji"
+    },
+    {
+      "area-id": 8,
+      "area-name": "県外",
+      "area-short-name": "外",
+      "area-eng-name": "kengai"
     }
   ]
 }

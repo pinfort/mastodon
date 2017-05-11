@@ -102,4 +102,16 @@
     display: inline-block;
 }
 
+.account__header__area-kengai{
+    will-change: transform;
+    font-size: 20px;
+    background-color: rgba(200,200,200,0.9);
+    padding: 3px;
+    border-radious: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:#ccccff;
+    display: inline-block;
+}
+
 @import 'application';
