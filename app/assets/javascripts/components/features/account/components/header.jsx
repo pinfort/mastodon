@@ -74,6 +74,41 @@ Avatar.propTypes = {
   autoPlayGif: PropTypes.bool.isRequired
 };
 
+class Area extends React.Component {
+  constructor(props) {
+    super(props);
+    this.config = require("../../../../area_settings.json")['areas'];
+    this.get_area_className = this.get_area_className.bind(this);
+    this.get_area_short_name = this.get_area_short_name.bind(this);
+  }
+
+  get_area_className(area_id){
+    if (isNaN(area_id)) {
+      area_id = 0;
+    }
+    return ("account__header__area-" + this.config[area_id]["area-eng-name"]);
+  }
+
+  get_area_short_name(area_id){
+    if (isNaN(area_id)) {
+      area_id = 0;
+    }
+    return (this.config[area_id]["area-short-name"]);
+  }
+
+  render() {
+    return (
+      <span className="account__header__area-wrapper">
+        <span className={this.get_area_className(this.props.areaId)}>{this.get_area_short_name(this.props.areaId)}</span>
+      </span>
+    );
+  }
+}
+
+Area.propTypes = {
+  areaId: PropTypes.number.isRequired
+};
+
 class Header extends React.Component {
 
   render () {
@@ -124,6 +159,7 @@ class Header extends React.Component {
         <div style={{ padding: '20px 10px' }}>
           <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
 
+          <Area areaId={account.get('area')} />
           <span style={{ display: 'inline-block', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
           <span className='account__header__username' style={{ fontSize: '14px', fontWeight: '400', display: 'block', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
           <div style={{ fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />

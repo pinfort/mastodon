@@ -8,6 +8,7 @@ ja:
         header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます。
         locked: フォロワーを手動で承認する必要があります。デフォルトではトゥートの公開範囲はフォロワーのみです。
         note: あと%{counter}文字入力できます。
+        area: あなたの住んでいる地域を選択します。
       imports:
         data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
       sessions:
@@ -34,6 +35,7 @@ ja:
         severity: 重大性
         type: インポートする項目
         username: ユーザー名
+        area: 地域
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック

@@ -1,0 +1,105 @@
+.account__header__area-wrapper{
+    display: block;
+    margin: -33px 0px 0px -65px;
+    padding: 0px;
+    line-height: 20px;
+    line-width: 20px;
+}
+
+.account__header__area-unknown{
+    will-change: transform;
+    font-size: 20px;
+    background-color: rgba(200,200,200,0.9);
+    padding: 3px;
+    border-radious: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:#000000;
+    display: inline-block;
+}
+
+.account__header__area-kobe{
+    will-change: transform;
+    font-size: 20px;
+    background-color: rgba(255,180,255,0.9);
+    padding: 3px;
+    border-radious: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:#000000;
+    display: inline-block;
+}
+
+.account__header__area-hanshin{
+    will-change: transform;
+    font-size: 20px;
+    background-color: rgba(200,200,51,0.9);
+    padding: 3px;
+    border-radious: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:#000000;
+    display: inline-block;
+}
+
+.account__header__area-tanba{
+    will-change: transform;
+    font-size: 20px;
+    background-color: rgba(160,160,160,0.9);
+    padding: 3px;
+    border-radious: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:#111111;
+    display: inline-block;
+}
+
+.account__header__area-tajima{
+    will-change: transform;
+    font-size: 20px;
+    background-color: rgba(170,80,80,0.9);
+    padding: 3px;
+    border-radious: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:#cccccc;
+    display: inline-block;
+}
+
+.account__header__area-seiban{
+    will-change: transform;
+    font-size: 20px;
+    background-color: rgba(140,190,250,0.9);
+    padding: 3px;
+    border-radious: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:#000000;
+    display: inline-block;
+}
+
+.account__header__area-touban{
+    will-change: transform;
+    font-size: 20px;
+    background-color: rgba(250,190,140,0.9);
+    padding: 3px;
+    border-radious: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:#000000;
+    display: inline-block;
+}
+
+.account__header__area-awaji{
+    will-change: transform;
+    font-size: 20px;
+    background-color: rgba(170,80,170,0.9);
+    padding: 3px;
+    border-radious: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:#ccccff;
+    display: inline-block;
+}
+
+@import 'application';
