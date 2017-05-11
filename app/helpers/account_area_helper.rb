@@ -6,21 +6,30 @@ module AccountAreaHelper
     JSON.load(io)
   end
   HUMAN_AREAS = conf["areas"]
+  HUMAN_AREA_IDS = {}
+  HUMAN_AREAS.each do |area|
+    HUMAN_AREA_IDS[area["area-id"]] = area
+  end
+
 
   def human_area(area_id)
-    HUMAN_AREAS[area_id]["area-name"]
+    HUMAN_AREA_IDS[area_id]["area-name"]
   end
 
   def get_area_eng_name(area_id)
-    HUMAN_AREAS[area_id]["area-eng-name"]
+    HUMAN_AREA_IDS[area_id]["area-eng-name"]
   end
 
   def get_area_short_name(area_id)
-    HUMAN_AREAS[area_id]["area-short-name"]
+    HUMAN_AREA_IDS[area_id]["area-short-name"]
+  end
+
+  def get_area_id_from_area_no(area_no)
+    HUMAN_AREAS[area_no]["area-id"]
   end
 
   def area_id_list
-    Array(0...HUMAN_AREAS.length)
+    HUMAN_AREA_IDS.keys
   end
 
 end
