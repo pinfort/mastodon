@@ -77,7 +77,11 @@ Avatar.propTypes = {
 class Area extends React.Component {
   constructor(props) {
     super(props);
-    this.config = require("../../../../area_settings.json")['areas'];
+    var areas = require("../../../../area_settings.json")['areas'];
+    this.config = [];
+    areas.forEach(function(data, index, arr) {
+      this.config[data['area-id']] = data;
+    }, this);
     this.get_area_className = this.get_area_className.bind(this);
     this.get_area_short_name = this.get_area_short_name.bind(this);
   }
@@ -85,15 +89,25 @@ class Area extends React.Component {
   get_area_className(area_id){
     if (isNaN(area_id)) {
       area_id = 0;
+    };
+    try{
+      var area_eng_name = this.config[area_id]["area-eng-name"];
+    } catch (e) {
+      var area_eng_name = this.config[0]["area-eng-name"];
     }
-    return ("account__header__area-" + this.config[area_id]["area-eng-name"]);
+    return ("account__header__area-" + area_eng_name);
   }
 
   get_area_short_name(area_id){
     if (isNaN(area_id)) {
       area_id = 0;
+    };
+    try {
+      var area_short_name = this.config[area_id]["area-short-name"];
+    } catch (e) {
+      var area_short_name = this.config[0]["area-short-name"];
     }
-    return (this.config[area_id]["area-short-name"]);
+    return (area_short_name);
   }
 
   render() {
