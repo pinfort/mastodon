@@ -89,7 +89,7 @@ class Area extends React.Component {
   get_area_className(area_id){
     if (isNaN(area_id)) {
       area_id = 0;
-    }
+    };
     try{
       var area_eng_name = this.config[area_id]["area-eng-name"];
     } catch (e) {
@@ -101,7 +101,7 @@ class Area extends React.Component {
   get_area_short_name(area_id){
     if (isNaN(area_id)) {
       area_id = 0;
-    }
+    };
     try {
       var area_short_name = this.config[area_id]["area-short-name"];
     } catch (e) {
