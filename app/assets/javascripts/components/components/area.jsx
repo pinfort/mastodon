@@ -19,7 +19,7 @@ class Area extends React.PureComponent {
     }
     try{
       var area_eng_name = this.config[area_id]["area-eng-name"];
-    } catch {
+    } catch (e) {
       var area_eng_name = this.config[0]["area-eng-name"];
     }
     return ("account__avatar__area-" + area_eng_name);
@@ -31,7 +31,7 @@ class Area extends React.PureComponent {
     }
     try {
       var area_short_name = this.config[area_id]["area-short-name"];
-    } else {
+    } else (e) {
       var area_short_name = this.config[0]["area-short-name"];
     }
     return (area_short_name);

@@ -92,7 +92,7 @@ class Area extends React.Component {
     }
     try{
       var area_eng_name = this.config[area_id]["area-eng-name"];
-    } catch {
+    } catch (e) {
       var area_eng_name = this.config[0]["area-eng-name"];
     }
     return ("account__header__area-" + area_eng_name);
@@ -104,7 +104,7 @@ class Area extends React.Component {
     }
     try {
       var area_short_name = this.config[area_id]["area-short-name"];
-    } else {
+    } catch (e) {
       var area_short_name = this.config[0]["area-short-name"];
     }
     return (area_short_name);
