@@ -5,10 +5,10 @@ class Area extends React.PureComponent {
   constructor (props, context) {
     super(props, context);
     var areas = require("../../area_settings.json")['areas'];
-    this.config = {};
+    this.config = [];
     areas.forEach(function(data, index, arr) {
       this.config[data['area-id']] = data;
-    });
+    }, this);
     this.get_area_className = this.get_area_className.bind(this);
     this.get_area_short_name = this.get_area_short_name.bind(this);
   }
@@ -31,7 +31,7 @@ class Area extends React.PureComponent {
     };
     try {
       var area_short_name = this.config[area_id]["area-short-name"];
-    } else (e) {
+    } catch (e) {
       var area_short_name = this.config[0]["area-short-name"];
     }
     return (area_short_name);

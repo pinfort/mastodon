@@ -78,10 +78,10 @@ class Area extends React.Component {
   constructor(props) {
     super(props);
     var areas = require("../../../../area_settings.json")['areas'];
-    this.config = {};
+    this.config = [];
     areas.forEach(function(data, index, arr) {
       this.config[data['area-id']] = data;
-    });
+    }, this);
     this.get_area_className = this.get_area_className.bind(this);
     this.get_area_short_name = this.get_area_short_name.bind(this);
   }
