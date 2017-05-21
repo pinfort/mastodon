@@ -82,7 +82,7 @@ class Status extends React.PureComponent {
           <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name'>
             <div className='status__avatar'>
               <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} />
-              <Area_avatar areaId={status.getIn(['account', 'area'])}/>
+              <Area_avatar account={status.get('account')}/>
             </div>
 
             <DisplayName account={status.get('account')} />

@@ -9,13 +9,13 @@ class Area extends React.PureComponent {
     areas.forEach(function(data, index, arr) {
       this.config[data['area-id']] = data;
     }, this);
-    this.get_area_className = this.get_area_className.bind(this);
+    this.get_area_eng_name = this.get_area_eng_name.bind(this);
     this.get_area_short_name = this.get_area_short_name.bind(this);
   }
 
   get_area_eng_name(area_id){
     if (isNaN(area_id)) {
-      area_id = 0;
+      var area_id = 0;
     };
     try{
       var area_eng_name = this.config[area_id]["area-eng-name"];
@@ -27,7 +27,7 @@ class Area extends React.PureComponent {
 
   get_area_short_name(area_id){
     if (isNaN(area_id)) {
-      area_id = 0;
+      var area_id = 0;
     };
     try {
       var area_short_name = this.config[area_id]["area-short-name"];
@@ -39,7 +39,7 @@ class Area extends React.PureComponent {
 }
 
 Area.propTypes = {
-  areaId: PropTypes.number.isRequired
+  account: ImmutablePropTypes.map.isRequired
 };
 
 export default Area;
