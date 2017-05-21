@@ -11,7 +11,7 @@ import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
-import Area from './area'
+import Area_avatar from './area_avatar'
 
 class Status extends React.PureComponent {
 
@@ -82,7 +82,7 @@ class Status extends React.PureComponent {
           <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name'>
             <div className='status__avatar'>
               <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} />
-              <Area areaId={status.getIn(['account', 'area'])}/>
+              <Area_avatar areaId={status.getIn(['account', 'area'])}/>
             </div>
 
             <DisplayName account={status.get('account')} />
