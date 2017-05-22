@@ -21,7 +21,7 @@ class Area extends React.PureComponent {
   }
 
   get_area_eng_name(account){
-    if this.is_local(account){
+    if (this.is_local(account)){
       return (this.get_local_area_eng_name(account.get('area')));
     }else{
       return (this.get_remote_area_eng_name(account));
@@ -52,7 +52,7 @@ class Area extends React.PureComponent {
   }
 
   get_area_short_name(account){
-    if this.is_local(account){
+    if (this.is_local(account)){
       return (this.get_local_area_short_name(account.get('area')));
     }else{
       return (this.get_remote_area_short_name(account));
