@@ -54,5 +54,14 @@
       "area-short-name": "外",
       "area-eng-name": "kengai"
     }
-  ]
+  ],
+"instances":
+  {
+    "mstdn.osaka": {
+      "instance-id": 1,
+      "instance-name": "大阪丼",
+      "instance-short-name": "大",
+      "instance-eng-name": "remote-osaka"
+    }
+  }
 }

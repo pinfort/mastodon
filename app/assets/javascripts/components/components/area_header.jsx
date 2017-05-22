@@ -6,14 +6,14 @@ class Area_header extends Area {
     this.get_area_class_name = this.get_area_class_name.bind(this);
   }
 
-  get_area_class_name(area_id){
-    return ("account__header__area-" + this.get_area_eng_name(area_id));
+  get_area_class_name(account){
+    return ("account__header__area-" + this.get_area_eng_name(account));
   }
 
   render () {
     return (
       <span className="account__header__area-wrapper">
-        <span className={this.get_area_class_name(this.props.account.get('area'))}>{this.get_area_short_name(this.props.account.get('area'))}</span>
+        <span className={this.get_area_class_name(this.props.account)}>{this.get_area_short_name(this.props.account)}</span>
       </span>
     );
   }

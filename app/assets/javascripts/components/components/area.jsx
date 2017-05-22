@@ -4,16 +4,31 @@ class Area extends React.PureComponent {
 
   constructor (props, context) {
     super(props, context);
-    var areas = require("../../area_settings.json")['areas'];
+    var area_data = require("../../area_settings.json");
+    var areas = area_data['areas'];
+    this.instances = area_data['instances'];
     this.config = [];
     areas.forEach(function(data, index, arr) {
       this.config[data['area-id']] = data;
     }, this);
     this.get_area_eng_name = this.get_area_eng_name.bind(this);
     this.get_area_short_name = this.get_area_short_name.bind(this);
+    this.get_local_area_eng_name = this.get_local_area_eng_name.bind(this);
+    this.get_remote_area_eng_name = this.get_remote_area_eng_name.bind(this);
+    this.get_local_area_short_name = this.get_local_area_short_name.bind(this);
+    this.get_remote_area_short_name = this.get_remote_area_short_name.bind(this);
+    this.is_local = this.is_local.bind(this);
   }
 
-  get_area_eng_name(area_id){
+  get_area_eng_name(account){
+    if this.is_local(account){
+      return (this.get_local_area_eng_name(account.get('area')));
+    }else{
+      return (this.get_remote_area_eng_name(account));
+    }
+  }
+
+  get_local_area_eng_name(area_id){
     if (isNaN(area_id)) {
       var area_id = 0;
     };
@@ -25,16 +40,50 @@ class Area extends React.PureComponent {
     return (area_eng_name);
   }
 
-  get_area_short_name(area_id){
+  get_remote_area_eng_name(account){
+    var splittedName = account.get('acct').split('@');
+    var domain = splittedName[splittedName.length - 1];
+    try{
+      var instanceSetting = this.instances[domain];
+    }catch (e) {
+      return this.get_local_area_eng_name(0);
+    }
+    return (instanceSetting["instance-eng-name"]);
+  }
+
+  get_area_short_name(account){
+    if this.is_local(account){
+      return (this.get_local_area_short_name(account.get('area')));
+    }else{
+      return (this.get_remote_area_short_name(account));
+    }
+  }
+
+  get_local_area_short_name(area_id){
     if (isNaN(area_id)) {
       var area_id = 0;
     };
-    try {
+    try{
       var area_short_name = this.config[area_id]["area-short-name"];
     } catch (e) {
       var area_short_name = this.config[0]["area-short-name"];
     }
     return (area_short_name);
+  }
+
+  get_remote_area_short_name(account){
+    var splittedName = account.get('acct').split('@');
+    var domain = splittedName[splittedName.length - 1];
+    try{
+      var instanceSetting = this.instances[domain];
+    }catch (e) {
+      return this.get_local_area_short_name(0);
+    }
+    return (instanceSetting["instance-short-name"]);
+  }
+
+  is_local(account){
+    return (account.get('username') === account.get('acct'));
   }
 }
 
