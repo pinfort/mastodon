@@ -1,4 +1,5 @@
 import Area from './area';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class Area_header extends Area {
   constructor (props, context) {
