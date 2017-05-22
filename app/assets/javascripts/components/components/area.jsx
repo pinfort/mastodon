@@ -46,10 +46,11 @@ class Area extends React.PureComponent {
     var domain = splittedName[splittedName.length - 1];
     try{
       var instanceSetting = this.instances[domain];
+      var area_eng_name = instanceSetting["instance-eng-name"];
     }catch (e) {
       return this.get_local_area_eng_name(0);
     }
-    return (instanceSetting["instance-eng-name"]);
+    return (area_eng_name);
   }
 
   get_area_short_name(account){
@@ -77,10 +78,11 @@ class Area extends React.PureComponent {
     var domain = splittedName[splittedName.length - 1];
     try{
       var instanceSetting = this.instances[domain];
+      var area_short_name = instanceSetting["instance-short-name"];
     }catch (e) {
       return this.get_local_area_short_name(0);
     }
-    return (instanceSetting["instance-short-name"]);
+    return (area_short_name);
   }
 
   is_local(account){
