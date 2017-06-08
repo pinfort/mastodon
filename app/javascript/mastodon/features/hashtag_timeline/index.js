@@ -2,12 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
-import Column from '../ui/components/column';
+import Column from '../../components/column';
+import ColumnHeader from '../../components/column_header';
 import {
   refreshTimeline,
   updateTimeline,
-  deleteFromTimelines
+  deleteFromTimelines,
 } from '../../actions/timelines';
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { FormattedMessage } from 'react-intl';
 import createStream from '../../stream';
@@ -15,10 +17,39 @@ import createStream from '../../stream';
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'tag', 'unread']) > 0,
   streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
-  accessToken: state.getIn(['meta', 'access_token'])
+  accessToken: state.getIn(['meta', 'access_token']),
 });
 
 class HashtagTimeline extends React.PureComponent {
+
+  static propTypes = {
+    params: PropTypes.object.isRequired,
+    columnId: PropTypes.string,
+    dispatch: PropTypes.func.isRequired,
+    streamingAPIBaseURL: PropTypes.string.isRequired,
+    accessToken: PropTypes.string.isRequired,
+    hasUnread: PropTypes.bool,
+    multiColumn: PropTypes.bool,
+  };
+
+  handlePin = () => {
+    const { columnId, dispatch } = this.props;
+
+    if (columnId) {
+      dispatch(removeColumn(columnId));
+    } else {
+      dispatch(addColumn('HASHTAG', { id: this.props.params.id }));
+    }
+  }
+
+  handleMove = (dir) => {
+    const { columnId, dispatch } = this.props;
+    dispatch(moveColumn(columnId, dir));
+  }
+
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
 
   _subscribe (dispatch, id) {
     const { streamingAPIBaseURL, accessToken } = this.props;
@@ -34,7 +65,7 @@ class HashtagTimeline extends React.PureComponent {
           dispatch(deleteFromTimelines(data.payload));
           break;
         }
-      }
+      },
 
     });
   }
@@ -66,25 +97,40 @@ class HashtagTimeline extends React.PureComponent {
     this._unsubscribe();
   }
 
+  setRef = c => {
+    this.column = c;
+  }
+
   render () {
-    const { id, hasUnread } = this.props.params;
+    const { hasUnread, columnId, multiColumn } = this.props;
+    const { id } = this.props.params;
+    const pinned = !!columnId;
 
     return (
-      <Column icon='hashtag' active={hasUnread} heading={id}>
-        <ColumnBackButtonSlim />
-        <StatusListContainer scrollKey='hashtag_timeline' type='tag' id={id} emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />} />
+      <Column ref={this.setRef}>
+        <ColumnHeader
+          icon='hashtag'
+          active={hasUnread}
+          title={id}
+          onPin={this.handlePin}
+          onMove={this.handleMove}
+          onClick={this.handleHeaderClick}
+          pinned={pinned}
+          multiColumn={multiColumn}
+          showBackButton
+        />
+
+        <StatusListContainer
+          trackScroll={!pinned}
+          scrollKey={`hashtag_timeline-${columnId}`}
+          type='tag'
+          id={id}
+          emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
+        />
       </Column>
     );
   }
 
 }
-
-HashtagTimeline.propTypes = {
-  params: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  streamingAPIBaseURL: PropTypes.string.isRequired,
-  accessToken: PropTypes.string.isRequired,
-  hasUnread: PropTypes.bool
-};
 
 export default connect(mapStateToProps)(HashtagTimeline);

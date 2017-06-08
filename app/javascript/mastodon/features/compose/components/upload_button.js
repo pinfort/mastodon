@@ -3,44 +3,48 @@ import IconButton from '../../../components/icon_button';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const messages = defineMessages({
-  upload: { id: 'upload_button.label', defaultMessage: 'Add media' }
+  upload: { id: 'upload_button.label', defaultMessage: 'Add media' },
 });
 
 const makeMapStateToProps = () => {
   const mapStateToProps = (state, props) => ({
-    acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']).toArray(),
+    acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']),
   });
 
   return mapStateToProps;
-}
+};
 
 const iconStyle = {
   height: null,
-  lineHeight: '27px'
-}
+  lineHeight: '27px',
+};
 
-class UploadButton extends React.PureComponent {
+class UploadButton extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.setRef = this.setRef.bind(this);
-  }
+  static propTypes = {
+    disabled: PropTypes.bool,
+    onSelectFile: PropTypes.func.isRequired,
+    style: PropTypes.object,
+    resetFileKey: PropTypes.number,
+    acceptContentTypes: ImmutablePropTypes.listOf(PropTypes.string).isRequired,
+    intl: PropTypes.object.isRequired,
+  };
 
-  handleChange (e) {
+  handleChange = (e) => {
     if (e.target.files.length > 0) {
       this.props.onSelectFile(e.target.files);
     }
   }
 
-  handleClick () {
+  handleClick = () => {
     this.fileElement.click();
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.fileElement = c;
   }
 
@@ -50,13 +54,13 @@ class UploadButton extends React.PureComponent {
 
     return (
       <div className='compose-form__upload-button'>
-        <IconButton icon='camera' title={intl.formatMessage(messages.upload)} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle}/>
+        <IconButton icon='camera' title={intl.formatMessage(messages.upload)} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle} />
         <input
           key={resetFileKey}
           ref={this.setRef}
           type='file'
           multiple={false}
-          accept={ acceptContentTypes.join(',')}
+          accept={acceptContentTypes.toArray().join(',')}
           onChange={this.handleChange}
           disabled={disabled}
           style={{ display: 'none' }}
@@ -66,14 +70,5 @@ class UploadButton extends React.PureComponent {
   }
 
 }
-
-UploadButton.propTypes = {
-  disabled: PropTypes.bool,
-  onSelectFile: PropTypes.func.isRequired,
-  style: PropTypes.object,
-  resetFileKey: PropTypes.number,
-  acceptContentTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default connect(makeMapStateToProps)(injectIntl(UploadButton));

@@ -22,53 +22,68 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning' },
-  publish: { id: 'compose_form.publish', defaultMessage: 'Toot' }
+  publish: { id: 'compose_form.publish', defaultMessage: 'Toot' },
+  publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
 });
 
 class ComposeForm extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-    this.onSuggestionsFetchRequested = debounce(this.onSuggestionsFetchRequested.bind(this), 500);
-    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
-    this.handleChangeSpoilerText = this.handleChangeSpoilerText.bind(this);
-    this.setAutosuggestTextarea = this.setAutosuggestTextarea.bind(this);
-    this.handleEmojiPick = this.handleEmojiPick.bind(this);
-  }
+  static propTypes = {
+    intl: PropTypes.object.isRequired,
+    text: PropTypes.string.isRequired,
+    suggestion_token: PropTypes.string,
+    suggestions: ImmutablePropTypes.list,
+    spoiler: PropTypes.bool,
+    privacy: PropTypes.string,
+    spoiler_text: PropTypes.string,
+    focusDate: PropTypes.instanceOf(Date),
+    preselectDate: PropTypes.instanceOf(Date),
+    is_submitting: PropTypes.bool,
+    is_uploading: PropTypes.bool,
+    me: PropTypes.number,
+    onChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    onClearSuggestions: PropTypes.func.isRequired,
+    onFetchSuggestions: PropTypes.func.isRequired,
+    onSuggestionSelected: PropTypes.func.isRequired,
+    onChangeSpoilerText: PropTypes.func.isRequired,
+    onPaste: PropTypes.func.isRequired,
+    onPickEmoji: PropTypes.func.isRequired,
+    showSearch: PropTypes.bool,
+  };
 
-  handleChange (e) {
+  static defaultProps = {
+    showSearch: false,
+  };
+
+  handleChange = (e) => {
     this.props.onChange(e.target.value);
   }
 
-  handleKeyDown (e) {
+  handleKeyDown = (e) => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.handleSubmit();
     }
   }
 
-  handleSubmit () {
-    this.autosuggestTextarea.reset();
+  handleSubmit = () => {
     this.props.onSubmit();
   }
 
-  onSuggestionsClearRequested () {
+  onSuggestionsClearRequested = () => {
     this.props.onClearSuggestions();
   }
 
-  onSuggestionsFetchRequested (token) {
+  onSuggestionsFetchRequested = (token) => {
     this.props.onFetchSuggestions(token);
   }
 
-  onSuggestionSelected (tokenStart, token, value) {
+  onSuggestionSelected = (tokenStart, token, value) => {
     this._restoreCaret = null;
     this.props.onSuggestionSelected(tokenStart, token, value);
   }
 
-  handleChangeSpoilerText (e) {
+  handleChangeSpoilerText = (e) => {
     this.props.onChangeSpoilerText(e.target.value);
   }
 
@@ -104,14 +119,16 @@ class ComposeForm extends ImmutablePureComponent {
 
       this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
       this.autosuggestTextarea.textarea.focus();
+    } else if(prevProps.is_submitting && !this.props.is_submitting) {
+      this.autosuggestTextarea.textarea.focus();
     }
   }
 
-  setAutosuggestTextarea (c) {
+  setAutosuggestTextarea = (c) => {
     this.autosuggestTextarea = c;
   }
 
-  handleEmojiPick (data) {
+  handleEmojiPick = (data) => {
     const position     = this.autosuggestTextarea.textarea.selectionStart;
     this._restoreCaret = position + data.shortname.length + 1;
     this.props.onPickEmoji(position, data);
@@ -128,14 +145,14 @@ class ComposeForm extends ImmutablePureComponent {
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
-      publishText = intl.formatMessage(messages.publish) + (this.props.privacy !== 'unlisted' ? '!' : '');
+      publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
 
     return (
       <div className='compose-form'>
         <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
-          <div className="spoiler-input">
-            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type="text" className="spoiler-input__input"  id='cw-spoiler-input'/>
+          <div className='spoiler-input'>
+            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type='text' className='spoiler-input__input'  id='cw-spoiler-input' />
           </div>
         </Collapsable>
 
@@ -176,7 +193,7 @@ class ComposeForm extends ImmutablePureComponent {
 
           <div className='compose-form__publish'>
             <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
-            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
+            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '_').length > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
           </div>
         </div>
       </div>
@@ -184,33 +201,5 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
 }
-
-ComposeForm.propTypes = {
-  intl: PropTypes.object.isRequired,
-  text: PropTypes.string.isRequired,
-  suggestion_token: PropTypes.string,
-  suggestions: ImmutablePropTypes.list,
-  spoiler: PropTypes.bool,
-  privacy: PropTypes.string,
-  spoiler_text: PropTypes.string,
-  focusDate: PropTypes.instanceOf(Date),
-  preselectDate: PropTypes.instanceOf(Date),
-  is_submitting: PropTypes.bool,
-  is_uploading: PropTypes.bool,
-  me: PropTypes.number,
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onClearSuggestions: PropTypes.func.isRequired,
-  onFetchSuggestions: PropTypes.func.isRequired,
-  onSuggestionSelected: PropTypes.func.isRequired,
-  onChangeSpoilerText: PropTypes.func.isRequired,
-  onPaste: PropTypes.func.isRequired,
-  onPickEmoji: PropTypes.func.isRequired,
-  showSearch: PropTypes.bool,
-};
-
-ComposeForm.defaultProps = {
-  showSearch: false
-};
 
 export default injectIntl(ComposeForm);

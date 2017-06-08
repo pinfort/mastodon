@@ -11,6 +11,10 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 class Notification extends ImmutablePureComponent {
 
+  static propTypes = {
+    notification: ImmutablePropTypes.map.isRequired,
+  };
+
   renderFollow (account, link) {
     return (
       <div className='notification notification-follow'>
@@ -28,7 +32,7 @@ class Notification extends ImmutablePureComponent {
   }
 
   renderMention (notification) {
-    return <StatusContainer id={notification.get('status')} />;
+    return <StatusContainer id={notification.get('status')} withDismiss />;
   }
 
   renderFavourite (notification, link) {
@@ -36,12 +40,12 @@ class Notification extends ImmutablePureComponent {
       <div className='notification notification-favourite'>
         <div className='notification__message'>
           <div className='notification__favourite-icon-wrapper'>
-            <i className='fa fa-fw fa-star star-icon'/>
+            <i className='fa fa-fw fa-star star-icon' />
           </div>
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted={true} />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
       </div>
     );
   }
@@ -56,7 +60,7 @@ class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted={true} />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
       </div>
     );
   }
@@ -81,9 +85,5 @@ class Notification extends ImmutablePureComponent {
   }
 
 }
-
-Notification.propTypes = {
-  notification: ImmutablePropTypes.map.isRequired
-};
 
 export default Notification;

@@ -3,10 +3,14 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import AccountContainer from '../../../containers/account_container';
 import StatusContainer from '../../../containers/status_container';
-import { Link } from 'react-router';
+import Link from 'react-router/lib/Link';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 class SearchResults extends ImmutablePureComponent {
+
+  static propTypes = {
+    results: ImmutablePropTypes.map.isRequired,
+  };
 
   render () {
     const { results } = this.props;
@@ -37,7 +41,7 @@ class SearchResults extends ImmutablePureComponent {
       hashtags = (
         <div className='search-results__section'>
           {results.get('hashtags').map(hashtag =>
-            <Link className='search-results__hashtag' to={`/timelines/tag/${hashtag}`}>
+            <Link key={hashtag} className='search-results__hashtag' to={`/timelines/tag/${hashtag}`}>
               #{hashtag}
             </Link>
           )}
@@ -59,9 +63,5 @@ class SearchResults extends ImmutablePureComponent {
   }
 
 }
-
-SearchResults.propTypes = {
-  results: ImmutablePropTypes.map.isRequired
-};
 
 export default SearchResults;

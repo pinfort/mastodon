@@ -11,28 +11,41 @@ import DisplayName from '../../../components/display_name';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  reblog: { id: 'status.reblog', defaultMessage: 'Boost' }
+  reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
 });
 
 class BoostModal extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleReblog = this.handleReblog.bind(this);
-    this.handleAccountClick = this.handleAccountClick.bind(this);
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
+  static propTypes = {
+    status: ImmutablePropTypes.map.isRequired,
+    onReblog: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+  };
+
+  componentDidMount() {
+    this.button.focus();
   }
 
-  handleReblog() {
+  handleReblog = () => {
     this.props.onReblog(this.props.status);
     this.props.onClose();
   }
 
-  handleAccountClick (e) {
+  handleAccountClick = (e) => {
     if (e.button === 0) {
       e.preventDefault();
       this.props.onClose();
       this.context.router.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
     }
+  }
+
+  setRef = (c) => {
+    this.button = c;
   }
 
   render () {
@@ -62,23 +75,12 @@ class BoostModal extends ImmutablePureComponent {
 
         <div className='boost-modal__action-bar'>
           <div><FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <i className='fa fa-retweet' /></span> }} /></div>
-          <Button text={intl.formatMessage(messages.reblog)} onClick={this.handleReblog} />
+          <Button text={intl.formatMessage(messages.reblog)} onClick={this.handleReblog} ref={this.setRef} />
         </div>
       </div>
     );
   }
 
 }
-
-BoostModal.contextTypes = {
-  router: PropTypes.object
-};
-
-BoostModal.propTypes = {
-  status: ImmutablePropTypes.map.isRequired,
-  onReblog: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(BoostModal);

@@ -8,10 +8,17 @@ import IconButton from '../../../components/icon_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  close: { id: 'lightbox.close', defaultMessage: 'Close' }
+  close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
 class VideoModal extends ImmutablePureComponent {
+
+  static propTypes = {
+    media: ImmutablePropTypes.map.isRequired,
+    time: PropTypes.number,
+    onClose: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+  };
 
   render () {
     const { media, intl, time, onClose } = this.props;
@@ -22,19 +29,12 @@ class VideoModal extends ImmutablePureComponent {
       <div className='modal-root__modal media-modal'>
         <div>
           <div className='media-modal__close'><IconButton title={intl.formatMessage(messages.close)} icon='times' overlay onClick={onClose} /></div>
-          <ExtendedVideoPlayer src={url} muted={false} controls={true} time={time} />
+          <ExtendedVideoPlayer src={url} muted={false} controls time={time} />
         </div>
       </div>
     );
   }
 
 }
-
-VideoModal.propTypes = {
-  media: ImmutablePropTypes.map.isRequired,
-  time: PropTypes.number,
-  onClose: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(VideoModal);

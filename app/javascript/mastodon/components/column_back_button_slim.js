@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 
 class ColumnBackButtonSlim extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleClick = this.handleClick.bind(this);
-  }
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
-  handleClick () {
-    this.context.router.push('/');
+  handleClick = () => {
+    if (window.history && window.history.length === 1) this.context.router.push('/');
+    else this.context.router.goBack();
   }
 
   render () {
@@ -23,10 +23,7 @@ class ColumnBackButtonSlim extends React.PureComponent {
       </div>
     );
   }
-}
 
-ColumnBackButtonSlim.contextTypes = {
-  router: PropTypes.object
-};
+}
 
 export default ColumnBackButtonSlim;

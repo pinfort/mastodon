@@ -1,13 +1,9 @@
 import React from 'react';
-import ColumnsArea from './components/columns_area';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
-import HomeTimeline from '../home_timeline';
-import Compose from '../compose';
 import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
-import Notifications from '../notifications';
 import { connect } from 'react-redux';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
@@ -15,32 +11,27 @@ import { uploadCompose } from '../../actions/compose';
 import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
+import ColumnsAreaContainer from './containers/columns_area_container';
 
 const noOp = () => false;
 
 class UI extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      width: window.innerWidth,
-      draggingOver: false
-    };
-    this.handleResize = debounce(this.handleResize.bind(this), 500);
-    this.handleDragEnter = this.handleDragEnter.bind(this);
-    this.handleDragOver = this.handleDragOver.bind(this);
-    this.handleDrop = this.handleDrop.bind(this);
-    this.handleDragLeave = this.handleDragLeave.bind(this);
-    this.handleDragEnd = this.handleDragLeave.bind(this)
-    this.closeUploadModal = this.closeUploadModal.bind(this)
-    this.setRef = this.setRef.bind(this);
-  }
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    children: PropTypes.node,
+  };
 
-  handleResize () {
+  state = {
+    width: window.innerWidth,
+    draggingOver: false,
+  };
+
+  handleResize = () => {
     this.setState({ width: window.innerWidth });
   }
 
-  handleDragEnter (e) {
+  handleDragEnter = (e) => {
     e.preventDefault();
 
     if (!this.dragTargets) {
@@ -56,7 +47,7 @@ class UI extends React.PureComponent {
     }
   }
 
-  handleDragOver (e) {
+  handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -69,7 +60,7 @@ class UI extends React.PureComponent {
     return false;
   }
 
-  handleDrop (e) {
+  handleDrop = (e) => {
     e.preventDefault();
 
     this.setState({ draggingOver: false });
@@ -79,7 +70,7 @@ class UI extends React.PureComponent {
     }
   }
 
-  handleDragLeave (e) {
+  handleDragLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -92,7 +83,7 @@ class UI extends React.PureComponent {
     this.setState({ draggingOver: false });
   }
 
-  closeUploadModal() {
+  closeUploadModal = () => {
     this.setState({ draggingOver: false });
   }
 
@@ -117,7 +108,7 @@ class UI extends React.PureComponent {
     document.removeEventListener('dragend', this.handleDragEnd);
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.node = c;
   }
 
@@ -125,33 +116,12 @@ class UI extends React.PureComponent {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
 
-    let mountedColumns;
-
-    if (isMobile(width)) {
-      mountedColumns = (
-        <ColumnsArea>
-          {children}
-        </ColumnsArea>
-      );
-    } else {
-      mountedColumns = (
-        <ColumnsArea>
-          <Compose withHeader={true} />
-          <HomeTimeline shouldUpdateScroll={noOp} />
-          <Notifications shouldUpdateScroll={noOp} />
-          <div style={{display: 'flex', flex: '1 1 auto', position: 'relative'}}>{children}</div>
-        </ColumnsArea>
-      );
-    }
-
     return (
       <div className='ui' ref={this.setRef}>
         <TabsBar />
-
-        {mountedColumns}
-
+        <ColumnsAreaContainer singleColumn={isMobile(width)}>{children}</ColumnsAreaContainer>
         <NotificationsContainer />
-        <LoadingBarContainer className="loading-bar" />
+        <LoadingBarContainer className='loading-bar' />
         <ModalContainer />
         <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
       </div>
@@ -159,10 +129,5 @@ class UI extends React.PureComponent {
   }
 
 }
-
-UI.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  children: PropTypes.node
-};
 
 export default connect()(UI);
