@@ -17,7 +17,6 @@ gem 'dotenv-rails', '~> 2.2'
 gem 'aws-sdk', '~> 2.9'
 gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder', '~> 0.6'
-gem 'sidekiq-scheduler'
 
 gem 'addressable', '~> 2.5'
 gem 'bootsnap', '~> 0.3'
