@@ -4,6 +4,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class Area extends React.PureComponent {
 
+  static propTypes = {
+    account: ImmutablePropTypes.map.isRequired
+  };
+
   constructor (props, context) {
     super(props, context);
     var area_data = require("../../area_settings.json");
@@ -90,9 +94,5 @@ class Area extends React.PureComponent {
     return (account.get('username') === account.get('acct'));
   }
 }
-
-Area.propTypes = {
-  account: ImmutablePropTypes.map.isRequired
-};
 
 export default Area;

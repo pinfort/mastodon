@@ -2,6 +2,10 @@ import Area from './area';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class Area_header extends Area {
+
+  static propTypes = {
+    account: ImmutablePropTypes.map.isRequired
+  };
   constructor (props, context) {
     super(props, context);
     this.get_area_class_name = this.get_area_class_name.bind(this);
@@ -19,9 +23,5 @@ class Area_header extends Area {
     );
   }
 }
-
-Area_header.propTypes = {
-  account: ImmutablePropTypes.map.isRequired
-};
 
 export default Area_header;
