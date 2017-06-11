@@ -7,7 +7,7 @@ class Area_avatar extends Area {
     account: ImmutablePropTypes.map.isRequired
   };
   constructor = () => {
-    super();
+    super.start();
   }
 
   get_area_class_name = (account) => {

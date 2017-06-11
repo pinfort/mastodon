@@ -7,10 +7,10 @@ class Area_header extends Area {
     account: ImmutablePropTypes.map.isRequired
   };
   constructor = () => {
-    super();
+    super.start();
   }
 
-  get_area_class_name(account){
+  get_area_class_name = (account) => {
     return ("account__header__area-" + this.get_area_eng_name(account));
   }
 

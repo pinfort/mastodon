@@ -8,7 +8,7 @@ class Area extends React.PureComponent {
     account: ImmutablePropTypes.map.isRequired
   };
 
-  constructor () {
+  constructor = () => {
     var area_data = require("../../area_settings.json");
     var areas = area_data['areas'];
     this.instances = area_data['instances'];
