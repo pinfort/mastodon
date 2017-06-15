@@ -10,6 +10,7 @@ class Area extends React.PureComponent {
 
   constructor (props, context) {
     super(props, context);
+    this.props = props;
     var area_data = require("../../area_settings.json");
     var areas = area_data['areas'];
     this.instances = area_data['instances'];
