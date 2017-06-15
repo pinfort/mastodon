@@ -6,11 +6,13 @@ class Area_avatar extends Area {
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired
   };
-  constructor = () => {
-    super.start();
+
+  constructor (props, context) {
+    super(props, context);
+    this.get_area_class_name = this.get_area_class_name.bind(this);
   }
 
-  get_area_class_name = (account) => {
+  get_area_class_name(account){
     return ("account__avatar__area-" + this.get_area_eng_name(account));
   }
 

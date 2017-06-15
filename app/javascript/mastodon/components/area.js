@@ -8,7 +8,8 @@ class Area extends React.PureComponent {
     account: ImmutablePropTypes.map.isRequired
   };
 
-  constructor = () => {
+  constructor (props, context) {
+    super(props, context);
     var area_data = require("../../area_settings.json");
     var areas = area_data['areas'];
     this.instances = area_data['instances'];
@@ -16,9 +17,16 @@ class Area extends React.PureComponent {
     areas.forEach(function(data, index, arr) {
       this.config[data['area-id']] = data;
     }, this);
+    this.get_area_eng_name = this.get_area_eng_name.bind(this);
+    this.get_area_short_name = this.get_area_short_name.bind(this);
+    this.get_local_area_eng_name = this.get_local_area_eng_name.bind(this);
+    this.get_remote_area_eng_name = this.get_remote_area_eng_name.bind(this);
+    this.get_local_area_short_name = this.get_local_area_short_name.bind(this);
+    this.get_remote_area_short_name = this.get_remote_area_short_name.bind(this);
+    this.is_local = this.is_local.bind(this);
   }
 
-  get_area_eng_name = (account) => {
+  get_area_eng_name(account){
     if (this.is_local(account)){
       return (this.get_local_area_eng_name(account.get('area')));
     }else{
@@ -26,7 +34,7 @@ class Area extends React.PureComponent {
     }
   }
 
-  get_local_area_eng_name = (area_id) => {
+  get_local_area_eng_name(area_id){
     if (isNaN(area_id)) {
       var area_id = 0;
     };
@@ -38,7 +46,7 @@ class Area extends React.PureComponent {
     return (area_eng_name);
   }
 
-  get_remote_area_eng_name = (account) => {
+  get_remote_area_eng_name(account){
     var splittedName = account.get('acct').split('@');
     var domain = splittedName[splittedName.length - 1];
     try{
@@ -50,7 +58,7 @@ class Area extends React.PureComponent {
     return (area_eng_name);
   }
 
-  get_area_short_name = (account) => {
+  get_area_short_name(account){
     if (this.is_local(account)){
       return (this.get_local_area_short_name(account.get('area')));
     }else{
@@ -58,7 +66,7 @@ class Area extends React.PureComponent {
     }
   }
 
-  get_local_area_short_name = (area_id) => {
+  get_local_area_short_name(area_id){
     if (isNaN(area_id)) {
       var area_id = 0;
     };
@@ -70,7 +78,7 @@ class Area extends React.PureComponent {
     return (area_short_name);
   }
 
-  get_remote_area_short_name = (account) => {
+  get_remote_area_short_name(account){
     var splittedName = account.get('acct').split('@');
     var domain = splittedName[splittedName.length - 1];
     try{
@@ -82,7 +90,7 @@ class Area extends React.PureComponent {
     return (area_short_name);
   }
 
-  is_local = (account) => {
+  is_local(account){
     return (account.get('username') === account.get('acct'));
   }
 }
