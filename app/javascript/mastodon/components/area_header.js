@@ -1,3 +1,4 @@
+import React from 'react';
 import Area from './area';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
