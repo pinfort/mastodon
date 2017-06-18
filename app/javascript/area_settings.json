@@ -1,0 +1,158 @@
+{"areas":
+  [
+    {
+      "area-id": 0,
+      "area-name": "未設定",
+      "area-short-name": "未",
+      "area-eng-name": "unknown"
+    },
+    {
+      "area-id": 1,
+      "area-name": "神戸",
+      "area-short-name": "神",
+      "area-eng-name": "kobe"
+    },
+    {
+      "area-id": 2,
+      "area-name": "阪神",
+      "area-short-name": "阪",
+      "area-eng-name": "hanshin"
+    },
+    {
+      "area-id": 3,
+      "area-name": "丹波",
+      "area-short-name": "丹",
+      "area-eng-name": "tanba"
+    },
+    {
+      "area-id": 4,
+      "area-name": "但馬",
+      "area-short-name": "但",
+      "area-eng-name": "tajima"
+    },
+    {
+      "area-id": 5,
+      "area-name": "西播",
+      "area-short-name": "西",
+      "area-eng-name": "seiban"
+    },
+    {
+      "area-id": 6,
+      "area-name": "東播",
+      "area-short-name": "東",
+      "area-eng-name": "touban"
+    },
+    {
+      "area-id": 7,
+      "area-name": "淡路",
+      "area-short-name": "淡",
+      "area-eng-name": "awaji"
+    },
+    {
+      "area-id": 8,
+      "area-name": "県外",
+      "area-short-name": "外",
+      "area-eng-name": "kengai"
+    }
+  ],
+"instances":
+  {
+    "mstdn.osaka": {
+      "instance-id": 1,
+      "instance-name": "大阪丼",
+      "instance-short-name": "大",
+      "instance-eng-name": "remote-osaka"
+    },
+
+    "biwakodon.com": {
+      "instance-id": 2,
+      "instance-name": "琵琶湖丼",
+      "instance-short-name": "琵",
+      "instance-eng-name": "remote-biwako"
+    },
+
+    "mastodon.nara.jp": {
+      "instance-id": 3,
+      "instance-name": "鹿トドン",
+      "instance-short-name": "鹿",
+      "instance-eng-name": "remote-nara"
+    },
+
+    "mastodon.wakayama.jp": {
+      "instance-id": 4,
+      "instance-name": "和歌山丼",
+      "instance-short-name": "和",
+      "instance-eng-name": "remote-wakayama"
+    },
+
+    "mastodos.com": {
+      "instance-id": 5,
+      "instance-name": "マストどす",
+      "instance-short-name": "ど",
+      "instance-eng-name": "remote-mastodos"
+    },
+
+    "miestodon.com": {
+      "instance-id": 6,
+      "instance-name": "三重スト丼",
+      "instance-short-name": "三",
+      "instance-eng-name": "remote-mie"
+    },
+
+    "myd.kyoto.jp": {
+      "instance-id": 7,
+      "instance-name": "京都丼",
+      "instance-short-name": "京",
+      "instance-eng-name": "remote-kyoto"
+    },
+
+    "pawoo.net": {
+      "instance-id": 8,
+      "instance-name": "パゥー",
+      "instance-short-name": "PW",
+      "instance-eng-name": "remote-pawoo"
+    },
+
+    "mstdn.jp": {
+      "instance-id": 9,
+      "instance-name": ".jp",
+      "instance-short-name": "JP",
+      "instance-eng-name": "remote-jp"
+    },
+
+    "friends.nico": {
+      "instance-id": 10,
+      "instance-name": "ニコ",
+      "instance-short-name": "NC",
+      "instance-eng-name": "remote-nico"
+    },
+
+    "mastodon.social": {
+      "instance-id": 11,
+      "instance-name": "social",
+      "instance-short-name": "SC",
+      "instance-eng-name": "remote-social"
+    },
+
+    "nishinomiya.in.net": {
+      "instance-id": 12,
+      "instance-name": "西宮",
+      "instance-short-name": "宮",
+      "instance-eng-name": "remote-nishinomiya"
+    },
+
+    "don.akashi.cloud": {
+      "instance-id": 13,
+      "instance-name": "明丼",
+      "instance-short-name": "明",
+      "instance-eng-name": "remote-akashidon"
+    },
+
+    "akashiensis.online": {
+      "instance-id": 14,
+      "instance-name": "明エ",
+      "instance-short-name": "石",
+      "instance-eng-name": "remote-akashiensis"
+    }
+  }
+}

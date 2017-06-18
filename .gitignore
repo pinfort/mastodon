@@ -19,10 +19,11 @@
 coverage
 public/system
 public/assets
+public/packs
 .env
 .env.production
 node_modules/
-neo4j/
+build/
 
 # Ignore Vagrant files
 .vagrant/
@@ -49,4 +50,14 @@ Thumbs.db
 .tags
 .tags_sorted_by_file
 *.orig
+
+# Ignore npm debug log
+npm-debug.log
+
+# Ignore yarn log files
+yarn-error.log
+yarn-debug.log
+
+# Ignore Docker option files
+docker-compose.override.yml
 
