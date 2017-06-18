@@ -125,6 +125,34 @@
       "instance-name": "ニコ",
       "instance-short-name": "NC",
       "instance-eng-name": "remote-nico"
+    },
+
+    "mastodon.social": {
+      "instance-id": 11,
+      "instance-name": "social",
+      "instance-short-name": "SC",
+      "instance-eng-name": "remote-social"
+    },
+
+    "nishinomiya.in.net": {
+      "instance-id": 12,
+      "instance-name": "西宮",
+      "instance-short-name": "宮",
+      "instance-eng-name": "remote-nishinomiya"
+    },
+
+    "don.akashi.cloud": {
+      "instance-id": 13,
+      "instance-name": "明丼",
+      "instance-short-name": "明",
+      "instance-eng-name": "remote-akashidon"
+    },
+
+    "akashiensis.online": {
+      "instance-id": 14,
+      "instance-name": "明エ",
+      "instance-short-name": "石",
+      "instance-eng-name": "remote-akashiensis"
     }
   }
 }

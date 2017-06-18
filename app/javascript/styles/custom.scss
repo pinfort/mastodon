@@ -155,7 +155,6 @@
     border-radious: 4px;
     -webkit-border-radius: 4px;
     display: inline-block;
-    margin: 0px 0px 0px -3px;
 }
 
 .account__avatar__area-wrapper{
@@ -263,18 +262,46 @@
 
 .account__avatar__area-remote-pawoo{
     @include avatar__2eng__area();
+    margin: 0px 0px 0px -4px;
     background-color: rgba(200,200,200,0.9);
     color:#000000;
 }
 
 .account__avatar__area-remote-jp{
     @include avatar__2eng__area();
+    margin: 0px;
     background-color: rgba(200,200,200,0.9);
     color:#000000;
 }
 
 .account__avatar__area-remote-nico{
     @include avatar__2eng__area();
+    margin: 0px 0px 0px -2.5px;
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
+.account__avatar__area-remote-social{
+    @include avatar__2eng__area();
+    margin: 0px;
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
+.account__avatar__area-remote-nishinomiya{
+    @include avatar__area();
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
+.account__avatar__area-remote-akashidon{
+    @include avatar__area();
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
+.account__avatar__area-remote-akashiensis{
+    @include avatar__area();
     background-color: rgba(200,200,200,0.9);
     color:#000000;
 }
