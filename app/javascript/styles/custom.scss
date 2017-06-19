@@ -139,6 +139,30 @@
     color:#000000;
 }
 
+.account__header__area-remote-social{
+    @include header__2eng__area();
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
+.account__header__area-remote-nishinomiya{
+    @include header__area();
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
+.account__header__area-remote-akashidon{
+    @include header__area();
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
+.account__header__area-remote-akashiensis{
+    @include header__area();
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
 @mixin avatar__area(){
     will-change: transform;
     font-size: 15px;
