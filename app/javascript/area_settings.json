@@ -143,16 +143,23 @@
 
     "don.akashi.cloud": {
       "instance-id": 13,
-      "instance-name": "明丼",
+      "instance-name": "明石丼",
       "instance-short-name": "明",
       "instance-eng-name": "remote-akashidon"
     },
 
     "akashiensis.online": {
       "instance-id": 14,
-      "instance-name": "明エ",
+      "instance-name": "AKASHIensis",
       "instance-short-name": "石",
       "instance-eng-name": "remote-akashiensis"
+    },
+
+    "shigadon.com": {
+      "instance-id": 15,
+      "instance-name": "滋賀丼",
+      "instance-short-name": "滋",
+      "instance-eng-name": "remote-shigadon"
     }
   }
 }
