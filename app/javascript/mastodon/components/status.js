@@ -155,6 +155,7 @@ class Status extends ImmutablePureComponent {
   render () {
     let media = null;
     let statusAvatar;
+    let statusAreaAvatar = null;
     const { status, account, ...other } = this.props;
     const { isExpanded, isIntersecting, isHidden } = this.state;
 
@@ -204,6 +205,7 @@ class Status extends ImmutablePureComponent {
 
     if (account === undefined || account === null) {
       statusAvatar = <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} />;
+      statusAreaAvatar = <Area_avatar account={status.get('account')}/>;
     }else{
       statusAvatar = <AvatarOverlay staticSrc={status.getIn(['account', 'avatar_static'])} overlaySrc={account.get('avatar_static')} />;
     }
@@ -216,7 +218,7 @@ class Status extends ImmutablePureComponent {
           <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name'>
             <div className='status__avatar'>
               {statusAvatar}
-              <Area_avatar account={status.get('account')}/>
+              {statusAreaAvatar}
             </div>
 
             <DisplayName account={status.get('account')} />
