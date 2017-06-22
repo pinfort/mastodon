@@ -4,3 +4,4 @@ area_settings = open(json_file_path) do |io|
   JSON.load(io)
 end
 Rails.application.config.account_area = area_settings["areas"]
+Rails.application.config.instances_area = area_settings["instance-areas"]

@@ -161,5 +161,26 @@
       "instance-short-name": "滋",
       "instance-eng-name": "remote-shigadon"
     }
+  },
+"instance-areas":
+  {
+    "hyogo": [
+      "nishinomiya.in.net",
+      "akashiensis.online",
+      "don.akashi.cloud"
+    ],
+    "kansai": [
+      "mstdn.osaka",
+      "biwakodon.com",
+      "mastodon.nara.jp",
+      "mastodon.wakayama.jp",
+      "mastodos.com",
+      "miestodon.com",
+      "myd.kyoto.jp",
+      "nishinomiya.in.net",
+      "don.akashi.cloud",
+      "akashiensis.online",
+      "shigadon.com"
+    ]
   }
 }

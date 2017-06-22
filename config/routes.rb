@@ -151,6 +151,7 @@ Rails.application.routes.draw do
       namespace :timelines do
         resource :home, only: :show, controller: :home
         resource :public, only: :show, controller: :public
+        resources :area, only: :show
         resources :tag, only: :show
       end
       resources :streaming,  only: [:index]
