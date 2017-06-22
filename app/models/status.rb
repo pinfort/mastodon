@@ -155,9 +155,9 @@ class Status < ApplicationRecord
     end
 
     def as_area_timeline(instances, account = nil, local_only = false)
-      query = timeline_scope(local_only).without_replies.or(where(accounts: { domain: nil }))
+      query = timeline_scope(local_only).without_replies.where(accounts: { domain: nil })
       for instance in instances do
-        query = query.or(where(accounts: { domain: instance }))
+        query = query.or(timeline_scope(local_only).without_replies.where(accounts: { domain: instance }))
       end
 
       apply_timeline_filters(query, account, local_only)
