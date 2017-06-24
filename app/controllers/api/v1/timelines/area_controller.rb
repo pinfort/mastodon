@@ -18,8 +18,8 @@ class Api::V1::Timelines::AreaController < Api::BaseController
     Rails.application.config.instances_area.map do |key, value|
       areas[option.group_name] = option.instances
     end
-    if areas.has_key?(:id.downcase)
-      @instances = areas[:id.downcase]["instances"]
+    if areas.has_key?(params[:id].downcase)
+      @instances = areas[params[:id].downcase]["instances"]
     else
       @instances = nil
     end
