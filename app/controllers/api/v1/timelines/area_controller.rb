@@ -14,8 +14,12 @@ class Api::V1::Timelines::AreaController < Api::BaseController
   private
 
   def load_area
-    if Rails.application.config.instances_area.has_key?(:id.downcase)
-      @instances = Rails.application.config.instances_area[:id.downcase]
+    areas = {}
+    Rails.application.config.instances_area.map do |key, value|
+      areas[option.group_name] = option.instances
+    end
+    if areas.has_key?(:id.downcase)
+      @instances = areas[:id.downcase]["instances"]
     else
       @instances = nil
     end

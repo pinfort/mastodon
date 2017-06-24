@@ -163,24 +163,33 @@
     }
   },
 "instance-areas":
-  {
-    "hyogo": [
-      "nishinomiya.in.net",
-      "akashiensis.online",
-      "don.akashi.cloud"
-    ],
-    "kansai": [
-      "mstdn.osaka",
-      "biwakodon.com",
-      "mastodon.nara.jp",
-      "mastodon.wakayama.jp",
-      "mastodos.com",
-      "miestodon.com",
-      "myd.kyoto.jp",
-      "nishinomiya.in.net",
-      "don.akashi.cloud",
-      "akashiensis.online",
-      "shigadon.com"
-    ]
+  [
+    {
+      "group_name": "hyogo",
+      "group_id": 0,
+      "instances": [
+        "nishinomiya.in.net",
+        "akashiensis.online",
+        "don.akashi.cloud"
+      ]
+    },
+    {
+      "group_name": "kansai",
+      "group_id": 1,
+      "instances": [
+        "mstdn.osaka",
+        "biwakodon.com",
+        "mastodon.nara.jp",
+        "mastodon.wakayama.jp",
+        "mastodos.com",
+        "miestodon.com",
+        "myd.kyoto.jp",
+        "nishinomiya.in.net",
+        "don.akashi.cloud",
+        "akashiensis.online",
+        "shigadon.com"
+      ]
+    }
+  ]
   }
 }

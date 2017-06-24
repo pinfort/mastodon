@@ -17,6 +17,7 @@ const messages = defineMessages({
   navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation' },
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
+  area_timeline: { id: 'navigation_bar.area_timeline', defaultMessage: 'Area timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
@@ -60,6 +61,10 @@ class GettingStarted extends ImmutablePureComponent {
 
       if (!columns.find(item => item.get('id') === 'PUBLIC')) {
         navItems.push(<ColumnLink key='3' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />);
+      }
+
+      if (!columns.find(item => item.get('id') === 'AREA')) {
+        navItems.push(<ColumnLink key='20' icon='users' text={intl.formatMessage(messages.area_timeline)} to='/timelines/area' />);
       }
     }
 
