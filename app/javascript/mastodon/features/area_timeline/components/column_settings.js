@@ -21,7 +21,7 @@ class ColumnSettings extends React.PureComponent {
   };
 
   readAreas = () => {
-    var area_data = require("../../area_settings.json");
+    var area_data = require("../../../../area_settings.json");
     groups = area_data['instance-areas'];
     var areas = new Array();
     groups.map((option, index) => {
