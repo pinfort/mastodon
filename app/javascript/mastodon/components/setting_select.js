@@ -27,12 +27,7 @@ class SettingSelect extends React.PureComponent {
       {
         groups.map(
           (group, index) => {
-            if (index == settings.getIn(settingKey)) {
-              var selected = "selected";
-            } else {
-              var selected = "";
-            }
-            return <option key={index} value={group} {selected}>{group}</option>
+            return <option key={index} value={group}>{group}</option>
           }
         )
       }
