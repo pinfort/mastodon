@@ -145,4 +145,4 @@ class AreaTimeline extends React.PureComponent {
 
 }
 
-export default connect(mapStateToProps)(AreaTimeline);
+export default connect(mapStateToProps)(injectIntl(AreaTimeline));
