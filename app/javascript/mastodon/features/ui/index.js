@@ -23,8 +23,6 @@ import CommunityTimeline from '../../features/community_timeline';
 import AccountTimeline from '../../features/account_timeline';
 import AccountGallery from '../../features/account_gallery';
 import HomeTimeline from '../../features/home_timeline';
-import AreaTimeline from '../../features/area_timeline';
-import AreaTimelineRedirect from '../../features/area_timeline_redirect';
 import Compose from '../../features/compose';
 import Followers from '../../features/followers';
 import Following from '../../features/following';
@@ -192,8 +190,6 @@ class UI extends React.PureComponent {
             <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
             <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
             <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
-            <WrappedRoute path='/timelines/area' component={AreaTimelineRedirect} content={children} />
-            <WrappedRoute path='/timelines/area/:id' component={AreaTimeline} content={children} />
             <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
 
             <WrappedRoute path='/notifications' component={Notifications} content={children} />
