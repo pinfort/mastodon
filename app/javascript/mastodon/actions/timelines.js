@@ -139,7 +139,7 @@ export const expandCommunityTimeline    = () => expandTimeline('community', '/ap
 export const expandAccountTimeline      = accountId => expandTimeline(`account:${accountId}`, `/api/v1/accounts/${accountId}/statuses`);
 export const expandAccountMediaTimeline = accountId => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
 export const expandHashtagTimeline      = hashtag => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
-export const expandAreaTimeline      = area => expandTimeline(`hashtag:${area}`, `/api/v1/timelines/area/${area}`);
+export const expandAreaTimeline      = area => expandTimeline(`area:${area}`, `/api/v1/timelines/area/${area}`);
 
 export function expandTimelineRequest(timeline) {
   return {
