@@ -37,4 +37,4 @@ class SettingSelect extends React.PureComponent {
 
 }
 
-export default SettingText;
+export default SettingSelect;
