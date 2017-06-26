@@ -42,7 +42,7 @@ class ColumnSettings extends React.PureComponent {
         <div className='column-settings__row'>
           <SettingSelect settings={settings} settingKey={['area', 'body']} onChange={onChange} groups={areas}/>
         </div>
-        <span className='column-settings__section'><FormattedMessage id='area.column_settings.advanced' defaultMessage='Advanced' /></span>
+        <span className='column-settings__section'><FormattedMessage id='home.column_settings.advanced' defaultMessage='Advanced' /></span>
 
         <div className='column-settings__row'>
           <SettingText settings={settings} settingKey={['regex', 'body']} onChange={onChange} label={intl.formatMessage(messages.filter_regex)} />
