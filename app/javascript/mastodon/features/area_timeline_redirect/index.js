@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router'
 
 class AreaTimelineRedirect extends React.PureComponent {
 
@@ -17,7 +18,7 @@ class AreaTimelineRedirect extends React.PureComponent {
     var area = this.state.getIn(['settings', 'area']).getIn(['area', 'body']);
 
     return (
-      <Redirect from="/area" to="/area/${area}" />
+      <Redirect to="/area/${area}" />
     );
   }
 
