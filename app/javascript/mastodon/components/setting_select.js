@@ -20,7 +20,7 @@ class SettingSelect extends React.PureComponent {
 
     return (
       <select 
-        className='setting-text'
+        className='setting-select'
         onChange={this.handleChange}
         value={settings.getIn(settingKey)}
       >
