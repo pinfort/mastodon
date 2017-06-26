@@ -19,9 +19,8 @@ class AreaTimelineRedirect extends React.PureComponent {
 
   render () {
     const { area } = this.props;
-
     return (
-      <Redirect to="/area/${area}" />
+      <Redirect to={`/area/${area}`} />
     );
   }
 
