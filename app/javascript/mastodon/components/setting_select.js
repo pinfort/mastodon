@@ -10,6 +10,7 @@ class SettingSelect extends React.PureComponent {
     settingKey: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
     groups: ImmutablePropTypes.map.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
   handleChange = (e) => {
