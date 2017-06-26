@@ -17,7 +17,7 @@ class SettingSelect extends React.PureComponent {
   }
 
   render () {
-    const { settings, settingKey, groups } = this.props;
+    const { settings, settingKey, groups, intl } = this.props;
 
     return (
       <select 
@@ -28,7 +28,7 @@ class SettingSelect extends React.PureComponent {
       {
         groups.map(
           (group, index) => {
-            message = { id: 'column.area.setting.' + group, defaultMessage: group };
+            var message = { id: 'column.area.setting.' + group, defaultMessage: group };
             return <option key={index} value={group}>{intl.formatMessage(message)}</option>
           }
         )
