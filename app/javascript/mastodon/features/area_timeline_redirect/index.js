@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router'
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
+
+const mapStateToProps = state => ({
+  area: state.getIn(['settings', 'area']).getIn(['area', 'body']),
+});
 
 class AreaTimelineRedirect extends React.PureComponent {
 
@@ -8,14 +13,12 @@ class AreaTimelineRedirect extends React.PureComponent {
     params: PropTypes.object.isRequired,
     columnId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
-    streamingAPIBaseURL: PropTypes.string.isRequired,
-    accessToken: PropTypes.string.isRequired,
-    hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    area: PropTypes.string,
   };
 
   render () {
-    var area = this.state.getIn(['settings', 'area']).getIn(['area', 'body']);
+    const { area } = this.props;
 
     return (
       <Redirect to="/area/${area}" />
@@ -24,4 +27,4 @@ class AreaTimelineRedirect extends React.PureComponent {
 
 }
 
-export default AreaTimelineRedirect;
+export default connect(mapStateToProps)(AreaTimelineRedirect);
