@@ -20,6 +20,8 @@
   "area.column_settings.basic": "基本設定",
   "boost_modal.combo": "次からは{combo}を押せば、これをスキップできます。",
   "column.area": "地域タイムライン",
+  "column.area.setting.hyogo": "兵庫",
+  "column.area.setting.kansai": "関西",
   "column.blocks": "ブロックしたユーザー",
   "column.community": "ローカルタイムライン",
   "column.favourites": "お気に入り",

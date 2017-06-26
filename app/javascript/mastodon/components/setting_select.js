@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 class SettingSelect extends React.PureComponent {
 
@@ -27,7 +28,8 @@ class SettingSelect extends React.PureComponent {
       {
         groups.map(
           (group, index) => {
-            return <option key={index} value={group}>{group}</option>
+            message = { id: 'column.area.setting.' + group, defaultMessage: group };
+            return <option key={index} value={group}>{intl.formatMessage(message)}</option>
           }
         )
       }
@@ -37,4 +39,4 @@ class SettingSelect extends React.PureComponent {
 
 }
 
-export default SettingSelect;
+export default injectIntl(SettingSelect);
