@@ -61,6 +61,7 @@ const initialState = Immutable.Map({
     area: Immutable.Map({
       body: 'kansai',
     }),
+  }),
 });
 
 const defaultColumns = Immutable.fromJS([
