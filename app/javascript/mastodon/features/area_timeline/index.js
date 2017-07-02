@@ -121,7 +121,7 @@ class AreaTimeline extends React.PureComponent {
     return (
       <Column ref={this.setRef}>
         <ColumnHeader
-          icon='users'
+          icon='commenting'
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
