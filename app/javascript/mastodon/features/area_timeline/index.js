@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import StatusListContainer from '../ui/containers/status_list_container';
+import AreaStatusListContainer from '../ui/containers/area_status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import {
@@ -9,6 +9,8 @@ import {
   expandAreaTimeline,
   updateTimeline,
   deleteFromTimelines,
+  connectTimeline,
+  disconnectTimeline,
 } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -36,6 +38,7 @@ class AreaTimeline extends React.PureComponent {
     accessToken: PropTypes.string.isRequired,
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    intl: PropTypes.object.isRequired,
   };
 
   handlePin = () => {
@@ -57,10 +60,29 @@ class AreaTimeline extends React.PureComponent {
     this.column.scrollTop();
   }
 
-  _subscribe (dispatch, id) {
-    const { streamingAPIBaseURL, accessToken } = this.props;
+  componentDidMount () {
+    const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
+    const { id } = this.props.params;
 
-    this.subscription = createStream(streamingAPIBaseURL, accessToken, `area&area=${id}`, {
+    dispatch(refreshAreaTimeline(id));
+
+    if (typeof this._subscription !== 'undefined') {
+      return;
+    }
+
+    this._subscription = createStream(streamingAPIBaseURL, accessToken, `area&area=${id}`, {
+
+      connected () {
+        dispatch(connectTimeline(`area:${id}`));
+      },
+
+      reconnected () {
+        dispatch(connectTimeline(`area:${id}`));
+      },
+
+      disconnected () {
+        dispatch(disconnectTimeline(`area:${id}`));
+      },
 
       received (data) {
         switch(data.event) {
@@ -76,31 +98,11 @@ class AreaTimeline extends React.PureComponent {
     });
   }
 
-  _unsubscribe () {
-    if (typeof this.subscription !== 'undefined') {
-      this.subscription.close();
-      this.subscription = null;
-    }
-  }
-
-  componentDidMount () {
-    const { dispatch } = this.props;
-    const { id } = this.props.params;
-
-    dispatch(refreshAreaTimeline(id));
-    this._subscribe(dispatch, id);
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.params.id !== this.props.params.id) {
-      this.props.dispatch(refreshAreaTimeline(nextProps.params.id));
-      this._unsubscribe();
-      this._subscribe(this.props.dispatch, nextProps.params.id);
-    }
-  }
-
   componentWillUnmount () {
-    this._unsubscribe();
+    if (typeof this._subscription !== 'undefined') {
+      this._subscription.close();
+      this._subscription = null;
+    }
   }
 
   setRef = c => {
@@ -127,15 +129,15 @@ class AreaTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-          showBackButton
         >
           <ColumnSettingsContainer />
         </ColumnHeader>
 
-        <StatusListContainer
+        <AreaStatusListContainer
           trackScroll={!pinned}
           scrollKey={`area_timeline-${columnId}`}
           timelineId={`area:${id}`}
+          settingTimelineId='area'
           loadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.area' defaultMessage='There is nothing in this area yet.' />}
         />
