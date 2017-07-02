@@ -64,7 +64,7 @@ class GettingStarted extends ImmutablePureComponent {
       }
 
       if (!columns.find(item => item.get('id') === 'AREA')) {
-        navItems.push(<ColumnLink key='20' icon='users' text={intl.formatMessage(messages.area_timeline)} to='/timelines/area' />);
+        navItems.push(<ColumnLink key='20' icon='map-marker' text={intl.formatMessage(messages.area_timeline)} to='/timelines/area' />);
       }
     }
 
