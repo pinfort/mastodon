@@ -23,7 +23,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  hasUnread: state.getIn(['timelines', 'area', 'unread']) > 0,
+  hasUnread: state.getIn(['timelines', `area:${state.getIn(['settings', 'area', 'area', 'body'])}`, 'unread']) > 0,
   streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
   accessToken: state.getIn(['meta', 'access_token']),
 });
