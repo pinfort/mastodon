@@ -120,6 +120,10 @@ class Status < ApplicationRecord
     !sensitive? && media_attachments.any?
   end
 
+  def in_area?(area)
+    Rails.application.config.instances_area_hash[area].include?(uri) or local?
+  end
+
   before_validation :prepare_contents
   before_validation :set_reblog
   before_validation :set_visibility
