@@ -117,13 +117,14 @@ class AreaTimeline extends React.PureComponent {
     const { intl, hasUnread, columnId, multiColumn } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
+    var message = { id: 'column.area.timeline.' + id, defaultMessage: id };
 
     return (
       <Column ref={this.setRef}>
         <ColumnHeader
           icon='map-marker'
           active={hasUnread}
-          title={intl.formatMessage(messages.title)}
+          title={intl.formatMessage(message)}
           onPin={this.handlePin}
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}

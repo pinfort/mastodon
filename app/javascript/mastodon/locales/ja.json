@@ -23,6 +23,8 @@
   "column.area": "地域タイムライン",
   "column.area.setting.hyogo": "兵庫",
   "column.area.setting.kansai": "関西",
+  "column.area.timeline.hyogo": "兵庫タイムライン",
+  "column.area.timeline.kansai": "関西タイムライン",
   "column.blocks": "ブロックしたユーザー",
   "column.community": "ローカルタイムライン",
   "column.favourites": "お気に入り",
