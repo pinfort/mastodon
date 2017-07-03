@@ -121,8 +121,12 @@ class Status < ApplicationRecord
   end
 
   def in_area?(area)
-    status_domain = uri.split(",")[0].split(":")[1]
-    Rails.application.config.instances_area_hash[area].include?(status_domain) or local?
+    if local?
+      return true
+    else
+      status_domain = uri.split(",")[0].split(":")[1]
+      return Rails.application.config.instances_area_hash[area].include?(status_domain)
+    end
   end
 
   before_validation :prepare_contents
