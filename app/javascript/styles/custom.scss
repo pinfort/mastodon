@@ -342,4 +342,19 @@
     color:#000000;
 }
 
+.setting-select {
+    color: #9baec8;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #9baec8;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    font-family: inherit;
+    margin-bottom: 10px;
+    padding: 7px 0;
+    width: 100%;
+    background: #393f4f;
+}
+
 @import 'application';

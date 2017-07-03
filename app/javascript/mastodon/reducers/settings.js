@@ -52,6 +52,16 @@ const initialState = Immutable.Map({
       body: '',
     }),
   }),
+
+  area: Immutable.Map({
+    regex: Immutable.Map({
+      body: '',
+    }),
+
+    area: Immutable.Map({
+      body: 'kansai',
+    }),
+  }),
 });
 
 const defaultColumns = Immutable.fromJS([

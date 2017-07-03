@@ -427,6 +427,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Area timeline",
+        "id": "column.area"
+      },
+      {
+        "defaultMessage": "The area is empty. Write something publicly to get the ball rolling!",
+        "id": "empty_column.area"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/area_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "What is on your mind?",
         "id": "compose_form.placeholder"
       },
@@ -716,6 +729,10 @@
         "id": "navigation_bar.community_timeline"
       },
       {
+        "defaultMessage": "Area timeline",
+        "id": "navigation_bar.area_timeline"
+      },
+      {
         "defaultMessage": "Preferences",
         "id": "navigation_bar.preferences"
       },
@@ -799,6 +816,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/home_timeline/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Column settings",
+        "id": "area.settings"
+      },
+      {
+        "defaultMessage": "Basic",
+        "id": "area.column_settings.basic"
+      },
+    ],
+    "path": "app/javascript/mastodon/features/area_timeline/components/column_settings.json"
   },
   {
     "descriptors": [

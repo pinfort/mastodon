@@ -120,6 +120,10 @@ class Status < ApplicationRecord
     !sensitive? && media_attachments.any?
   end
 
+  def in_area?(area)
+    Rails.application.config.instances_area_hash[area].include?(uri) or local?
+  end
+
   before_validation :prepare_contents
   before_validation :set_reblog
   before_validation :set_visibility
@@ -150,6 +154,15 @@ class Status < ApplicationRecord
 
     def as_tag_timeline(tag, account = nil, local_only = false)
       query = timeline_scope(local_only).tagged_with(tag)
+
+      apply_timeline_filters(query, account, local_only)
+    end
+
+    def as_area_timeline(instances, account = nil, local_only = false)
+      query = timeline_scope(local_only).without_replies.where(accounts: { domain: nil })
+      for instance in instances do
+        query = query.or(timeline_scope(local_only).without_replies.where(accounts: { domain: instance }))
+      end
 
       apply_timeline_filters(query, account, local_only)
     end
