@@ -16,7 +16,7 @@ import Area_avatar from './area_avatar'
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 
-class Status extends ImmutablePureComponent {
+export default class Status extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -125,7 +125,7 @@ class Status extends ImmutablePureComponent {
 
   saveHeight = () => {
     if (this.node && this.node.children.length !== 0) {
-      this.height = this.node.clientHeight;
+      this.height = this.node.getBoundingClientRect().height;
     }
   }
 
@@ -236,5 +236,3 @@ class Status extends ImmutablePureComponent {
   }
 
 }
-
-export default Status;
