@@ -156,7 +156,9 @@ class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar;
     let statusAreaAvatar = null;
-    const { status, account, ...other } = this.props;
+    // Exclude intersectionObserverWrapper from `other` variable
+    // because intersection is managed in here.
+    const { status, account, intersectionObserverWrapper, ...other } = this.props;
     const { isExpanded, isIntersecting, isHidden } = this.state;
 
     if (status === null) {
