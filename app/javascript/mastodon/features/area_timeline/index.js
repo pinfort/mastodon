@@ -27,7 +27,9 @@ const mapStateToProps = state => ({
   accessToken: state.getIn(['meta', 'access_token']),
 });
 
-class AreaTimeline extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class AreaTimeline extends React.PureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -146,5 +148,3 @@ class AreaTimeline extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(AreaTimeline));

@@ -9,7 +9,7 @@ const links = [
 
   <NavLink className='tabs-bar__link secondary' activeClassName='active' to='/timelines/public/local'><i className='fa fa-fw fa-users' /><FormattedMessage id='tabs_bar.local_timeline' defaultMessage='Local' /></NavLink>,
   <NavLink className='tabs-bar__link secondary' activeClassName='active' exact to='/timelines/public'><i className='fa fa-fw fa-globe' /><FormattedMessage id='tabs_bar.federated_timeline' defaultMessage='Federated' /></NavLink>,
-
+  <NavLink className='tabs-bar__link secondary' activeClassName='active' to='/timelines/area'><i className='fa fa-fw fa-map-marker' /><FormattedMessage id='tabs_bar.area_timeline' defaultMessage='Area' /></NavLink>,
   <NavLink className='tabs-bar__link primary' activeClassName='active' style={{ flexGrow: '0', flexBasis: '30px' }} to='/getting-started'><i className='fa fa-fw fa-asterisk' /></NavLink>,
 ];
 
@@ -39,7 +39,6 @@ export default class TabsBar extends React.Component {
     return (
       <div className='tabs-bar'>
         {React.Children.toArray(links)}
-        <NavLink className='tabs-bar__link secondary' activeClassName='active' to='/timelines/area'><i className='fa fa-fw fa-map-marker' /><FormattedMessage id='tabs_bar.area_timeline' defaultMessage='Area' /></NavLink>
       </div>
     );
   }
