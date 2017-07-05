@@ -15,7 +15,6 @@ import { refreshHomeTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
-
 import Status from '../../features/status';
 import GettingStarted from '../../features/getting_started';
 import PublicTimeline from '../../features/public_timeline';
@@ -37,7 +36,6 @@ import GenericNotFound from '../../features/generic_not_found';
 import FavouritedStatuses from '../../features/favourited_statuses';
 import Blocks from '../../features/blocks';
 import Mutes from '../../features/mutes';
-import Report from '../../features/report';
 
 // Small wrapper to pass multiColumn to the route components
 const WrappedSwitch = ({ multiColumn, children }) => (
@@ -76,10 +74,8 @@ class WrappedRoute extends React.Component {
 
 }
 
-const noOp = () => false;
-
-
-class UI extends React.PureComponent {
+@connect()
+export default class UI extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -213,7 +209,6 @@ class UI extends React.PureComponent {
             <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
             <WrappedRoute path='/blocks' component={Blocks} content={children} />
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
-            <WrappedRoute path='/report' component={Report} content={children} />
 
             <WrappedRoute component={GenericNotFound} content={children} />
           </WrappedSwitch>
@@ -227,5 +222,3 @@ class UI extends React.PureComponent {
   }
 
 }
-
-export default connect()(UI);

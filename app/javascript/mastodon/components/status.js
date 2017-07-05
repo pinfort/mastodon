@@ -7,7 +7,6 @@ import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import MediaGallery from './media_gallery';
 import VideoPlayer from './video_player';
-import AttachmentList from './attachment_list';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
@@ -17,7 +16,7 @@ import Area_avatar from './area_avatar'
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 
-class Status extends ImmutablePureComponent {
+export default class Status extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -126,7 +125,7 @@ class Status extends ImmutablePureComponent {
 
   saveHeight = () => {
     if (this.node && this.node.children.length !== 0) {
-      this.height = this.node.clientHeight;
+      this.height = this.node.getBoundingClientRect().height;
     }
   }
 
@@ -156,7 +155,9 @@ class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar;
     let statusAreaAvatar = null;
-    const { status, account, ...other } = this.props;
+    // Exclude intersectionObserverWrapper from `other` variable
+    // because intersection is managed in here.
+    const { status, account, intersectionObserverWrapper, ...other } = this.props;
     const { isExpanded, isIntersecting, isHidden } = this.state;
 
     if (status === null) {
@@ -235,5 +236,3 @@ class Status extends ImmutablePureComponent {
   }
 
 }
-
-export default Status;
