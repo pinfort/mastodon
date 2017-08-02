@@ -35,6 +35,8 @@ import {
   FavouritedStatuses,
   Blocks,
   Mutes,
+  AreaTimeline,
+  AreaTimelineRedirect,
 } from './util/async-components';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.

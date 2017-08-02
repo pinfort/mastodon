@@ -109,3 +109,11 @@ export function MediaGallery () {
 export function VideoPlayer () {
   return import(/* webpackChunkName: "status/VideoPlayer" */'../../../components/video_player');
 }
+
+export function AreaTimeline () {
+  return import(/* webpackChunkName: "features/area_timeline" */ '../../area_timeline');
+}
+
+export function AreaTimelineRedirect () {
+  return import(/* webpackChunkName: "features/area_timeline_redirect" */ '../../area_timeline_redirect');
+}
