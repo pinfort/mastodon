@@ -8,7 +8,7 @@ class Api::V1::Timelines::AreaController < Api::BaseController
 
   def show
     @statuses = load_statuses
-    render 'api/v1/timelines/show'
+    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
   end
 
   private
