@@ -53,12 +53,12 @@ const initialState = ImmutableMap({
     }),
   }),
 
-  area: Immutable.Map({
-    regex: Immutable.Map({
+  area: ImmutableMap({
+    regex: ImmutableMap({
       body: '',
     }),
 
-    area: Immutable.Map({
+    area: ImmutableMap({
       body: 'kansai',
     }),
   }),
