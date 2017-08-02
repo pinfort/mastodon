@@ -148,7 +148,7 @@
       "instance-eng-name": "remote-akashidon"
     },
 
-    "akashiensis.online": {
+    "akashiensis.com": {
       "instance-id": 14,
       "instance-name": "AKASHIensis",
       "instance-short-name": "石",
@@ -169,7 +169,7 @@
       "group_id": 0,
       "instances": [
         "nishinomiya.in.net",
-        "akashiensis.online",
+        "akashiensis.com",
         "don.akashi.cloud"
       ]
     },
@@ -186,7 +186,7 @@
         "myd.kyoto.jp",
         "nishinomiya.in.net",
         "don.akashi.cloud",
-        "akashiensis.online",
+        "akashiensis.com",
         "shigadon.com"
       ]
     }
