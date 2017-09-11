@@ -35,6 +35,7 @@ import {
   FavouritedStatuses,
   Blocks,
   Mutes,
+  PinnedStatuses,
   AreaTimeline,
   AreaTimelineRedirect,
 } from './util/async-components';
@@ -213,6 +214,7 @@ export default class UI extends React.PureComponent {
 
             <WrappedRoute path='/notifications' component={Notifications} content={children} />
             <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
+            <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
             <WrappedRoute path='/statuses/new' component={Compose} content={children} />
             <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
