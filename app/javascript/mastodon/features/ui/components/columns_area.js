@@ -20,6 +20,7 @@ import { Compose,
         FavouritedStatuses
       } from '../../ui/util/async-components';
 
+import detectPassiveEvents from 'detect-passive-events';
 import { scrollRight } from '../../../scroll';
 
 const componentMap = {
@@ -33,7 +34,7 @@ const componentMap = {
   'FAVOURITES': FavouritedStatuses,
 };
 
-@injectIntl
+@component => injectIntl(component, { withRef: true })
 export default class ColumnsArea extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -56,16 +57,36 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
   componentDidMount() {
+    if (!this.props.singleColumn) {
+      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+    }
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
   }
 
+  componentWillUpdate(nextProps) {
+    if (this.props.singleColumn !== nextProps.singleColumn && nextProps.singleColumn) {
+      this.node.removeEventListener('wheel', this.handleWheel);
+    }
+  }
+
   componentDidUpdate(prevProps) {
+    if (this.props.singleColumn !== prevProps.singleColumn && !this.props.singleColumn) {
+      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+    }
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
+  }
 
-    if (this.props.children !== prevProps.children && !this.props.singleColumn) {
-      scrollRight(this.node);
+  componentWillUnmount () {
+    if (!this.props.singleColumn) {
+      this.node.removeEventListener('wheel', this.handleWheel);
+    }
+  }
+
+  handleChildrenContentChange() {
+    if (!this.props.singleColumn) {
+      scrollRight(this.node, this.node.scrollWidth - window.innerWidth);
     }
   }
 
@@ -87,6 +108,14 @@ export default class ColumnsArea extends ImmutablePureComponent {
       this.context.router.history.push(getLink(this.pendingIndex));
       this.pendingIndex = null;
     }
+  }
+
+  handleWheel = () => {
+    if (typeof this._interruptScrollAnimation !== 'function') {
+      return;
+    }
+
+    this._interruptScrollAnimation();
   }
 
   setRef = (node) => {
