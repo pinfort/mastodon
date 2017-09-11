@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
 class AuthorizeFollowService < BaseService
-  def call(source_account, target_account)
-    follow_request = FollowRequest.find_by!(account: source_account, target_account: target_account)
-    follow_request.authorize!
+  def call(source_account, target_account, options = {})
+    if options[:skip_follow_request]
+      follow_request = FollowRequest.new(account: source_account, target_account: target_account)
+    else
+      follow_request = FollowRequest.find_by!(account: source_account, target_account: target_account)
+      follow_request.authorize!
+    end
+
     create_notification(follow_request) unless source_account.local?
     follow_request
   end
@@ -19,11 +24,11 @@ class AuthorizeFollowService < BaseService
   end
 
   def build_json(follow_request)
-    ActiveModelSerializers::SerializableResource.new(
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
       follow_request,
       serializer: ActivityPub::AcceptFollowSerializer,
       adapter: ActivityPub::Adapter
-    ).to_json
+    ).as_json).sign!(follow_request.target_account))
   end
 
   def build_xml(follow_request)
