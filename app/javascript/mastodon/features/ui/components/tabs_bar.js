@@ -16,8 +16,11 @@ export const links = [
   <NavLink className='tabs-bar__link primary' style={{ flexGrow: '0', flexBasis: '30px' }} to='/getting-started' data-preview-title-id='getting_started.heading' data-preview-icon='asterisk' ><i className='fa fa-fw fa-asterisk' /></NavLink>,
 ];
 
+
+// Areaの場合完全一致しないのでスワイプできない。そこで、前方一致に変更
 export function getIndex (path) {
-  return links.findIndex(link => link.props.to === path);
+  // return links.findIndex(link => link.props.to === path);
+  return links.findIndex(link => link.props.to.startsWith(path));
 }
 
 export function getLink (index) {
