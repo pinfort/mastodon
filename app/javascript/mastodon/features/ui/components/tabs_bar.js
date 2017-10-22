@@ -18,9 +18,10 @@ export const links = [
 
 
 // Areaの場合完全一致しないのでスワイプできない。そこで、前方一致に変更
+// 前方一致なのでtabの順序に注意
 export function getIndex (path) {
   // return links.findIndex(link => link.props.to === path);
-  return links.findIndex(link => link.props.to.startsWith(path));
+  return links.findIndex(link => path.startsWith(link.props.to));
 }
 
 export function getLink (index) {
