@@ -357,4 +357,22 @@
     background: #393f4f;
 }
 
+.landing-page {
+  .header {
+    .hero {
+      .floats {
+        .float-hyogo-character {
+          width: 482px;
+          height: 300px;
+          left: -50px;
+          bottom: 0px;
+          animation-duration: 4s;
+          animation-delay: 0.5s;
+          background-image: url('../images/hyogo-logo.png');
+        }
+      }
+    }
+  }
+}
+
 @import 'application';
