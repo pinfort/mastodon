@@ -12,12 +12,16 @@ export const links = [
 
   <NavLink className='tabs-bar__link secondary' to='/timelines/public/local' data-preview-title-id='column.community' data-preview-icon='users' ><i className='fa fa-fw fa-users' /><FormattedMessage id='tabs_bar.local_timeline' defaultMessage='Local' /></NavLink>,
   <NavLink className='tabs-bar__link secondary' exact to='/timelines/public' data-preview-title-id='column.public' data-preview-icon='globe' ><i className='fa fa-fw fa-globe' /><FormattedMessage id='tabs_bar.federated_timeline' defaultMessage='Federated' /></NavLink>,
-  <NavLink className='tabs-bar__link secondary' activeClassName='active' to='/timelines/area' data-preview-title-id='column.area' data-preview-icon='map-marker' ><i className='fa fa-fw fa-map-marker' /><FormattedMessage id='tabs_bar.area_timeline' defaultMessage='Area' /></NavLink>,
+  <NavLink className='tabs-bar__link secondary' to='/timelines/area' data-preview-title-id='column.area' data-preview-icon='map-marker' ><i className='fa fa-fw fa-map-marker' /><FormattedMessage id='tabs_bar.area_timeline' defaultMessage='Area' /></NavLink>,
   <NavLink className='tabs-bar__link primary' style={{ flexGrow: '0', flexBasis: '30px' }} to='/getting-started' data-preview-title-id='getting_started.heading' data-preview-icon='asterisk' ><i className='fa fa-fw fa-asterisk' /></NavLink>,
 ];
 
+
+// Areaの場合完全一致しないのでスワイプできない。そこで、前方一致に変更
+// 前方一致なのでtabの順序に注意
 export function getIndex (path) {
-  return links.findIndex(link => link.props.to === path);
+  // return links.findIndex(link => link.props.to === path);
+  return links.findIndex(link => path.startsWith(link.props.to));
 }
 
 export function getLink (index) {

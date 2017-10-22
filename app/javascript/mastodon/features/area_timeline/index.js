@@ -15,7 +15,7 @@ import {
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import createStream from '../../stream';
+import { connectAreaStream } from '../../actions/streaming';
 
 const messages = defineMessages({
   title: { id: 'column.area', defaultMessage: 'Area timeline' },
@@ -66,43 +66,13 @@ export default class AreaTimeline extends React.PureComponent {
     const { id } = this.props.params;
 
     dispatch(refreshAreaTimeline(id));
-
-    if (typeof this._subscription !== 'undefined') {
-      return;
-    }
-
-    this._subscription = createStream(streamingAPIBaseURL, accessToken, `area&area=${id}`, {
-
-      connected () {
-        dispatch(connectTimeline(`area:${id}`));
-      },
-
-      reconnected () {
-        dispatch(connectTimeline(`area:${id}`));
-      },
-
-      disconnected () {
-        dispatch(disconnectTimeline(`area:${id}`));
-      },
-
-      received (data) {
-        switch(data.event) {
-        case 'update':
-          dispatch(updateTimeline(`area:${id}`, JSON.parse(data.payload)));
-          break;
-        case 'delete':
-          dispatch(deleteFromTimelines(data.payload));
-          break;
-        }
-      },
-
-    });
+    this.disconnect = dispatch(connectAreaStream(id));
   }
 
   componentWillUnmount () {
-    if (typeof this._subscription !== 'undefined') {
-      this._subscription.close();
-      this._subscription = null;
+    if (this.disconnect) {
+      this.disconnect();
+      this.disconnect = null;
     }
   }
 

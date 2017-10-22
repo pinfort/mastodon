@@ -9,8 +9,8 @@
     = f.input :note, placeholder: t('simple_form.labels.defaults.note'), hint: t('simple_form.hints.defaults.note', count: 160 - @account.note.size).html_safe
     = f.input :area, collection: area_id_list, wrapper: :with_label, include_blank: false, label_method: lambda { |area_id| human_area(area_id) }, hint: t('simple_form.hints.defaults.area')
 
-  .card.compact{ style: "background-image: url(#{@account.header.url(:original)})" }
-    .avatar= image_tag @account.avatar.url(:original)
+  .card.compact{ style: "background-image: url(#{@account.header.url(:original)})", data: { original_src: @account.header.url(:original) } }
+    .avatar= image_tag @account.avatar.url(:original), data: { original_src: @account.avatar.url(:original) }
 
   .fields-group
     = f.input :avatar, wrapper: :with_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar')
