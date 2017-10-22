@@ -30,6 +30,7 @@ module SettingsHelper
     pt: 'Português',
     'pt-BR': 'Português do Brasil',
     ru: 'Русский',
+    sv: 'Svenska',
     th: 'ภาษาไทย',
     tr: 'Türkçe',
     uk: 'Українська',
