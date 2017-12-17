@@ -18,7 +18,8 @@ import { Compose,
         PublicTimeline,
         HashtagTimeline,
         AreaTimeline,
-        FavouritedStatuses
+        FavouritedStatuses,
+        ListTimeline,
       } from '../../ui/util/async-components';
 
 import detectPassiveEvents from 'detect-passive-events';
@@ -33,6 +34,7 @@ const componentMap = {
   'HASHTAG': HashtagTimeline,
   'AREA': AreaTimeline,
   'FAVOURITES': FavouritedStatuses,
+  'LIST': ListTimeline,
 };
 
 @component => injectIntl(component, { withRef: true })
