@@ -30,6 +30,7 @@ pt:
         password: Palavra-passe
         setting_boost_modal: Pedir confirmação antes de partilhar um post
         setting_default_privacy: Privacidade padrão de posts
+        setting_reduce_motion: Reduzir movimento em animações
         severity: Severity
         type: Import type
         username: Utilizador
@@ -42,8 +43,8 @@ pt:
         follow: Enviar email quando alguém te segue
         mention: Enviar email quando alguém te menciona
         reblog: Enviar email quando alguém partilhar um post teu
-    'no': 'Não'
+    'no': Não
     required:
       mark: "*"
       text: necessário
-    'yes': 'Sim'
+    'yes': Sim

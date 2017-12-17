@@ -13,18 +13,11 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def follow
-    FollowService.new.call(current_user.account, @account.acct)
+    FollowService.new.call(current_user.account, @account.acct, reblogs: params[:reblogs])
 
-    unless @account.locked?
-      relationships = AccountRelationshipsPresenter.new(
-        [@account.id],
-        current_user.account_id,
-        following_map: { @account.id => true },
-        requested_map: { @account.id => false }
-      )
-    end
+    options = @account.locked? ? {} : { following_map: { @account.id => { reblogs: params[:reblogs] } }, requested_map: { @account.id => false } }
 
-    render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
+    render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(options)
   end
 
   def block
@@ -33,7 +26,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def mute
-    MuteService.new.call(current_user.account, @account)
+    MuteService.new.call(current_user.account, @account, notifications: params[:notifications])
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
   end
 
@@ -58,7 +51,7 @@ class Api::V1::AccountsController < Api::BaseController
     @account = Account.find(params[:id])
   end
 
-  def relationships
-    AccountRelationshipsPresenter.new([@account.id], current_user.account_id)
+  def relationships(**options)
+    AccountRelationshipsPresenter.new([@account.id], current_user.account_id, options)
   end
 end

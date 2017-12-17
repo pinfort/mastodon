@@ -10,14 +10,41 @@ namespace :mastodon do
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
   task make_admin: :environment do
     include RoutingHelper
+
     account_username = ENV.fetch('USERNAME')
-    user = User.joins(:account).where(accounts: { username: account_username })
+    user             = User.joins(:account).where(accounts: { username: account_username })
 
     if user.present?
       user.update(admin: true)
       puts "Congrats! #{account_username} is now an admin. \\o/\nNavigate to #{edit_admin_settings_url} to get started"
     else
-      puts "User could not be found; please make sure an Account with the `#{account_username}` username exists."
+      puts "User could not be found; please make sure an account with the `#{account_username}` username exists."
+    end
+  end
+
+  desc 'Turn a user into a moderator, identified by the USERNAME environment variable'
+  task make_mod: :environment do
+    account_username = ENV.fetch('USERNAME')
+    user             = User.joins(:account).where(accounts: { username: account_username })
+
+    if user.present?
+      user.update(moderator: true)
+      puts "Congrats! #{account_username} is now a moderator \\o/"
+    else
+      puts "User could not be found; please make sure an account with the `#{account_username}` username exists."
+    end
+  end
+
+  desc 'Remove admin and moderator privileges from user identified by the USERNAME environment variable'
+  task revoke_staff: :environment do
+    account_username = ENV.fetch('USERNAME')
+    user             = User.joins(:account).where(accounts: { username: account_username })
+
+    if user.present?
+      user.update(moderator: false, admin: false)
+      puts "#{account_username} is no longer admin or moderator."
+    else
+      puts "User could not be found; please make sure an account with the `#{account_username}` username exists."
     end
   end
 
@@ -81,18 +108,17 @@ namespace :mastodon do
     task remove_remote: :environment do
       time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
 
-      MediaAttachment.where.not(remote_url: '').where('created_at < ?', time_ago).find_each do |media|
+      MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).find_each do |media|
         media.file.destroy
-        media.type = :unknown
         media.save
       end
     end
 
     desc 'Set unknown attachment type for remote-only attachments'
     task set_unknown: :environment do
-      Rails.logger.debug 'Setting unknown attachment type for remote-only attachments...'
+      puts 'Setting unknown attachment type for remote-only attachments...'
       MediaAttachment.where(file_file_name: nil).where.not(type: :unknown).in_batches.update_all(type: :unknown)
-      Rails.logger.debug 'Done!'
+      puts 'Done!'
     end
 
     desc 'Redownload avatars/headers of remote users. Optionally limit to a particular domain with DOMAIN'
@@ -188,24 +214,24 @@ namespace :mastodon do
   namespace :maintenance do
     desc 'Update counter caches'
     task update_counter_caches: :environment do
-      Rails.logger.debug 'Updating counter caches for accounts...'
+      puts 'Updating counter caches for accounts...'
 
-      Account.unscoped.select('id').find_in_batches do |batch|
+      Account.unscoped.where.not(protocol: :activitypub).select('id').find_in_batches do |batch|
         Account.where(id: batch.map(&:id)).update_all('statuses_count = (select count(*) from statuses where account_id = accounts.id), followers_count = (select count(*) from follows where target_account_id = accounts.id), following_count = (select count(*) from follows where account_id = accounts.id)')
       end
 
-      Rails.logger.debug 'Updating counter caches for statuses...'
+      puts 'Updating counter caches for statuses...'
 
       Status.unscoped.select('id').find_in_batches do |batch|
         Status.where(id: batch.map(&:id)).update_all('favourites_count = (select count(*) from favourites where favourites.status_id = statuses.id), reblogs_count = (select count(*) from statuses as reblogs where reblogs.reblog_of_id = statuses.id)')
       end
 
-      Rails.logger.debug 'Done!'
+      puts 'Done!'
     end
 
     desc 'Generate static versions of GIF avatars/headers'
     task add_static_avatars: :environment do
-      Rails.logger.debug 'Generating static avatars/headers for GIF ones...'
+      puts 'Generating static avatars/headers for GIF ones...'
 
       Account.unscoped.where(avatar_content_type: 'image/gif').or(Account.unscoped.where(header_content_type: 'image/gif')).find_each do |account|
         begin
@@ -217,7 +243,7 @@ namespace :mastodon do
         end
       end
 
-      Rails.logger.debug 'Done!'
+      puts 'Done!'
     end
 
     desc 'Ensure referencial integrity'
@@ -299,6 +325,18 @@ namespace :mastodon do
           ActiveRecord::Migration.drop_table :deprecated_preview_cards
         end
       end
+    end
+
+    desc 'Migrate photo preview cards made before 2.1'
+    task migrate_photo_preview_cards: :environment do
+      status_ids = Status.joins(:preview_cards)
+                         .where(preview_cards: { embed_url: '', type: :photo })
+                         .reorder(nil)
+                         .group(:id)
+                         .pluck(:id)
+
+      PreviewCard.where(embed_url: '', type: :photo).delete_all
+      LinkCrawlWorker.push_bulk status_ids
     end
   end
 end
