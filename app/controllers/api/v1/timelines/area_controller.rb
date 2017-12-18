@@ -27,9 +27,7 @@ class Api::V1::Timelines::AreaController < Api::BaseController
   end
 
   def load_statuses
-    cached_area_statuses.tap do |statuses|
-      set_maps(statuses)
-    end
+    cached_area_statuses
   end
 
   def cached_area_statuses
