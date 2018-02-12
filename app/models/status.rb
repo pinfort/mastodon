@@ -31,16 +31,18 @@ class Status < ApplicationRecord
   include Cacheable
   include StatusThreadingConcern
 
+  update_index('statuses#status', :proper) if Chewy.enabled?
+
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
-  belongs_to :application, class_name: 'Doorkeeper::Application'
+  belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
-  belongs_to :account, inverse_of: :statuses, counter_cache: true, required: true
-  belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account'
-  belongs_to :conversation
+  belongs_to :account, inverse_of: :statuses, counter_cache: true
+  belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account', optional: true
+  belongs_to :conversation, optional: true
 
-  belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
-  belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, counter_cache: :reblogs_count
+  belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
+  belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, counter_cache: :reblogs_count, optional: true
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
@@ -77,6 +79,22 @@ class Status < ApplicationRecord
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
   delegate :domain, to: :account, prefix: true
+
+  def searchable_by(preloaded = nil)
+    ids = [account_id]
+
+    if preloaded.nil?
+      ids += mentions.pluck(:account_id)
+      ids += favourites.pluck(:account_id)
+      ids += reblogs.pluck(:account_id)
+    else
+      ids += preloaded.mentions[id] || []
+      ids += preloaded.favourites[id] || []
+      ids += preloaded.reblogs[id] || []
+    end
+
+    ids.uniq
+  end
 
   def reply?
     !in_reply_to_id.nil? || attributes['reply']
