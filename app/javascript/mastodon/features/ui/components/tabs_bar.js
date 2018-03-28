@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { debounce } from 'lodash';
 import { isUserTouching } from '../../../is_mobile';
@@ -27,14 +27,12 @@ export function getLink (index) {
 }
 
 @injectIntl
-export default class TabsBar extends React.Component {
-
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  }
+@withRouter
+export default class TabsBar extends React.PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   }
 
   setRef = ref => {
@@ -62,7 +60,7 @@ export default class TabsBar extends React.Component {
 
           const listener = debounce(() => {
             nextTab.removeEventListener('transitionend', listener);
-            this.context.router.history.push(to);
+            this.props.history.push(to);
           }, 50);
 
           nextTab.addEventListener('transitionend', listener);
