@@ -7,6 +7,7 @@ import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
+import AttachmentList from './attachment_list';
 import { FormattedMessage } from 'react-intl';
 import Area_avatar from './area_avatar'
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -139,7 +140,7 @@ export default class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar, prepend;
     let statusAreaAvatar = null;
-    const { hidden }     = this.props;
+    const { hidden, featured } = this.props;
     const { isExpanded } = this.state;
 
     let { status, account, ...other } = this.props;
@@ -157,7 +158,14 @@ export default class Status extends ImmutablePureComponent {
       );
     }
 
-    if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+    if (featured) {
+      prepend = (
+        <div className='status__prepend'>
+          <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-thumb-tack status__prepend-icon' /></div>
+          <FormattedMessage id='status.pinned' defaultMessage='Pinned toot' />
+        </div>
+      );
+    } else if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
       const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
 
       prepend = (
@@ -171,9 +179,14 @@ export default class Status extends ImmutablePureComponent {
       status  = status.get('reblog');
     }
 
-    if (status.get('media_attachments').size > 0 && !this.props.muted) {
-      if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
-
+    if (status.get('media_attachments').size > 0) {
+      if (this.props.muted || status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
+        media = (
+          <AttachmentList
+            compact
+            media={status.get('media_attachments')}
+          />
+        );
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const video = status.getIn(['media_attachments', 0]);
 
@@ -185,6 +198,7 @@ export default class Status extends ImmutablePureComponent {
                 src={video.get('url')}
                 width={239}
                 height={110}
+                inline
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
               />
