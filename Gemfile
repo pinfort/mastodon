@@ -7,19 +7,19 @@ gem 'pkg-config', '~> 1.2'
 
 gem 'puma', '~> 3.10'
 gem 'rails', '~> 5.1.4'
-gem 'uglifier', '~> 3.2'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 0.20'
 gem 'pghero', '~> 1.7'
 gem 'dotenv-rails', '~> 2.2'
 
-gem 'aws-sdk', '~> 2.10', require: false
+gem 'aws-sdk-s3', '~> 1.8', require: false
 gem 'fog-core', '~> 1.45'
 gem 'fog-local', '~> 0.4', require: false
 gem 'fog-openstack', '~> 0.1', require: false
-gem 'paperclip', '~> 5.1'
+gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
+gem 'streamio-ffmpeg', '~> 3.0'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.5'
@@ -27,18 +27,22 @@ gem 'bootsnap'
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.5'
 gem 'iso-639'
-gem 'chewy', '~> 0.10', git: 'https://github.com/toptal/chewy.git'
+gem 'chewy', '~> 5.0'
 gem 'cld3', '~> 3.2.0'
 gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
 
-gem 'devise_pam_authenticatable2', '~> 8.0', install_if: -> { ENV['PAM_ENABLED'] == 'true' }
-gem 'omniauth-cas', '~> 1.1', install_if: -> { ENV['CAS_ENABLED'] == 'true' }
-gem 'omniauth-saml', '~> 1.8', install_if: -> { ENV['SAML_ENABLED'] == 'true' }
+group :pam_authentication, optional: true do
+  gem 'devise_pam_authenticatable2', '~> 9.0'
+end
+gem 'net-ldap', '~> 0.10'
+gem 'omniauth-cas', '~> 1.1'
+gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.2'
 
 gem 'doorkeeper', '~> 4.2'
 gem 'fast_blank', '~> 1.0'
+gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
 gem 'hiredis', '~> 0.6'
 gem 'redis-namespace', '~> 1.5'
@@ -67,7 +71,7 @@ gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 0.10'
 gem 'ruby-oembed', '~> 0.12', require: 'oembed'
 gem 'ruby-progressbar', '~> 1.4'
-gem 'sanitize', '~> 4.4'
+gem 'sanitize', '~> 4.6.4'
 gem 'sidekiq', '~> 5.0'
 gem 'sidekiq-scheduler', '~> 2.1'
 gem 'sidekiq-unique-jobs', '~> 5.0'
@@ -94,6 +98,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
 end
 
+group :production, :test do
+  gem 'private_address_check', '~> 0.4.1'
+end
+
 group :test do
   gem 'capybara', '~> 2.15'
   gem 'climate_control', '~> 0.2'
@@ -114,6 +122,7 @@ group :development do
   gem 'bullet', '~> 5.5'
   gem 'letter_opener', '~> 1.4'
   gem 'letter_opener_web', '~> 1.3'
+  gem 'memory_profiler'
   gem 'rubocop', require: false
   gem 'brakeman', '~> 4.0', require: false
   gem 'bundler-audit', '~> 0.6', require: false
