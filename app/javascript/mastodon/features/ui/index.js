@@ -142,6 +142,8 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
           <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
+          <WrappedRoute path='/timelines/area/:id' component={AreaTimeline} content={children} />
+          <WrappedRoute path='/timelines/area' component={AreaTimelineRedirect} content={children} />
 
           <WrappedRoute path='/notifications' component={Notifications} content={children} />
           <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
@@ -438,8 +440,6 @@ export default class UI extends React.PureComponent {
           <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange}>
             {children}
           </SwitchingColumnsArea>
-              <WrappedRoute path='/timelines/area/:id' component={AreaTimeline} content={children} />
-              <WrappedRoute path='/timelines/area' component={AreaTimelineRedirect} content={children} />
 
 
           <NotificationsContainer />
