@@ -36,6 +36,7 @@ module SettingsHelper
     'pt-BR': 'Português do Brasil',
     ru: 'Русский',
     sk: 'Slovensky',
+    sl: 'Slovenščina',
     sr: 'Српски',
     'sr-Latn': 'Srpski (latinica)',
     sv: 'Svenska',
