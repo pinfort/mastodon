@@ -64,7 +64,6 @@ export function deleteFromTimelines(id) {
   };
 };
 
-export const refreshAreaTimeline      = area => refreshTimeline(`area:${area}`, `/api/v1/timelines/area/${area}`);
 const noOp = () => {};
 
 export function expandTimeline(timelineId, path, params = {}, done = noOp) {
