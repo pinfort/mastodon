@@ -1,3 +1,2 @@
 default: styles/custom.scss
 contrast: styles/contrast.scss
-mastodon-light: styles/mastodon-light.scss
