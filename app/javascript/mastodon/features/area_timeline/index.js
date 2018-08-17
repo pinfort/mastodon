@@ -5,12 +5,7 @@ import AreaStatusListContainer from '../ui/containers/area_status_list_container
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import {
-  refreshAreaTimeline,
   expandAreaTimeline,
-  updateTimeline,
-  deleteFromTimelines,
-  connectTimeline,
-  disconnectTimeline,
 } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -65,8 +60,19 @@ export default class AreaTimeline extends React.PureComponent {
     const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
     const { id } = this.props.params;
 
-    dispatch(refreshAreaTimeline(id));
+    dispatch(expandAreaTimeline(id));
     this.disconnect = dispatch(connectAreaStream(id));
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.params.id !== this.props.params.id) {
+      const { dispatch } = this.props;
+      const { id } = this.props.params;
+
+      this.disconnect();
+      dispatch(expandAreaTimeline(id));
+      this.disconnect = dispatch(connectAreaStream(id));
+    }
   }
 
   componentWillUnmount () {
@@ -80,8 +86,8 @@ export default class AreaTimeline extends React.PureComponent {
     this.column = c;
   }
 
-  handleLoadMore = () => {
-    this.props.dispatch(expandAreaTimeline(this.props.params.id));
+  handleLoadMore = maxId => {
+    this.props.dispatch(expandAreaTimeline(this.props.params.id, { maxId }));
   }
 
   render () {
