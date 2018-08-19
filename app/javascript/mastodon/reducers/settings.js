@@ -65,6 +65,10 @@ const initialState = ImmutableMap({
     }),
   }),
 
+  trends: ImmutableMap({
+    show: true,
+  }),
+
   area: ImmutableMap({
     regex: ImmutableMap({
       body: '',
