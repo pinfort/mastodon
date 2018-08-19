@@ -189,6 +189,7 @@
       "group_name": "hyogo",
       "group_id": 0,
       "instances": [
+        null,
         "akashiensis.com",
         "don.akashi.cloud"
       ]
@@ -197,6 +198,7 @@
       "group_name": "kansai",
       "group_id": 1,
       "instances": [
+        null,
         "mstdn.osaka",
         "biwakodon.com",
         "mastodon.nara.jp",
@@ -210,21 +212,21 @@
     },
     {
       "group_name": "niconico",
-      "group_id": 1,
+      "group_id": 2,
       "instances": [
         "friends.nico"
       ]
     },
     {
       "group_name": "mstdnjp",
-      "group_id": 2,
+      "group_id": 3,
       "instances": [
         "mstdn.jp"
       ]
     },
     {
       "group_name": "pawoo",
-      "group_id": 3,
+      "group_id": 4,
       "instances": [
         "pawoo.net"
       ]
