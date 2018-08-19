@@ -160,6 +160,27 @@
       "instance-name": "滋賀丼",
       "instance-short-name": "滋",
       "instance-eng-name": "remote-shigadon"
+    },
+
+    "knzk.me": {
+      "instance-id": 16,
+      "instance-name": "神崎丼",
+      "instance-short-name": "兄",
+      "instance-eng-name": "remote-kanzaki"
+    },
+
+    "mstdn.maud.io": {
+      "instance-id": 17,
+      "instance-name": "末代鯖",
+      "instance-short-name": "代",
+      "instance-eng-name": "remote-matsudai"
+    },
+
+    "mstdn-workers.com": {
+      "instance-id": 18,
+      "instance-name": "社畜丼",
+      "instance-short-name": "畜",
+      "instance-eng-name": "remote-shachiku"
     }
   },
 "instance-areas":
@@ -168,7 +189,6 @@
       "group_name": "hyogo",
       "group_id": 0,
       "instances": [
-        "nishinomiya.in.net",
         "akashiensis.com",
         "don.akashi.cloud"
       ]
@@ -183,11 +203,30 @@
         "mastodon.wakayama.jp",
         "mastodos.com",
         "miestodon.com",
-        "myd.kyoto.jp",
-        "nishinomiya.in.net",
         "don.akashi.cloud",
         "akashiensis.com",
         "shigadon.com"
+      ]
+    },
+    {
+      "group_name": "niconico",
+      "group_id": 1,
+      "instances": [
+        "friends.nico"
+      ]
+    },
+    {
+      "group_name": "mstdnjp",
+      "group_id": 2,
+      "instances": [
+        "mstdn.jp"
+      ]
+    },
+    {
+      "group_name": "pawoo",
+      "group_id": 3,
+      "instances": [
+        "pawoo.net"
       ]
     }
   ]
