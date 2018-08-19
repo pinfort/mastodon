@@ -18,6 +18,12 @@
     display: inline-block;
 }
 
+@mixin header__remote__1kanji__area(){
+    @include header__area();
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
 .account__header__area-wrapper{
     display: block;
     margin: -33px 0px 0px -65px;
@@ -80,45 +86,31 @@
 }
 
 .account__header__area-remote-osaka{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-biwako{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-nara{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-wakayama{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-mastodos{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-mie{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-kyoto{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-pawoo{
@@ -146,27 +138,31 @@
 }
 
 .account__header__area-remote-nishinomiya{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-akashidon{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-akashiensis{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-shigadon{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include header__remote__1kanji__area();
+}
+
+.account__header__area-remote-kanzaki{
+    @include header__remote__1kanji__area();
+}
+
+.account__header__area-remote-matsudai{
+    @include header__remote__1kanji__area();
+}
+
+.account__header__area-remote-shachiku{
+    @include header__remote__1kanji__area();
 }
 
 @mixin avatar__area(){
@@ -185,6 +181,12 @@
     border-radious: 4px;
     -webkit-border-radius: 4px;
     display: inline-block;
+}
+
+@mixin avatar__area__remote_1kanji(){
+    @include avatar__area();
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
 }
 
 .account__avatar__area-wrapper{
@@ -249,45 +251,31 @@
 }
 
 .account__avatar__area-remote-osaka{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-biwako{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-nara{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-wakayama{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-mastodos{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-mie{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-kyoto{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-pawoo{
@@ -319,27 +307,31 @@
 }
 
 .account__avatar__area-remote-nishinomiya{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-akashidon{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-akashiensis{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-shigadon{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+    @include avatar__area__remote_1kanji();
+}
+
+.account__avatar__area-remote-kanzaki{
+    @include avatar__area__remote_1kanji();
+}
+
+.account__avatar__area-remote-matsudai{
+    @include avatar__area__remote_1kanji();
+}
+
+.account__avatar__area-remote-shachiku{
+    @include avatar__area__remote_1kanji();
 }
 
 .setting-select {
