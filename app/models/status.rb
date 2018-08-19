@@ -267,6 +267,7 @@ class Status < ApplicationRecord
           query = timeline_scope(local_only).without_replies.where(accounts: { domain: instance })
         else
           query = query.or(timeline_scope(local_only).without_replies.where(accounts: { domain: instance }))
+        end
       end
 
       apply_timeline_filters(query, account, local_only)
