@@ -93,14 +93,11 @@ export default class GettingStarted extends ImmutablePureComponent {
         <ColumnSubheading key='1' text={intl.formatMessage(messages.discover)} />,
         <ColumnLink key='2' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />,
         <ColumnLink key='3' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />,
+        <ColumnLink key='20' icon='map-marker' text={intl.formatMessage(messages.area_timeline)} to='/timelines/area' />,
         <ColumnSubheading key='8' text={intl.formatMessage(messages.personal)} />
       );
     }
 
-      }
-
-      if (!columns.find(item => item.get('id') === 'AREA')) {
-        navItems.push(<ColumnLink key='20' icon='map-marker' text={intl.formatMessage(messages.area_timeline)} to='/timelines/area' />);
     navItems.push(
       <ColumnLink key='4' icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />,
       <ColumnLink key='5' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
