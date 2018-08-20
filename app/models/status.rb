@@ -185,7 +185,7 @@ class Status < ApplicationRecord
 
   def in_area?(area)
     if local?
-      return true
+      return Rails.application.config.instances_area_hash[area].include?(nil)
     else
       status_domain = uri.split(",")[0].split(":")[1]
       return Rails.application.config.instances_area_hash[area].include?(status_domain)
