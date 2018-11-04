@@ -5,16 +5,17 @@ class ActivityPub::FetchRemoteAccountService < BaseService
 
   SUPPORTED_TYPES = %w(Application Group Organization Person Service).freeze
 
-  # Should be called when uri has already been checked for locality
   # Does a WebFinger roundtrip on each call
-  def call(uri, id: true, prefetched_body: nil)
+  def call(uri, id: true, prefetched_body: nil, break_on_redirect: false)
+    return ActivityPub::TagManager.instance.uri_to_resource(uri, Account) if ActivityPub::TagManager.instance.local_uri?(uri)
+
     @json = if prefetched_body.nil?
               fetch_resource(uri, id)
             else
-              body_to_json(prefetched_body)
+              body_to_json(prefetched_body, compare_id: id ? uri : nil)
             end
 
-    return unless supported_context? && expected_type?
+    return if !supported_context? || !expected_type? || (break_on_redirect && @json['movedTo'].present?)
 
     @uri      = @json['id']
     @username = @json['preferredUsername']
@@ -56,6 +57,6 @@ class ActivityPub::FetchRemoteAccountService < BaseService
   end
 
   def expected_type?
-    SUPPORTED_TYPES.include?(@json['type'])
+    equals_or_includes_any?(@json['type'], SUPPORTED_TYPES)
   end
 end

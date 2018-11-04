@@ -12,7 +12,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
     it 'returns http success' do
       get :new
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -29,6 +29,13 @@ RSpec.describe Auth::SessionsController, type: :controller do
         delete :destroy
 
         expect(response).to redirect_to(new_user_session_path)
+      end
+
+      it 'does not delete redirect location with continue=true' do
+        sign_in(user, scope: :user)
+        controller.store_location_for(:user, '/authorize')
+        delete :destroy, params: { continue: 'true' }
+        expect(controller.stored_location_for(:user)).to eq '/authorize'
       end
     end
 
@@ -48,7 +55,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
       request.env['devise.mapping'] = Devise.mappings[:user]
     end
 
-    context 'using PAM authentication' do
+    context 'using PAM authentication', if: ENV['PAM_ENABLED'] == 'true' do
       context 'using a valid password' do
         before do
           post :create, params: { user: { email: "pam_user1", password: '123456' } }

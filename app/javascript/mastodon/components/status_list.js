@@ -1,12 +1,12 @@
 import { debounce } from 'lodash';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import StatusContainer from '../containers/status_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import LoadGap from './load_gap';
 import ScrollableList from './scrollable_list';
-import { FormattedMessage } from 'react-intl';
 
 export default class StatusList extends ImmutablePureComponent {
 
@@ -24,19 +24,33 @@ export default class StatusList extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     emptyMessage: PropTypes.node,
+    alwaysPrepend: PropTypes.bool,
+    timelineId: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
     trackScroll: true,
   };
 
-  handleMoveUp = id => {
-    const elementIndex = this.props.statusIds.indexOf(id) - 1;
+  getFeaturedStatusCount = () => {
+    return this.props.featuredStatusIds ? this.props.featuredStatusIds.size : 0;
+  }
+
+  getCurrentStatusIndex = (id, featured) => {
+    if (featured) {
+      return this.props.featuredStatusIds.indexOf(id);
+    } else {
+      return this.props.statusIds.indexOf(id) + this.getFeaturedStatusCount();
+    }
+  }
+
+  handleMoveUp = (id, featured) => {
+    const elementIndex = this.getCurrentStatusIndex(id, featured) - 1;
     this._selectChild(elementIndex);
   }
 
-  handleMoveDown = id => {
-    const elementIndex = this.props.statusIds.indexOf(id) + 1;
+  handleMoveDown = (id, featured) => {
+    const elementIndex = this.getCurrentStatusIndex(id, featured) + 1;
     this._selectChild(elementIndex);
   }
 
@@ -57,7 +71,7 @@ export default class StatusList extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, featuredStatusIds, onLoadMore, ...other }  = this.props;
+    const { statusIds, featuredStatusIds, shouldUpdateScroll, onLoadMore, timelineId, ...other }  = this.props;
     const { isLoading, isPartial } = other;
 
     if (isPartial) {
@@ -89,6 +103,7 @@ export default class StatusList extends ImmutablePureComponent {
           id={statusId}
           onMoveUp={this.handleMoveUp}
           onMoveDown={this.handleMoveDown}
+          contextType={timelineId}
         />
       ))
     ) : null;
@@ -101,12 +116,13 @@ export default class StatusList extends ImmutablePureComponent {
           featured
           onMoveUp={this.handleMoveUp}
           onMoveDown={this.handleMoveDown}
+          contextType={timelineId}
         />
       )).concat(scrollableContent);
     }
 
     return (
-      <ScrollableList {...other} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
+      <ScrollableList {...other} onLoadMore={onLoadMore && this.handleLoadOlder} shouldUpdateScroll={shouldUpdateScroll} ref={this.setRef}>
         {scrollableContent}
       </ScrollableList>
     );

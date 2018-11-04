@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class ActivityPub::NoteSerializer < ActiveModel::Serializer
-  attributes :id, :type, :summary, :content,
+  attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
              :atom_uri, :in_reply_to_atom_uri,
              :conversation
+
+  attribute :content
+  attribute :content_map, if: :language?
 
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
@@ -24,6 +27,14 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
 
   def content
     Formatter.instance.format(object)
+  end
+
+  def content_map
+    { object.language => Formatter.instance.format(object) }
+  end
+
+  def language?
+    object.language.present?
   end
 
   def in_reply_to
@@ -57,7 +68,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def virtual_tags
-    object.mentions.to_a.sort_by(&:id) + object.tags + object.emojis
+    object.active_mentions.to_a.sort_by(&:id) + object.tags + object.emojis
   end
 
   def atom_uri
