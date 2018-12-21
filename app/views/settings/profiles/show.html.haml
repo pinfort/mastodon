@@ -6,9 +6,9 @@
 
   .fields-row
     .fields-row__column.fields-group.fields-row__column-6
-      = f.input :display_name, wrapper: :with_label, hint: t('simple_form.hints.defaults.display_name', count: 30 - @account.display_name.size).html_safe
+      = f.input :display_name, wrapper: :with_label, input_html: { maxlength: 30 }, hint: false
       = f.input :area, collection: area_id_list, wrapper: :with_label, include_blank: false, label_method: lambda { |area_id| human_area(area_id) }, hint: t('simple_form.hints.defaults.area')
-      = f.input :note, wrapper: :with_label, hint: t('simple_form.hints.defaults.note', count: 160 - @account.note.size).html_safe
+      = f.input :note, wrapper: :with_label, input_html: { maxlength: 160 }, hint: false
 
   .fields-row
     .fields-row__column.fields-row__column-6
@@ -37,8 +37,8 @@
 
         = f.simple_fields_for :fields do |fields_f|
           .row
-            = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name')
-            = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value')
+            = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name'), input_html: { maxlength: 255 }
+            = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value'), input_html: { maxlength: 255 }
 
     .fields-row__column.fields-group.fields-row__column-6
       %h6= t('verification.verification')
