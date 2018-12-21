@@ -48,6 +48,7 @@ ja:
       other: フォロワー
     following: フォロー中
     joined: "%{date} に登録"
+    last_active: 最後の活動
     link_verified_on: このリンクの所有権は %{date} に確認されました
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
@@ -103,6 +104,7 @@ ja:
       followers: フォロワー数
       followers_url: Followers URL
       follows: フォロー数
+      header: ヘッダー
       inbox_url: Inbox URL
       ip: IP
       location:
@@ -114,21 +116,18 @@ ja:
       media_attachments: 添付されたメディア
       memorialize: 追悼アカウント化
       moderation:
+        active: アクティブ
         all: すべて
-        silenced: サイレンス中
-        suspended: 停止中
+        silenced: サイレンス済み
+        suspended: 停止済み
         title: モデレーション
       moderation_notes: モデレーションメモ
       most_recent_activity: 直近の活動
       most_recent_ip: 直近のIP
       no_limits_imposed: 制限なし
       not_subscribed: 購読していない
-      order:
-        alphabetic: アルファベット順
-        most_recent: 直近の活動順
-        title: 順序
       outbox_url: Outbox URL
-      perform_full_suspension: 完全に活動停止させる
+      perform_full_suspension: 活動を完全に停止させる
       profile_url: プロフィールURL
       promote: 昇格
       protocol: プロトコル
@@ -136,6 +135,7 @@ ja:
       push_subscription_expires: PuSH購読期限
       redownload: アバターの更新
       remove_avatar: アイコンを削除
+      remove_header: ヘッダーを削除
       resend_confirmation:
         already_confirmed: メールアドレスは確認済みです
         send: 確認メールを再送
@@ -231,6 +231,7 @@ ja:
       config: 構成
       feature_deletions: アカウント削除
       feature_invites: 招待リンク
+      feature_profile_directory: ディレクトリ
       feature_registrations: 新規登録
       feature_relay: 連合リレー
       features: 機能
@@ -264,7 +265,7 @@ ja:
       reject_media: メディアファイルを拒否
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       reject_reports: レポートを拒否
-      reject_reports_hint: このドメインからのすべてのレポートを無視します。停止とは無関係です
+      reject_reports_hint: このドメインからのレポートをすべて無視します。停止とは無関係です
       severities:
         noop: なし
         silence: サイレンス
@@ -378,6 +379,9 @@ ja:
       preview_sensitive_media:
         desc_html: 他のウェブサイトにリンクを貼った際、メディアが閲覧注意としてマークされていてもサムネイルが表示されます
         title: OpenGraphによるプレビューで閲覧注意のメディアも表示する
+      profile_directory:
+        desc_html: ユーザーが見つかりやすくできるようになります
+        title: ディレクトリを有効にする
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
@@ -443,6 +447,14 @@ ja:
       proceed: 完全に活動停止させる
       title: "%{acct} を停止"
       warning_html: 'このアカウントを停止すると、このアカウントから次のようなデータが<strong>不可逆的に</strong>削除されます:'
+    tags:
+      accounts: アカウント
+      hidden: 非表示
+      hide: ディレクトリから隠す
+      name: ハッシュタグ
+      title: ハッシュタグ
+      unhide: ディレクトリに表示する
+      visible: 表示
     title: 管理
   admin_mailer:
     new_report:
@@ -521,6 +533,13 @@ ja:
     success_msg: アカウントは正常に削除されました
     warning_html: 削除が保証されるのはこのインスタンス上のコンテンツのみです。他のインスタンス等、外部に広く共有されたコンテンツについては痕跡が残ることがあります。また、現在接続できないサーバーや、あなたの更新を受け取らなくなったサーバーに対しては、削除は反映されません。
     warning_title: 共有されたコンテンツについて
+  directories:
+    directory: ディレクトリ
+    explanation: 興味のある人を見つけよう
+    explore_mastodon: "%{title}を探索"
+    people:
+      one: "%{count} 人"
+      other: "%{count} 人"
   errors:
     '403': このページを表示する権限がありません。
     '404': お探しのページは見つかりませんでした。

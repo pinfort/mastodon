@@ -30,18 +30,37 @@ ar:
     other_instances: خوادم أخرى
     privacy_policy: سياسة الخصوصية
     source_code: الشفرة المصدرية
-    status_count_after: منشورات
+    status_count_after:
+      few: منشورات
+      many: منشورات
+      one: منشور
+      other: منشورات
+      two: منشورات
+      zero: منشورات
     status_count_before: نشروا
     terms: شروط الخدمة
-    user_count_after: مستخدِمين
+    user_count_after:
+      few: مستخدمين
+      many: مستخدمين
+      one: مستخدم
+      other: مستخدمين
+      two: مستخدمين
+      zero: مستخدمين
     user_count_before: يستضيف
     what_is_mastodon: ما هو ماستدون ؟
   accounts:
     choices_html: 'توصيات %{name} :'
     follow: إتبع
-    followers: مُتابِعون
+    followers:
+      few: متابِعون
+      many: متابِعون
+      one: متابِع
+      other: متابِعون
+      two: متابِعون
+      zero: متابِعون
     following: مُتابَع
     joined: انضم·ت في %{date}
+    last_active: آخر نشاط
     link_verified_on: تم التحقق مِن مالك هذا الرابط بتاريخ %{date}
     media: الوسائط
     moved_html: "%{name} إنتقلَ إلى %{new_profile_link} :"
@@ -51,7 +70,13 @@ ar:
     people_who_follow: الأشخاص الذين يتبعون %{name}
     pin_errors:
       following: يجب أن تكون مِن متابعي حساب الشخص الذي تريد إبرازه
-    posts: تبويقات
+    posts:
+      few: تبويقات
+      many: تبويقات
+      one: تبويق
+      other: تبويقات
+      two: تبويقات
+      zero: تبويقات
     posts_tab_heading: تبويقات
     posts_with_replies: التبويقات و الردود
     reserved_username: إسم المستخدم محجوز
@@ -106,6 +131,7 @@ ar:
       media_attachments: الوسائط المرفقة
       memorialize: تحول إلى صفحة للذاكرة
       moderation:
+        active: نشِط
         all: الكل
         silenced: تم كتمه
         suspended: مُجَمَّد
@@ -115,10 +141,6 @@ ar:
       most_recent_ip: أحدث عنوان إيبي
       no_limits_imposed: مِن دون حدود مشروطة
       not_subscribed: غير مشترك
-      order:
-        alphabetic: أبجديًا
-        most_recent: الأحدث
-        title: الترتيب
       outbox_url: رابط صندوق الصادر
       perform_full_suspension: تعطيل
       profile_url: رابط الملف الشخصي
@@ -262,7 +284,13 @@ ar:
         suspend: تعليق
       severity: الشدة
       show:
-        affected_accounts: "%{count} حسابات معنية في قاعدة البيانات"
+        affected_accounts:
+          few: "%{count} حسابات معنية في قاعدة البيانات"
+          many: "%{count} حسابات معنية في قاعدة البيانات"
+          one: حساب واحد معني في قاعدة البيانات
+          other: "%{count} حسابات معنية في قاعدة البيانات"
+          two: حسابات معنية في قاعدة البيانات
+          zero: حسابات معنية في قاعدة البيانات
         retroactive:
           silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
           suspend: إلغاء التعليق المفروض على كافة حسابات هذا النطاق
@@ -365,6 +393,9 @@ ar:
       preview_sensitive_media:
         desc_html: روابط المُعَاينة على مواقع الويب الأخرى ستقوم بعرض صُوَر مصغّرة حتى و إن كانت الوسائط حساسة
         title: إظهار الصور الحساسة في مُعاينات أوبن غراف
+      profile_directory:
+        desc_html: السماح للمستخدمين الكشف عن حساباتهم
+        title: تفعيل سجل الملفات الشخصية
       registrations:
         closed_message:
           desc_html: يتم عرضه على الصفحة الرئيسية عندما يتم غلق تسجيل الحسابات الجديدة. يمكنكم إستخدام علامات الأيتش تي أم أل HTML
@@ -429,6 +460,14 @@ ar:
       hint_html: 'لتأكيد إجراء تعليق الحساب، يُرجى إدخال %{value} في الحقل التالي:'
       proceed: مواصلة
       title: تعليق الحساب %{acct}
+    tags:
+      accounts: الحسابات
+      hidden: المخفية
+      hide: الإخفاء عن سجل الحسابات
+      name: الوسم
+      title: الوسوم
+      unhide: إظهاره في سجل حسابات المستخدمين
+      visible: ظاهر
     title: الإدارة
   admin_mailer:
     new_report:
@@ -505,6 +544,17 @@ ar:
     proceed: حذف حساب
     success_msg: تم حذف حسابك بنجاح
     warning_title: توافر المحتوى المنشور و المبعثَر
+  directories:
+    directory: سِجلّ الحسابات
+    explanation: استكشف مستخدِمين آخرين حسب المواضيع التي تهمهم
+    explore_mastodon: استكشف %{title}
+    people:
+      few: "%{count} شخص"
+      many: "%{count} شخص"
+      one: "%{count} شخص"
+      other: "%{count} شخص"
+      two: "%{count} شخص"
+      zero: "%{count} شخص"
   errors:
     '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
     '404': إنّ الصفحة التي تبحث عنها لا وجود لها أصلا.
@@ -586,7 +636,13 @@ ar:
     expires_in_prompt: أبدا
     generate: توليد
     invited_by: 'تمت دعوتك من طرف :'
-    max_uses: "%{count} استخدامات"
+    max_uses:
+      few: "%{count} استخدامات"
+      many: "%{count} استخدامات"
+      one: استخدام واحد
+      other: "%{count} استخدامات"
+      two: استخدامات
+      zero: استخدامات
     max_uses_prompt: بلا حدود
     prompt: توليد و مشاركة روابط للسماح للآخَرين بالنفاذ إلى مثيل الخادوم هذا
     table:
@@ -613,7 +669,13 @@ ar:
       body: هذا هو مُلَخَّص الرسائل التي فاتتك وذلك منذ آخر زيارة لك في  %{since}
       mention: "%{name} أشار إليك في :"
       new_followers_summary: رائع، لقد قام بمتابعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون !
-      subject: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
+      subject:
+        few: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
+        many: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
+        one: "إشعار واحد منذ آخر زيارة لك لـ \U0001F418"
+        other: "%{count} إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
+        two: "إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
+        zero: "إشعارات جديدة منذ آخر زيارة لك إلى \U0001F418"
       title: أثناء فترة غيابك …
     favourite:
       body: 'أُعجب %{name} بمنشورك :'
@@ -731,8 +793,20 @@ ar:
   statuses:
     attached:
       description: 'مُرفَق : %{attached}'
-      image: "%{count} صُوَر"
-      video: "%{count} فيديوهات"
+      image:
+        few: "%{count} صور"
+        many: "%{count} صور"
+        one: صورة %{count}
+        other: "%{count} صور"
+        two: صور
+        zero: صور
+      video:
+        few: "%{count} فيديوهات"
+        many: "%{count} فيديوهات"
+        one: فيديو %{count}
+        other: "%{count} فيديوهات"
+        two: فيديوهات
+        zero: فيديوهات
     boosted_from_html: تم إعادة ترقيته مِن %{acct_link}
     content_warning: 'تحذير عن المحتوى : %{warning}'
     disallowed_hashtags: 'يحتوي على أحد الوسوم الممنوعة: %{tags}'

@@ -242,8 +242,9 @@ module Mastodon
           end
 
           culled += 1
-          say('.', :green, false)
+          say('+', :green, false)
         else
+          account.touch # Touch account even during dry run to avoid getting the account into the window again
           say('.', nil, false)
         end
       end
@@ -308,8 +309,8 @@ module Mastodon
       end
 
       old_key = account.private_key
-      new_key = OpenSSL::PKey::RSA.new(2048).to_pem
-      account.update(private_key: new_key)
+      new_key = OpenSSL::PKey::RSA.new(2048)
+      account.update(private_key: new_key.to_pem, public_key: new_key.public_key.to_pem)
       ActivityPub::UpdateDistributionWorker.perform_in(delay, account.id, sign_with: old_key)
     end
   end
