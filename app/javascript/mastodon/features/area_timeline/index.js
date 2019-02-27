@@ -16,11 +16,17 @@ const messages = defineMessages({
   title: { id: 'column.area', defaultMessage: 'Area timeline' },
 });
 
-const mapStateToProps = state => ({
-  hasUnread: state.getIn(['timelines', `area:${state.getIn(['settings', 'area', 'area', 'body'])}`, 'unread']) > 0,
-  streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
-  accessToken: state.getIn(['meta', 'access_token']),
-});
+const mapStateToProps = (state, { columnId }) => {
+  const uuid = columnId;
+  const columns = state.getIn(['settings', 'columns']);
+  const index = columns.findIndex(c => c.get('uuid') === uuid);
+
+  return {
+    hasUnread: state.getIn(['timelines', `area:${columns.get(index).getIn(['params', 'id'])}`, 'unread']) > 0,
+    streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
+    accessToken: state.getIn(['meta', 'access_token']),
+  }
+};
 
 @connect(mapStateToProps)
 @injectIntl
