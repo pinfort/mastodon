@@ -58,126 +58,108 @@
 "instances":
   {
     "mstdn.osaka": {
-      "instance-id": 1,
       "instance-name": "大阪丼",
       "instance-short-name": "大",
       "instance-eng-name": "remote-osaka"
     },
 
     "biwakodon.com": {
-      "instance-id": 2,
       "instance-name": "琵琶湖丼",
       "instance-short-name": "琵",
       "instance-eng-name": "remote-biwako"
     },
 
     "mastodon.nara.jp": {
-      "instance-id": 3,
       "instance-name": "鹿トドン",
       "instance-short-name": "鹿",
       "instance-eng-name": "remote-nara"
     },
 
     "mastodon.wakayama.jp": {
-      "instance-id": 4,
       "instance-name": "和歌山丼",
       "instance-short-name": "和",
       "instance-eng-name": "remote-wakayama"
     },
 
     "mastodos.com": {
-      "instance-id": 5,
       "instance-name": "マストどす",
       "instance-short-name": "ど",
       "instance-eng-name": "remote-mastodos"
     },
 
     "miestodon.com": {
-      "instance-id": 6,
       "instance-name": "三重スト丼",
       "instance-short-name": "三",
       "instance-eng-name": "remote-mie"
     },
 
     "myd.kyoto.jp": {
-      "instance-id": 7,
       "instance-name": "京都丼",
       "instance-short-name": "京",
       "instance-eng-name": "remote-kyoto"
     },
 
     "pawoo.net": {
-      "instance-id": 8,
       "instance-name": "パゥー",
       "instance-short-name": "PW",
       "instance-eng-name": "remote-pawoo"
     },
 
     "mstdn.jp": {
-      "instance-id": 9,
       "instance-name": ".jp",
       "instance-short-name": "JP",
       "instance-eng-name": "remote-jp"
     },
 
     "friends.nico": {
-      "instance-id": 10,
       "instance-name": "ニコ",
       "instance-short-name": "NC",
       "instance-eng-name": "remote-nico"
     },
 
     "mastodon.social": {
-      "instance-id": 11,
       "instance-name": "social",
       "instance-short-name": "SC",
       "instance-eng-name": "remote-social"
     },
 
     "nishinomiya.in.net": {
-      "instance-id": 12,
       "instance-name": "西宮",
       "instance-short-name": "宮",
       "instance-eng-name": "remote-nishinomiya"
     },
 
     "don.akashi.cloud": {
-      "instance-id": 13,
       "instance-name": "明石丼",
       "instance-short-name": "明",
       "instance-eng-name": "remote-akashidon"
     },
 
     "akashiensis.com": {
-      "instance-id": 14,
       "instance-name": "AKASHIensis",
       "instance-short-name": "石",
       "instance-eng-name": "remote-akashiensis"
     },
 
     "shigadon.com": {
-      "instance-id": 15,
       "instance-name": "滋賀丼",
       "instance-short-name": "滋",
       "instance-eng-name": "remote-shigadon"
     },
 
     "knzk.me": {
-      "instance-id": 16,
       "instance-name": "神崎丼",
       "instance-short-name": "兄",
       "instance-eng-name": "remote-kanzaki"
     },
 
     "mstdn.maud.io": {
-      "instance-id": 17,
       "instance-name": "末代鯖",
       "instance-short-name": "代",
       "instance-eng-name": "remote-matsudai"
     },
 
     "mstdn-workers.com": {
-      "instance-id": 18,
       "instance-name": "社畜丼",
       "instance-short-name": "畜",
       "instance-eng-name": "remote-shachiku"
