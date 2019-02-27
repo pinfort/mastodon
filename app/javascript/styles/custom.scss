@@ -105,14 +105,6 @@
     @include header__remote__1kanji__area();
 }
 
-.account__header__area-remote-mie{
-    @include header__remote__1kanji__area();
-}
-
-.account__header__area-remote-kyoto{
-    @include header__remote__1kanji__area();
-}
-
 .account__header__area-remote-pawoo{
     @include header__2eng__area();
     background-color: rgba(200,200,200,0.9);
@@ -135,10 +127,6 @@
     @include header__2eng__area();
     background-color: rgba(200,200,200,0.9);
     color:#000000;
-}
-
-.account__header__area-remote-nishinomiya{
-    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-akashidon{
@@ -270,14 +258,6 @@
     @include avatar__area__remote_1kanji();
 }
 
-.account__avatar__area-remote-mie{
-    @include avatar__area__remote_1kanji();
-}
-
-.account__avatar__area-remote-kyoto{
-    @include avatar__area__remote_1kanji();
-}
-
 .account__avatar__area-remote-pawoo{
     @include avatar__2eng__area();
     margin: 0px 0px 0px -4px;
@@ -304,10 +284,6 @@
     margin: 0px;
     background-color: rgba(200,200,200,0.9);
     color:#000000;
-}
-
-.account__avatar__area-remote-nishinomiya{
-    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-akashidon{
