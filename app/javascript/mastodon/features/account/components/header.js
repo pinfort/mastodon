@@ -17,6 +17,7 @@ const messages = defineMessages({
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
   linkVerifiedOn: { id: 'account.link_verified_on', defaultMessage: 'Ownership of this link was checked on {date}' },
+  account_locked: { id: 'account.locked_info', defaultMessage: 'This account privacy status is set to locked. The owner manually reviews who can follow them.' },
 });
 
 const dateFormatOptions = {
@@ -149,7 +150,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.get('locked')) {
-      lockedIcon = <i className='fa fa-lock' />;
+      lockedIcon = <i className='fa fa-lock' title={intl.formatMessage(messages.account_locked)} />;
     }
 
     const content         = { __html: account.get('note_emojified') };
@@ -158,7 +159,7 @@ class Header extends ImmutablePureComponent {
     const badge           = account.get('bot') ? (<div className='roles'><div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div></div>) : null;
 
     return (
-      <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${account.get('header')})` }}>
+      <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${autoPlayGif ? account.get('header') : account.get('header_static')})` }}>
         <div>
           <Avatar account={account} />
 
