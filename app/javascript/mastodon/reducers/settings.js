@@ -77,9 +77,6 @@ const initialState = ImmutableMap({
   }),
 
   area: ImmutableMap({
-    regex: ImmutableMap({
-      body: '',
-    }),
     area: ImmutableMap({
       body: 'kansai',
     }),
