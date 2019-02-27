@@ -123,7 +123,7 @@ export default class AreaTimeline extends React.PureComponent {
           scrollKey={`area_timeline-${columnId}`}
           timelineId={`area:${id}`}
           settingTimelineId='area'
-          loadMore={this.handleLoadMore}
+          onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.area' defaultMessage='There is nothing in this area yet.' />}
           shouldUpdateScroll={shouldUpdateScroll}
         />
