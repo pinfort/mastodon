@@ -16,11 +16,17 @@ const messages = defineMessages({
   title: { id: 'column.area', defaultMessage: 'Area timeline' },
 });
 
-const mapStateToProps = state => ({
-  hasUnread: state.getIn(['timelines', `area:${state.getIn(['settings', 'area', 'area', 'body'])}`, 'unread']) > 0,
-  streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
-  accessToken: state.getIn(['meta', 'access_token']),
-});
+const mapStateToProps = (state, { columnId }) => {
+  const uuid = columnId;
+  const columns = state.getIn(['settings', 'columns']);
+  const index = columns.findIndex(c => c.get('uuid') === uuid);
+
+  return {
+    hasUnread: state.getIn(['timelines', `area:${columns.get(index).getIn(['params', 'id'])}`, 'unread']) > 0,
+    streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
+    accessToken: state.getIn(['meta', 'access_token']),
+  }
+};
 
 @connect(mapStateToProps)
 @injectIntl
@@ -30,6 +36,7 @@ export default class AreaTimeline extends React.PureComponent {
     params: PropTypes.object.isRequired,
     columnId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
     streamingAPIBaseURL: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
     hasUnread: PropTypes.bool,
@@ -91,13 +98,13 @@ export default class AreaTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, columnId, multiColumn } = this.props;
+    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
     var message = { id: 'column.area.timeline.' + id, defaultMessage: id };
 
     return (
-      <Column ref={this.setRef}>
+      <Column ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='map-marker'
           active={hasUnread}
@@ -108,7 +115,7 @@ export default class AreaTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <ColumnSettingsContainer />
+          <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
         <AreaStatusListContainer
@@ -116,8 +123,9 @@ export default class AreaTimeline extends React.PureComponent {
           scrollKey={`area_timeline-${columnId}`}
           timelineId={`area:${id}`}
           settingTimelineId='area'
-          loadMore={this.handleLoadMore}
+          onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.area' defaultMessage='There is nothing in this area yet.' />}
+          shouldUpdateScroll={shouldUpdateScroll}
         />
       </Column>
     );
