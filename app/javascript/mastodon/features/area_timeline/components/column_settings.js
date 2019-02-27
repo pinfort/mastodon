@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import SettingSelect from '../../../components/setting_select';
-import SettingText from '../../../components/setting_text';
 
 const messages = defineMessages({
-  filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
   filter_area: { id: 'area.column_settings.filter_area', defaultMessage: 'Filter out by area' },
   settings: { id: 'area.settings', defaultMessage: 'Column settings' },
 });
