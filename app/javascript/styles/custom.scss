@@ -2,9 +2,9 @@
     will-change: transform;
     font-size: 20px;
     padding: 3px;
-    border-radious: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
+    border-radious: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
     display: inline-block;
 }
 
@@ -12,9 +12,9 @@
     will-change: transform;
     font-size: 15px;
     padding: 3px;
-    border-radious: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
+    border-radious: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
     display: inline-block;
 }
 
@@ -26,7 +26,7 @@
 
 .account__header__area-wrapper{
     display: block;
-    margin: -33px 0px 0px -65px;
+    margin: -27px 0px 0px 67px;
     padding: 0px;
     line-height: 20px;
 }
