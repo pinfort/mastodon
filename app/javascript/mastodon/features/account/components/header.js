@@ -207,7 +207,6 @@ class Header extends ImmutablePureComponent {
             {info}
           </div>
 
-          <Area_header account={account} />
           <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt='' className='parallax' />
         </div>
 
@@ -215,6 +214,7 @@ class Header extends ImmutablePureComponent {
           <div className='account__header__tabs'>
             <a className='avatar' href={account.get('url')} rel='noopener' target='_blank'>
               <Avatar account={account} size={90} />
+              <Area_header account={account} />
             </a>
 
             <div className='spacer' />
