@@ -145,6 +145,12 @@
       "instance-name": "社畜丼",
       "instance-short-name": "畜",
       "instance-eng-name": "remote-shachiku"
+    },
+
+    "best-friends.chat": {
+      "instance-name": "ベスフレ",
+      "instance-short-name": "BF",
+      "instance-eng-name": "remote-bestfriends"
     }
   },
 "instance-areas":
@@ -173,10 +179,10 @@
       ]
     },
     {
-      "group_name": "niconico",
+      "group_name": "bestfriends",
       "group_id": 2,
       "instances": [
-        "friends.nico"
+        "best-friends.chat"
       ]
     },
     {
