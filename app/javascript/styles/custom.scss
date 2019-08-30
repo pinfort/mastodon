@@ -129,6 +129,12 @@
     color:#000000;
 }
 
+.account__header__area-remote-bestfriends{
+    @include header__2eng__area();
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
 .account__header__area-remote-akashidon{
     @include header__remote__1kanji__area();
 }
@@ -280,6 +286,13 @@
 }
 
 .account__avatar__area-remote-social{
+    @include avatar__2eng__area();
+    margin: 0px;
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
+.account__avatar__area-remote-bestfriends{
     @include avatar__2eng__area();
     margin: 0px;
     background-color: rgba(200,200,200,0.9);
