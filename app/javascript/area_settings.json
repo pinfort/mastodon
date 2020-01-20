@@ -139,6 +139,12 @@
       "instance-name": "ベスフレ",
       "instance-short-name": "BF",
       "instance-eng-name": "remote-bestfriends"
+    },
+
+    "minohdon.jp": {
+      "instance-name": "箕面丼",
+      "instance-short-name": "箕",
+      "instance-eng-name": "remote-minohdon"
     }
   },
 "instance-areas":
@@ -159,7 +165,8 @@
         "biwakodon.com",
         "mastodon.nara.jp",
         "mastodon.wakayama.jp",
-        "mastodos.com"
+        "mastodos.com",
+        "minohdon.jp"
       ]
     },
     {

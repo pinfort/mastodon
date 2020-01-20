@@ -151,6 +151,10 @@
     @include header__remote__1kanji__area();
 }
 
+.account__header__area-remote-minohdon{
+    @include header__remote__1kanji__area();
+}
+
 @mixin avatar__area(){
     will-change: transform;
     font-size: 15px;
@@ -304,6 +308,10 @@
 }
 
 .account__avatar__area-remote-shachiku{
+    @include avatar__area__remote_1kanji();
+}
+
+.account__avatar__area-remote-minohdon{
     @include avatar__area__remote_1kanji();
 }
 
