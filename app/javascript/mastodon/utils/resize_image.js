@@ -75,14 +75,6 @@ const processImage = (img, { width, height, orientation, type = 'image/png' }) =
     throw 'Failed to read from canvas';
   }
 
-  // The Tor Browser and maybe other browsers may prevent reading from canvas
-  // and return an all-white image instead. Assume reading failed if the resized
-  // image is perfectly white.
-  const imageData = context.getImageData(0, 0, width, height);
-  if (imageData.every(value => value === 255)) {
-    throw 'Failed to read from canvas';
-  }
-
   canvas.toBlob(resolve, type);
 });
 
