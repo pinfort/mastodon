@@ -135,14 +135,6 @@
     color:#000000;
 }
 
-.account__header__area-remote-akashidon{
-    @include header__remote__1kanji__area();
-}
-
-.account__header__area-remote-akashiensis{
-    @include header__remote__1kanji__area();
-}
-
 .account__header__area-remote-shigadon{
     @include header__remote__1kanji__area();
 }
@@ -297,14 +289,6 @@
     margin: 0px;
     background-color: rgba(200,200,200,0.9);
     color:#000000;
-}
-
-.account__avatar__area-remote-akashidon{
-    @include avatar__area__remote_1kanji();
-}
-
-.account__avatar__area-remote-akashiensis{
-    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-shigadon{
