@@ -111,18 +111,6 @@
       "instance-eng-name": "remote-social"
     },
 
-    "don.akashi.cloud": {
-      "instance-name": "明石丼",
-      "instance-short-name": "明",
-      "instance-eng-name": "remote-akashidon"
-    },
-
-    "akashiensis.com": {
-      "instance-name": "AKASHIensis",
-      "instance-short-name": "石",
-      "instance-eng-name": "remote-akashiensis"
-    },
-
     "shigadon.com": {
       "instance-name": "滋賀丼",
       "instance-short-name": "滋",
@@ -151,6 +139,12 @@
       "instance-name": "ベスフレ",
       "instance-short-name": "BF",
       "instance-eng-name": "remote-bestfriends"
+    },
+
+    "minohdon.jp": {
+      "instance-name": "箕面丼",
+      "instance-short-name": "箕",
+      "instance-eng-name": "remote-minohdon"
     }
   },
 "instance-areas":
@@ -159,9 +153,7 @@
       "group_name": "hyogo",
       "group_id": 0,
       "instances": [
-        null,
-        "akashiensis.com",
-        "don.akashi.cloud"
+        null
       ]
     },
     {
@@ -174,8 +166,7 @@
         "mastodon.nara.jp",
         "mastodon.wakayama.jp",
         "mastodos.com",
-        "don.akashi.cloud",
-        "akashiensis.com"
+        "minohdon.jp"
       ]
     },
     {

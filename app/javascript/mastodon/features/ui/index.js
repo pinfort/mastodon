@@ -15,9 +15,12 @@ import { expandHomeTimeline } from '../../actions/timelines';
 import { expandNotifications } from '../../actions/notifications';
 import { fetchFilters } from '../../actions/filters';
 import { clearHeight } from '../../actions/height_cache';
+import { focusApp, unfocusApp } from 'mastodon/actions/app';
+import { submitMarkers } from 'mastodon/actions/markers';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
+import DocumentTitle from './components/document_title';
 import {
   Compose,
   Status,
@@ -45,6 +48,7 @@ import {
   PinnedStatuses,
   Lists,
   Search,
+  Directory,
   AreaTimeline,
   AreaTimelineRedirect,
 } from './util/async-components';
@@ -64,6 +68,7 @@ const mapStateToProps = state => ({
   isComposing: state.getIn(['compose', 'is_composing']),
   hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
+  canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 4,
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
 });
 
@@ -112,11 +117,24 @@ class SwitchingColumnsArea extends React.PureComponent {
 
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
+
+    if (this.state.mobile || forceSingleColumn) {
+      document.body.classList.toggle('layout-single-column', true);
+      document.body.classList.toggle('layout-multiple-columns', false);
+    } else {
+      document.body.classList.toggle('layout-single-column', false);
+      document.body.classList.toggle('layout-multiple-columns', true);
+    }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prevProps, prevState) {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
       this.node.handleChildrenContentChange();
+    }
+
+    if (prevState.mobile !== this.state.mobile && !forceSingleColumn) {
+      document.body.classList.toggle('layout-single-column', this.state.mobile);
+      document.body.classList.toggle('layout-multiple-columns', !this.state.mobile);
     }
   }
 
@@ -128,14 +146,24 @@ class SwitchingColumnsArea extends React.PureComponent {
     return location.state !== previewMediaState && location.state !== previewVideoState;
   }
 
-  handleResize = debounce(() => {
+  handleLayoutChange = debounce(() => {
     // The cached heights are no longer accurate, invalidate
     this.props.onLayoutChange();
-
-    this.setState({ mobile: isMobile(window.innerWidth) });
   }, 500, {
     trailing: true,
-  });
+  })
+
+  handleResize = () => {
+    const mobile = isMobile(window.innerWidth);
+
+    if (mobile !== this.state.mobile) {
+      this.handleLayoutChange.cancel();
+      this.props.onLayoutChange();
+      this.setState({ mobile });
+    } else {
+      this.handleLayoutChange();
+    }
+  }
 
   setRef = c => {
     this.node = c.getWrappedInstance();
@@ -167,6 +195,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
           <WrappedRoute path='/search' component={Search} content={children} />
+          <WrappedRoute path='/directory' component={Directory} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
           <WrappedRoute path='/statuses/new' component={Compose} content={children} />
           <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
@@ -208,6 +237,7 @@ class UI extends React.PureComponent {
     isComposing: PropTypes.bool,
     hasComposingText: PropTypes.bool,
     hasMediaAttachments: PropTypes.bool,
+    canUploadMore: PropTypes.bool,
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
@@ -217,8 +247,10 @@ class UI extends React.PureComponent {
     draggingOver: false,
   };
 
-  handleBeforeUnload = (e) => {
-    const { intl, isComposing, hasComposingText, hasMediaAttachments } = this.props;
+  handleBeforeUnload = e => {
+    const { intl, dispatch, isComposing, hasComposingText, hasMediaAttachments } = this.props;
+
+    dispatch(submitMarkers());
 
     if (isComposing && (hasComposingText || hasMediaAttachments)) {
       // Setting returnValue to any string causes confirmation dialog.
@@ -226,6 +258,14 @@ class UI extends React.PureComponent {
       // but we set user-friendly message for other browsers, e.g. Edge.
       e.returnValue = intl.formatMessage(messages.beforeUnload);
     }
+  }
+
+  handleWindowFocus = () => {
+    this.props.dispatch(focusApp());
+  }
+
+  handleWindowBlur = () => {
+    this.props.dispatch(unfocusApp());
   }
 
   handleLayoutChange = () => {
@@ -244,13 +284,14 @@ class UI extends React.PureComponent {
       this.dragTargets.push(e.target);
     }
 
-    if (e.dataTransfer && Array.from(e.dataTransfer.types).includes('Files')) {
+    if (e.dataTransfer && Array.from(e.dataTransfer.types).includes('Files') && this.props.canUploadMore) {
       this.setState({ draggingOver: true });
     }
   }
 
   handleDragOver = (e) => {
     if (this.dataTransferIsText(e.dataTransfer)) return false;
+
     e.preventDefault();
     e.stopPropagation();
 
@@ -265,12 +306,13 @@ class UI extends React.PureComponent {
 
   handleDrop = (e) => {
     if (this.dataTransferIsText(e.dataTransfer)) return;
+
     e.preventDefault();
 
     this.setState({ draggingOver: false });
     this.dragTargets = [];
 
-    if (e.dataTransfer && e.dataTransfer.files.length >= 1) {
+    if (e.dataTransfer && e.dataTransfer.files.length >= 1 && this.props.canUploadMore) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
   }
@@ -289,7 +331,7 @@ class UI extends React.PureComponent {
   }
 
   dataTransferIsText = (dataTransfer) => {
-    return (dataTransfer && Array.from(dataTransfer.types).includes('text/plain') && dataTransfer.items.length === 1);
+    return (dataTransfer && Array.from(dataTransfer.types).filter((type) => type === 'text/plain').length === 1);
   }
 
   closeUploadModal = () => {
@@ -305,6 +347,8 @@ class UI extends React.PureComponent {
   }
 
   componentWillMount () {
+    window.addEventListener('focus', this.handleWindowFocus, false);
+    window.addEventListener('blur', this.handleWindowBlur, false);
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
 
     document.addEventListener('dragenter', this.handleDragEnter, false);
@@ -334,7 +378,10 @@ class UI extends React.PureComponent {
   }
 
   componentWillUnmount () {
+    window.removeEventListener('focus', this.handleWindowFocus);
+    window.removeEventListener('blur', this.handleWindowBlur);
     window.removeEventListener('beforeunload', this.handleBeforeUnload);
+
     document.removeEventListener('dragenter', this.handleDragEnter);
     document.removeEventListener('dragover', this.handleDragOver);
     document.removeEventListener('drop', this.handleDrop);
@@ -493,6 +540,7 @@ class UI extends React.PureComponent {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
+          <DocumentTitle />
         </div>
       </HotKeys>
     );
