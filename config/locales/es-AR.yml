@@ -92,6 +92,7 @@ es-AR:
       delete: Eliminar
       destroyed_msg: "¡Nota de moderación destruída exitosamente!"
     accounts:
+      add_email_domain_block: Desaprobar el dominio del correo electrónico
       approve: Aprobar
       approve_all: Aprobar todas
       are_you_sure: "¿Estás seguro?"
@@ -172,6 +173,7 @@ es-AR:
         staff: Equipo
         user: Usuario
       search: Buscar
+      search_same_email_domain: Otros usuarios con el mismo dominio de correo electrónico
       search_same_ip: Otros usuarios con la misma dirección IP
       shared_inbox_url: Dirección web de la bandeja de entrada compartida
       show:
@@ -193,16 +195,54 @@ es-AR:
       web: Web
       whitelisted: Aprobadas
     action_logs:
+      action_types:
+        assigned_to_self_report: Asignar denuncia
+        change_email_user: Cambiar correo electrónico del usuario
+        confirm_user: Confirmar usuario
+        create_account_warning: Crear advertencia
+        create_announcement: Crear anuncio
+        create_custom_emoji: Crear emoji personalizado
+        create_domain_allow: Crear permiso de dominio
+        create_domain_block: Crear bloqueo de dominio
+        create_email_domain_block: Crear bloqueo de dominio de correo electrónico
+        demote_user: Descender usuario
+        destroy_announcement: Eliminar anuncio
+        destroy_custom_emoji: Eliminar emoji personalizado
+        destroy_domain_allow: Eliminar permiso de dominio
+        destroy_domain_block: Eliminar bloquedo de dominio
+        destroy_email_domain_block: Eliminar bloquedo de dominio de correo electrónico
+        destroy_status: Eliminar estado
+        disable_2fa_user: Deshabilitar 2FA
+        disable_custom_emoji: Deshabilitar emoji personalizado
+        disable_user: Deshabilitar usuario
+        enable_custom_emoji: Habilitar emoji personalizado
+        enable_user: Habilitar usuario
+        memorialize_account: Volver cuenta conmemorativa
+        promote_user: Promover usuario
+        remove_avatar_user: Quitar avatar
+        reopen_report: Reabrir denuncia
+        reset_password_user: Cambiar contraseña
+        resolve_report: Resolver denuncia
+        silence_account: Silenciar cuenta
+        suspend_account: Suspender cuenta
+        unassigned_report: Desasignar denuncia
+        unsilence_account: Dejar de silenciar cuenta
+        unsuspend_account: Dejar de suspender cuenta
+        update_announcement: Actualizar anuncio
+        update_custom_emoji: Actualizar emoji personalizado
+        update_status: Actualizar estado
       actions:
         assigned_to_self_report: "%{name} se asignó la denuncia %{target} a sí"
         change_email_user: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
         confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
         create_account_warning: "%{name} envió una advertencia a %{target}"
+        create_announcement: "%{name} creó el nuevo anuncio %{target}"
         create_custom_emoji: "%{name} subió nuevo emoji %{target}"
         create_domain_allow: "%{name} aprobó el dominio %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} desaprobó el dominio de correo electrónico %{target}"
         demote_user: "%{name} bajó de nivel al usuario %{target}"
+        destroy_announcement: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
         destroy_domain_allow: "%{name} quitó el dominio %{target} de los permitidos"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
@@ -224,10 +264,29 @@ es-AR:
         unassigned_report: "%{name} desasignó la denuncia %{target}"
         unsilence_account: "%{name} quitó el silenciado de la cuenta de %{target}"
         unsuspend_account: "%{name} quitó la suspensión de la cuenta de %{target}"
+        update_announcement: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
         update_status: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
+      empty: No se encontraron registros.
+      filter_by_action: Filtrar por acción
+      filter_by_user: Filtrar por usuario
       title: Registro de auditoría
+    announcements:
+      destroyed_msg: "¡Anuncio eliminado exitosamente!"
+      edit:
+        title: Editar anuncio
+      empty: No se encontraron anuncios.
+      live: En vivo
+      new:
+        create: Crear anuncio
+        title: Nuevo anuncio
+      published_msg: "¡Anuncio publicado exitosamente!"
+      scheduled_for: Programado para %{time}
+      scheduled_msg: "¡Anuncio programado para su publicación!"
+      title: Anuncios
+      unpublished_msg: "¡Anuncio dejado de publicar exitosamente!"
+      updated_msg: "¡Anuncio actualizado exitosamente!"
     custom_emojis:
       assign_category: Asignar categoría
       by_domain: Dominio
@@ -340,13 +399,11 @@ es-AR:
       destroyed_msg: Se aprobó dominio de correo electrónico exitosamente
       domain: Dominio
       empty: Actualmente no hay dominios de correo electrónico desaprobados.
+      from_html: de %{domain}
       new:
         create: Agregar dominio
         title: Nueva desaprobación de correo electrónico
       title: Desaprobación de correo electrónico
-    followers:
-      back_to_account: Volver a la cuenta
-      title: Seguidores de %{acct}
     instances:
       by_domain: Dominio
       delivery_available: La entrega está disponible
@@ -375,6 +432,8 @@ es-AR:
       title: Invitaciones
     pending_accounts:
       title: Cuentas pendientes (%{count})
+    relationships:
+      title: Relaciones de %{acct}
     relays:
       add_new: Agregar nuevo relé
       delete: Eliminar
@@ -520,6 +579,9 @@ es-AR:
       trends:
         desc_html: Mostrar públicamente etiquetas previamente revisadas que son tendencia actualmente
         title: Etiquetas tendencias
+    site_uploads:
+      delete: Eliminar archivo subido
+      destroyed_msg: "¡Subida al sitio eliminada exitosamente!"
     statuses:
       back_to_account: Volver a la página de la cuenta
       batch:
@@ -556,7 +618,6 @@ es-AR:
     warning_presets:
       add_new: Agregar nuevo
       delete: Eliminar
-      edit: Editar
       edit_preset: Editar preajuste de advertencia
       title: Administrar preajustes de advertencia
   admin_mailer:
@@ -644,6 +705,7 @@ es-AR:
     trouble_logging_in: "¿Tenés problemas para iniciar sesión?"
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
+    already_requested: Ya enviaste una solicitud de seguimiento a esa cuenta
     error: Lamentablemente, ocurrió un error buscando la cuenta remota
     follow: Seguir
     follow_request: 'Enviaste una solicitud de seguimiento a:'
@@ -658,6 +720,9 @@ es-AR:
     hint_html: "<strong>Dato:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña no válida
     prompt: Confirmar contraseña para seguir
+  date:
+    formats:
+      default: "%Y.%b.%d"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -734,6 +799,7 @@ es-AR:
     hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus toots públicos específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
+      account: Perfiles
       home: Línea temporal principal
       notifications: Notificaciones
       public: Líneas temporales públicas
@@ -758,6 +824,7 @@ es-AR:
     all: Todas
     changes_saved_msg: "¡Cambios guardados exitosamente!"
     copy: Copiar
+    delete: Eliminar
     no_batch_actions_available: No hay acciones por lotes disponibles en esta página
     order_by: Ordenar por
     save_changes: Guardar cambios
@@ -827,6 +894,7 @@ es-AR:
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
+      not_ready: No se pueden adjuntar archivos que no terminaron de procesarse. ¡Intentá de nuevo en un rato!
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
     acct: Mudada a
@@ -929,11 +997,16 @@ es-AR:
     other: Otros
     posting_defaults: Configuración predeterminada de publicaciones
     public_timelines: Líneas temporales públicas
+  reactions:
+    errors:
+      limit_reached: Se alcanzó el límite de reacciones diferentes
+      unrecognized_emoji: no es un emoji conocido
   relationships:
     activity: Actividad de la cuenta
     dormant: Inactivas
     followers: Seguidores
     following: Siguiendo
+    invited: Invitado
     last_active: Última actividad
     most_recent: Más reciente
     moved: Mudada
@@ -1043,6 +1116,8 @@ es-AR:
     disallowed_hashtags:
       one: 'contenía una etiqueta no permitida: %{tags}'
       other: 'contenía las etiquetas no permitidas: %{tags}'
+    errors:
+      in_reply_not_found: El estado al que intentás responder no existe.
     language_detection: Detectar idioma automáticamente
     open_in_web: Abrir en web
     over_character_limit: se excedió el límite de %{max} caracteres
@@ -1060,6 +1135,7 @@ es-AR:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar más
+    show_thread: Mostrar hilo
     sign_in_to_participate: Iniciá sesión para participar en la conversación
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1071,7 +1147,7 @@ es-AR:
       unlisted_long: Todos pueden ver, pero no está listado en las líneas temporales públicas
   stream_entries:
     pinned: Toot fijado
-    reblogged: retooteado
+    reblogged: retooteó
     sensitive_content: Contenido sensible
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior

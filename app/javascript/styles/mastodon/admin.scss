@@ -232,7 +232,8 @@ $content-width: 840px;
     }
 
     h4 {
-      font-size: 14px;
+      text-transform: uppercase;
+      font-size: 13px;
       font-weight: 700;
       color: $darker-text-color;
       padding-bottom: 8px;
@@ -407,7 +408,8 @@ body,
 
     strong {
       font-weight: 500;
-      font-size: 13px;
+      text-transform: uppercase;
+      font-size: 12px;
 
       @each $lang in $cjk-langs {
         &:lang(#{$lang}) {
@@ -416,11 +418,17 @@ body,
       }
     }
 
+    &--with-select strong {
+      display: block;
+      margin-bottom: 10px;
+    }
+
     a {
       display: inline-block;
       color: $darker-text-color;
       text-decoration: none;
-      font-size: 13px;
+      text-transform: uppercase;
+      font-size: 12px;
       font-weight: 500;
       border-bottom: 2px solid $ui-base-color;
 
@@ -543,24 +551,39 @@ body,
   }
 }
 
+.special-action-button,
+.back-link {
+  text-align: right;
+  flex: 1 1 auto;
+}
+
+.action-buttons {
+  display: flex;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
 
 .log-entry {
-  margin-bottom: 20px;
   line-height: 20px;
+  padding: 15px 0;
+  background: $ui-base-color;
+  border-bottom: 1px solid lighten($ui-base-color, 4%);
+
+  &:last-child {
+    border-bottom: 0;
+  }
 
   &__header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px;
-    background: $ui-base-color;
     color: $darker-text-color;
-    border-radius: 4px 4px 0 0;
     font-size: 14px;
-    position: relative;
+    padding: 0 10px;
   }
 
   &__avatar {
@@ -587,62 +610,12 @@ body,
     color: $dark-text-color;
   }
 
-  &__extras {
-    background: lighten($ui-base-color, 6%);
-    border-radius: 0 0 4px 4px;
-    padding: 10px;
-    color: $darker-text-color;
-    font-family: $font-monospace, monospace;
-    font-size: 12px;
-    word-wrap: break-word;
-    min-height: 20px;
-  }
-
-  &__icon {
-    font-size: 28px;
-    margin-right: 10px;
-    color: $dark-text-color;
-  }
-
-  &__icon__overlay {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-
-    &.positive {
-      background: $success-green;
-    }
-
-    &.negative {
-      background: lighten($error-red, 12%);
-    }
-
-    &.neutral {
-      background: $ui-highlight-color;
-    }
-  }
-
   a,
   .username,
   .target {
     color: $secondary-text-color;
     text-decoration: none;
     font-weight: 500;
-  }
-
-  .diff-old {
-    color: lighten($error-red, 12%);
-  }
-
-  .diff-neutral {
-    color: $secondary-text-color;
-  }
-
-  .diff-new {
-    color: $success-green;
   }
 }
 
@@ -754,6 +727,7 @@ a.name-tag,
       flex: 0 0 auto;
       font-weight: 500;
       color: $darker-text-color;
+      text-transform: uppercase;
       text-align: right;
 
       a {
@@ -882,4 +856,55 @@ a.name-tag,
 
 .center-text {
   text-align: center;
+}
+
+.announcements-list {
+  border: 1px solid lighten($ui-base-color, 4%);
+  border-radius: 4px;
+
+  &__item {
+    padding: 15px 0;
+    background: $ui-base-color;
+    border-bottom: 1px solid lighten($ui-base-color, 4%);
+
+    &__title {
+      padding: 0 15px;
+      display: block;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.5;
+      color: $secondary-text-color;
+      text-decoration: none;
+      margin-bottom: 10px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $primary-text-color;
+      }
+    }
+
+    &__meta {
+      padding: 0 15px;
+      color: $dark-text-color;
+    }
+
+    &__action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.account-badges {
+  margin: -2px 0;
+}
+
+.dashboard__counters.admin-account-counters {
+  margin-top: 10px;
 }
