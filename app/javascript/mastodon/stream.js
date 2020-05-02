@@ -1,4 +1,4 @@
-import WebSocketClient from 'websocket.js';
+import WebSocketClient from '@gamestdio/websocket';
 
 const randomIntUpTo = max => Math.floor(Math.random() * Math.floor(max));
 
@@ -71,11 +71,7 @@ export function connectStream(path, pollingRefresh = null, callbacks = () => ({ 
 export default function getStream(streamingAPIBaseURL, accessToken, stream, { connected, received, disconnected, reconnected }) {
   const params = [ `stream=${stream}` ];
 
-  if (accessToken !== null) {
-    params.push(`access_token=${accessToken}`);
-  }
-
-  const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`);
+  const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`, accessToken);
 
   ws.onopen      = connected;
   ws.onmessage   = e => received(JSON.parse(e.data));

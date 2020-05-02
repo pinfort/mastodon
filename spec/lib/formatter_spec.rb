@@ -242,6 +242,22 @@ RSpec.describe Formatter do
         is_expected.to include '/tags/hashtag%E3%82%BF%E3%82%B0" class="mention hashtag" rel="tag">#<span>hashtagタグ</span></a>'
       end
     end
+
+    context 'given a stand-alone xmpp: URI' do
+      let(:text) { 'xmpp:user@instance.com' }
+
+      it 'matches the full URI' do
+        is_expected.to include 'href="xmpp:user@instance.com"'
+      end
+    end
+
+    context 'given a an xmpp: URI with a query-string' do
+      let(:text) { 'please join xmpp:muc@instance.com?join right now' }
+
+      it 'matches the full URI' do
+        is_expected.to include 'href="xmpp:muc@instance.com?join"'
+      end
+    end
   end
 
   describe '#format_spoiler' do
@@ -261,7 +277,7 @@ RSpec.describe Formatter do
       let(:text) { ':coolcat: Beep boop' }
 
       it 'converts the shortcode to an image tag' do
-        is_expected.to match(/<img draggable="false" class="emojione" alt=":coolcat:"/)
+        is_expected.to match(/<img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
       end
     end
   end
@@ -330,7 +346,7 @@ RSpec.describe Formatter do
           let(:text) { ':coolcat: Beep boop' }
 
           it 'converts the shortcode to an image tag' do
-            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/<p><img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -338,7 +354,7 @@ RSpec.describe Formatter do
           let(:text) { 'Beep :coolcat: boop' }
 
           it 'converts the shortcode to an image tag' do
-            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/Beep <img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -354,7 +370,7 @@ RSpec.describe Formatter do
           let(:text) { 'Beep boop :coolcat:' }
 
           it 'converts the shortcode to an image tag' do
-            is_expected.to match(/boop <img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/boop <img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
       end
@@ -377,7 +393,7 @@ RSpec.describe Formatter do
           let(:text) { '<p>:coolcat: Beep boop<br />' }
 
           it 'converts the shortcode to an image tag' do
-            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/<p><img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -385,7 +401,7 @@ RSpec.describe Formatter do
           let(:text) { '<p>Beep :coolcat: boop</p>' }
 
           it 'converts the shortcode to an image tag' do
-            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/Beep <img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -401,7 +417,7 @@ RSpec.describe Formatter do
           let(:text) { '<p>Beep boop<br />:coolcat:</p>' }
 
           it 'converts the shortcode to an image tag' do
-            is_expected.to match(/<br><img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/<br><img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
       end
@@ -500,7 +516,7 @@ RSpec.describe Formatter do
           let(:text) { ':coolcat: Beep boop' }
 
           it 'converts the shortcode to an image tag' do
-            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/<p><img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -508,7 +524,7 @@ RSpec.describe Formatter do
           let(:text) { 'Beep :coolcat: boop' }
 
           it 'converts the shortcode to an image tag' do
-            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/Beep <img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -524,7 +540,7 @@ RSpec.describe Formatter do
           let(:text) { 'Beep boop :coolcat:' }
 
           it 'converts the shortcode to an image tag' do
-            is_expected.to match(/boop <img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/boop <img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
       end
@@ -551,7 +567,7 @@ RSpec.describe Formatter do
           let(:text) { '<p>:coolcat: Beep boop<br />' }
 
           it 'converts shortcode to image tag' do
-            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/<p><img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -559,7 +575,7 @@ RSpec.describe Formatter do
           let(:text) { '<p>Beep :coolcat: boop</p>' }
 
           it 'converts shortcode to image tag' do
-            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/Beep <img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -575,7 +591,7 @@ RSpec.describe Formatter do
           let(:text) { '<p>Beep boop<br />:coolcat:</p>' }
 
           it 'converts shortcode to image tag' do
-            is_expected.to match(/<br><img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/<br><img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
       end

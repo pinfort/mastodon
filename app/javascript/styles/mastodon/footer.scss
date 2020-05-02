@@ -94,7 +94,6 @@
     }
 
     h4 {
-      text-transform: uppercase;
       font-weight: 700;
       margin-bottom: 8px;
       color: $darker-text-color;
@@ -122,16 +121,13 @@
         height: 36px;
         width: auto;
         margin: 0 auto;
-
-        path {
-          fill: lighten($ui-base-color, 34%);
-        }
+        fill: lighten($ui-base-color, 34%);
       }
 
       &:hover,
       &:focus,
       &:active {
-        svg path {
+        svg {
           fill: lighten($ui-base-color, 38%);
         }
       }

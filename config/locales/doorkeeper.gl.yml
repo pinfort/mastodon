@@ -114,11 +114,18 @@ gl:
       application:
         title: Precisa autorización OAuth
     scopes:
+      admin:read: ler todos os datos no servidor
+      admin:read:accounts: ler información sensible de todas as contas
+      admin:read:reports: ler información sensible de todos os informes e contas reportadas
+      admin:write: modificar todos os datos no servidor
+      admin:write:accounts: executar accións de moderación nas contas
+      admin:write:reports: executar accións de moderación nos informes
       follow: modificar as relacións da conta
       push: recibir notificacións push
       read: ler todos os datos da súa conta
       read:accounts: ver información das contas
       read:blocks: ver a quen bloquea
+      read:bookmarks: aquí tes os marcadores
       read:favourites: ver as súas favoritas
       read:filters: ver os seus filtros
       read:follows: ver a quen segue
@@ -131,6 +138,7 @@ gl:
       write: modificar todos os datos da súa conta
       write:accounts: modificar o seu perfil
       write:blocks: bloquear contas e dominios
+      write:bookmarks: marca os estados
       write:favourites: estados favoritos
       write:filters: crear filtros
       write:follows: seguir usuarias
