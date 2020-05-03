@@ -760,8 +760,6 @@ en:
     explore_mastodon: Explore %{title}
   domain_validator:
     invalid_domain: is not a valid domain name
-  domain_validator:
-    invalid_domain: is not a valid domain name
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.

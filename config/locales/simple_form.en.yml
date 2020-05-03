@@ -22,6 +22,7 @@ en:
         starts_at: Optional. In case your announcement is bound to a specific time range
         text: You can use toot syntax. Please be mindful of the space the announcement will take up on the user's screen
       defaults:
+        area: select your area
         autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         bot: This account mainly performs automated actions and might not be monitored
@@ -37,7 +38,6 @@ en:
         irreversible: Filtered toots will disappear irreversibly, even if filter is later removed
         locale: The language of the user interface, e-mails and push notifications
         locked: Requires you to manually approve followers
-        area: select your area
         password: Use at least 8 characters
         phrase: Will be matched regardless of casing in text or content warning of a toot
         scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
@@ -102,6 +102,7 @@ en:
         starts_at: Start of event
         text: Announcement
       defaults:
+        area: area
         autofollow: Invite to follow your account
         avatar: Avatar
         bot: This is a bot account
@@ -155,7 +156,6 @@ en:
         type: Import type
         username: Username
         username_or_email: Username or Email
-        area: area
         whole_word: Whole word
       email_domain_block:
         with_dns_records: Include MX records and IPs of the domain
