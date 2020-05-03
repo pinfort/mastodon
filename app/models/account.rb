@@ -31,6 +31,7 @@
 #  locked                  :boolean          default(FALSE), not null
 #  header_remote_url       :string           default(""), not null
 #  last_webfingered_at     :datetime
+#  area                    :integer          default(0), not null
 #  inbox_url               :string           default(""), not null
 #  outbox_url              :string           default(""), not null
 #  shared_inbox_url        :string           default(""), not null
