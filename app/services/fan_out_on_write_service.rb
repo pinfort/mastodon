@@ -91,6 +91,7 @@ class FanOutOnWriteService < BaseService
       if status.in_area?(area_name)
         Redis.current.publish("timeline:area:#{area_name}", @payload)
       end
+    end
   end
 
   def deliver_to_media(status)
