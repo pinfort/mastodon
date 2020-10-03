@@ -47,7 +47,7 @@ services:
       test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:3000/health || exit 1"]
     ports:
       - "127.0.0.1:3000:3000"
-    depends_on:
+    # depends_on:
       # - db
       # - redis
 #      - es
