@@ -256,14 +256,6 @@ html {
   background: $ui-base-color;
 }
 
-.status.status-direct {
-  background: lighten($ui-base-color, 4%);
-}
-
-.focusable:focus .status.status-direct {
-  background: lighten($ui-base-color, 8%);
-}
-
 .detailed-status,
 .detailed-status__action-bar {
   background: $white;
@@ -766,11 +758,4 @@ html {
 .page-header,
 .compose-form .compose-form__warning {
   box-shadow: none;
-}
-
-.audio-player .video-player__controls button,
-.audio-player .video-player__time-sep,
-.audio-player .video-player__time-current,
-.audio-player .video-player__time-total {
-  color: $primary-text-color;
 }

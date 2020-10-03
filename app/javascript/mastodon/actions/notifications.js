@@ -7,6 +7,7 @@ import {
   importFetchedStatus,
   importFetchedStatuses,
 } from './importer';
+import { submitMarkers } from './markers';
 import { saveSettings } from './settings';
 import { defineMessages } from 'react-intl';
 import { List as ImmutableList } from 'immutable';
@@ -31,6 +32,8 @@ export const NOTIFICATIONS_LOAD_PENDING = 'NOTIFICATIONS_LOAD_PENDING';
 
 export const NOTIFICATIONS_MOUNT   = 'NOTIFICATIONS_MOUNT';
 export const NOTIFICATIONS_UNMOUNT = 'NOTIFICATIONS_UNMOUNT';
+
+export const NOTIFICATIONS_MARK_AS_READ = 'NOTIFICATIONS_MARK_AS_READ';
 
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
@@ -58,7 +61,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 
     let filtered = false;
 
-    if (notification.type === 'mention') {
+    if (['mention', 'status'].includes(notification.type)) {
       const dropRegex   = filters[0];
       const regex       = filters[1];
       const searchIndex = searchTextFromRawStatus(notification.status);
@@ -69,6 +72,8 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 
       filtered = regex && regex.test(searchIndex);
     }
+
+    dispatch(submitMarkers());
 
     if (showInColumn) {
       dispatch(importFetchedAccount(notification.account));
@@ -157,6 +162,7 @@ export function expandNotifications({ maxId } = {}, done = noOp) {
 
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null, isLoadingMore, isLoadingRecent, isLoadingRecent && preferPendingItems));
       fetchRelatedRelationships(dispatch, response.data);
+      dispatch(submitMarkers());
     }).catch(error => {
       dispatch(expandNotificationsFail(error, isLoadingMore));
     }).finally(() => {
@@ -227,4 +233,8 @@ export const mountNotifications = () => ({
 
 export const unmountNotifications = () => ({
   type: NOTIFICATIONS_UNMOUNT,
+});
+
+export const markNotificationsAsRead = () => ({
+  type: NOTIFICATIONS_MARK_AS_READ,
 });
