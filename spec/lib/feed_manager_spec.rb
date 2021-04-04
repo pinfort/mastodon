@@ -108,6 +108,7 @@ RSpec.describe FeedManager do
 
       it 'returns false for status by followee mentioning another account' do
         bob.follow!(alice)
+        jeff.follow!(alice)
         status = PostStatusService.new.call(alice, text: 'Hey @jeff')
         expect(FeedManager.instance.filter?(:home, status, bob)).to be false
       end
@@ -334,7 +335,7 @@ RSpec.describe FeedManager do
 
     context 'when replies policy is set to no replies' do
       before do
-        list.replies_policy = :no_replies
+        list.replies_policy = :none
       end
 
       it 'pushes statuses that are not replies' do
@@ -357,7 +358,7 @@ RSpec.describe FeedManager do
 
     context 'when replies policy is set to list-only replies' do
       before do
-        list.replies_policy = :list_replies
+        list.replies_policy = :list
       end
 
       it 'pushes statuses that are not replies' do
@@ -386,7 +387,7 @@ RSpec.describe FeedManager do
 
     context 'when replies policy is set to any reply' do
       before do
-        list.replies_policy = :all_replies
+        list.replies_policy = :followed
       end
 
       it 'pushes statuses that are not replies' do
