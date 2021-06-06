@@ -23,25 +23,21 @@ const mapStateToProps = (state, { columnId }) => {
 
   return {
     hasUnread: state.getIn(['timelines', `area:${columns.get(index).getIn(['params', 'id'])}`, 'unread']) > 0,
-    streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
-    accessToken: state.getIn(['meta', 'access_token']),
   }
 };
 
-@connect(mapStateToProps)
+export default @connect(mapStateToProps)
 @injectIntl
-export default class AreaTimeline extends React.PureComponent {
+class AreaTimeline extends React.PureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
-    columnId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     shouldUpdateScroll: PropTypes.func,
-    streamingAPIBaseURL: PropTypes.string.isRequired,
-    accessToken: PropTypes.string.isRequired,
-    hasUnread: PropTypes.bool,
-    multiColumn: PropTypes.bool,
     intl: PropTypes.object.isRequired,
+    columnId: PropTypes.string,
+    multiColumn: PropTypes.bool,
+    hasUnread: PropTypes.bool,
   };
 
   handlePin = () => {
@@ -64,7 +60,7 @@ export default class AreaTimeline extends React.PureComponent {
   }
 
   componentDidMount () {
-    const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
+    const { dispatch } = this.props;
     const { id } = this.props.params;
 
     dispatch(expandAreaTimeline(id));
@@ -104,7 +100,7 @@ export default class AreaTimeline extends React.PureComponent {
     var message = { id: 'column.area.timeline.' + id, defaultMessage: id };
 
     return (
-      <Column ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='map-marker'
           active={hasUnread}
@@ -126,6 +122,7 @@ export default class AreaTimeline extends React.PureComponent {
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.area' defaultMessage='There is nothing in this area yet.' />}
           shouldUpdateScroll={shouldUpdateScroll}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );
