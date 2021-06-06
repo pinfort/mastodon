@@ -46,7 +46,7 @@ describe AreaFeed, type: :service do
       original = Fabricate(:status)
       status = Fabricate(:status, in_reply_to_id: original.id)
 
-      results = described_class.new(instances_both, nil).get(20)
+      results = described_class.new(instances_both, nil, with_replies: true).get(20)
       expect(results).to include(status)
     end
   end
