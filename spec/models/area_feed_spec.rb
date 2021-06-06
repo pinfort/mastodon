@@ -6,8 +6,10 @@ describe AreaFeed, type: :service do
     let(:instances_remote) { Fabricate(['example.com']) }
     let(:instances_local) { Fabricate([nil]) }
     let(:instances_both) { Fabricate([nil, 'example.com']) }
-    let!(:status1) { Fabricate(:status, domain: 'example.com') }
-    let!(:status2) { Fabricate(:status, domain: nil ) }
+    let(:account_remote) { Fabricate(:account, domain: 'example.com') }
+    let(:account_local) { Fabricate(:account, domain; nil) }
+    let!(:status1) { Fabricate(:status, account: account_remote) }
+    let!(:status2) { Fabricate(:status, account: account_local) }
 
     it 'can get status in remote domain' do
       results = described_class.new(instances_remote, nil).get(20)
