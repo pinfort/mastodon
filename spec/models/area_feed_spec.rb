@@ -3,9 +3,9 @@ require 'rails_helper'
 describe AreaFeed, type: :service do
   describe '#get' do
     let(:account) { Fabricate(:account) }
-    let(:instances_remote) { Fabricate(['example.com']) }
-    let(:instances_local) { Fabricate([nil]) }
-    let(:instances_both) { Fabricate([nil, 'example.com']) }
+    let(:instances_remote) { ['example.com'] }
+    let(:instances_local) { [nil] }
+    let(:instances_both) { [nil, 'example.com'] }
     let(:account_remote) { Fabricate(:account, domain: 'example.com') }
     let(:account_local) { Fabricate(:account, domain: nil) }
     let!(:status1) { Fabricate(:status, account: account_remote) }
