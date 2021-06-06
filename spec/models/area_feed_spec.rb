@@ -7,7 +7,7 @@ describe AreaFeed, type: :service do
     let(:instances_local) { Fabricate([nil]) }
     let(:instances_both) { Fabricate([nil, 'example.com']) }
     let(:account_remote) { Fabricate(:account, domain: 'example.com') }
-    let(:account_local) { Fabricate(:account, domain; nil) }
+    let(:account_local) { Fabricate(:account, domain: nil) }
     let!(:status1) { Fabricate(:status, account: account_remote) }
     let!(:status2) { Fabricate(:status, account: account_local) }
 
