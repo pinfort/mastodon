@@ -161,3 +161,7 @@ export function AreaTimeline () {
 export function AreaTimelineRedirect () {
   return import(/* webpackChunkName: "features/area_timeline_redirect" */ '../../area_timeline_redirect');
 }
+
+export function FollowRecommendations () {
+  return import(/* webpackChunkName: "features/follow_recommendations" */'../../follow_recommendations');
+}
