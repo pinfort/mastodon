@@ -11,8 +11,7 @@ class AreaFeed < PublicFeed
   # @option [Boolean] :only_media
   def initialize(instances, account, options = {})
     @instances = instances
-    @account   = account
-    @options   = options
+    super(account, options)
   end
 
   # @param [Integer] limit
