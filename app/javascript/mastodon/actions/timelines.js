@@ -1,4 +1,5 @@
 import { importFetchedStatus, importFetchedStatuses } from './importer';
+import { submitMarkers } from './markers';
 import api, { getLinks } from 'mastodon/api';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import compareId from 'mastodon/compare_id';
@@ -17,14 +18,23 @@ export const TIMELINE_LOAD_PENDING = 'TIMELINE_LOAD_PENDING';
 export const TIMELINE_DISCONNECT   = 'TIMELINE_DISCONNECT';
 export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
 
+export const TIMELINE_MARK_AS_PARTIAL = 'TIMELINE_MARK_AS_PARTIAL';
+
 export const loadPending = timeline => ({
   type: TIMELINE_LOAD_PENDING,
   timeline,
 });
 
 export function updateTimeline(timeline, status, accept) {
-  return dispatch => {
+  return (dispatch, getState) => {
     if (typeof accept === 'function' && !accept(status)) {
+      return;
+    }
+
+    if (getState().getIn(['timelines', timeline, 'isPartial'])) {
+      // Prevent new items from being added to a partial timeline,
+      // since it will be reloaded anyway
+
       return;
     }
 
@@ -36,6 +46,10 @@ export function updateTimeline(timeline, status, accept) {
       status,
       usePendingItems: preferPendingItems,
     });
+
+    if (timeline === 'home') {
+      dispatch(submitMarkers());
+    }
   };
 };
 
@@ -98,6 +112,10 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
       dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
+
+      if (timelineId === 'home') {
+        dispatch(submitMarkers());
+      }
     }).catch(error => {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
     }).finally(() => {
@@ -115,7 +133,7 @@ export const expandAccountMediaTimeline    = (accountId, { maxId } = {}) => expa
 export const expandAreaTimeline            = (area, { maxId } = {}, done = noOp) => expandTimeline(`area:${area}`, `/api/v1/timelines/area/${area}`, { max_id: maxId }, done);
 export const expandListTimeline            = (id, { maxId } = {}, done = noOp) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId }, done);
 export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = {}, done = noOp) => {
-  return expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`, {
+  return expandTimeline(`hashtag:${hashtag}${local ? ':local' : ''}`, `/api/v1/timelines/tag/${hashtag}`, {
     max_id: maxId,
     any:    parseTags(tags, 'any'),
     all:    parseTags(tags, 'all'),
@@ -174,4 +192,9 @@ export const disconnectTimeline = timeline => ({
   type: TIMELINE_DISCONNECT,
   timeline,
   usePendingItems: preferPendingItems,
+});
+
+export const markAsPartial = timeline => ({
+  type: TIMELINE_MARK_AS_PARTIAL,
+  timeline,
 });

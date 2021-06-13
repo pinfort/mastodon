@@ -31,23 +31,26 @@ class Api::V1::Timelines::AreaController < Api::BaseController
   end
 
   def cached_area_statuses
-    cache_collection area_statuses, Status
-  end
-
-  def area_statuses
-    if @instances.nil?
-      []
-    else
-      area_timeline_statuses.paginate_by_max_id(
-        limit_param(DEFAULT_STATUSES_LIMIT),
-        params[:max_id],
-        params[:since_id]
-      )
-    end
+    @instances.nil? ? [] : cache_collection(area_timeline_statuses, Status)
   end
 
   def area_timeline_statuses
-    Status.as_area_timeline(@instances, current_account, params[:local])
+    area_feed.get(
+      limit_param(DEFAULT_STATUSES_LIMIT),
+      params[:max_id],
+      params[:since_id],
+      params[:min_id]
+    )
+  end
+
+  def area_feed
+    AreaFeed.new(
+      @instances,
+      current_account,
+      local: truthy_param?(:local),
+      remote: truthy_param?(:remote),
+      only_media: truthy_param?(:only_media)
+    )
   end
 
   def insert_pagination_headers
@@ -55,7 +58,7 @@ class Api::V1::Timelines::AreaController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:local, :limit).merge(core_params)
+    params.slice(:local, :remote, :limit, :only_media).permit(:local, :remote, :limit, :only_media).merge(core_params)
   end
 
   def next_path
