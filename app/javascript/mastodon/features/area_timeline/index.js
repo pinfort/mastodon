@@ -60,21 +60,21 @@ class AreaTimeline extends React.PureComponent {
   }
 
   componentDidMount () {
-    const { dispatch } = this.props;
+    const { columnId, dispatch } = this.props;
     const { id } = this.props.params;
 
-    dispatch(expandAreaTimeline(id));
-    this.disconnect = dispatch(connectAreaStream(id));
+    dispatch(expandAreaTimeline(columnId, id));
+    this.disconnect = dispatch(connectAreaStream(columnId, id));
   }
 
   componentDidUpdate (prevProps) {
     if (prevProps.params.id !== this.props.params.id) {
-      const { dispatch } = this.props;
+      const { columnId, dispatch } = this.props;
       const { id } = this.props.params;
 
       this.disconnect();
-      dispatch(expandAreaTimeline(id));
-      this.disconnect = dispatch(connectAreaStream(id));
+      dispatch(expandAreaTimeline(columnId, id));
+      this.disconnect = dispatch(connectAreaStream(columnId, id));
     }
   }
 
@@ -90,7 +90,7 @@ class AreaTimeline extends React.PureComponent {
   }
 
   handleLoadMore = maxId => {
-    this.props.dispatch(expandAreaTimeline(this.props.params.id, { maxId }));
+    this.props.dispatch(expandAreaTimeline(this.props.columnId, this.props.params.id, { maxId }));
   }
 
   render () {
@@ -117,7 +117,7 @@ class AreaTimeline extends React.PureComponent {
         <AreaStatusListContainer
           trackScroll={!pinned}
           scrollKey={`area_timeline-${columnId}`}
-          timelineId={`area:${id}`}
+          timelineId={`area:${columnId}:${id}`}
           settingTimelineId='area'
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.area' defaultMessage='There is nothing in this area yet.' />}
