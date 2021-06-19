@@ -904,6 +904,8 @@ const startWorker = (workerId) => {
       return [channelName, params.list];
     } else if (['hashtag', 'hashtag:local'].includes(channelName)) {
       return [channelName, params.tag];
+    } else if (['area'].includes(channelName)) {
+      return [channelName, params.area];
     } else {
       return [channelName];
     }
