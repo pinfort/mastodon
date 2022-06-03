@@ -41,10 +41,10 @@ aliases:
     steps:
       - checkout
       - *attach_workspace
-      # - restore_cache:
-      #     keys:
-      #       - v2-node-dependencies-{{ checksum "yarn.lock" }}
-      #       - v2-node-dependencies-
+      - restore_cache:
+          keys:
+            - v2-node-dependencies-{{ checksum "yarn.lock" }}
+            - v2-node-dependencies-
       - run:
           name: Install yarn dependencies
           command: yarn install --frozen-lockfile
