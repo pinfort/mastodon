@@ -3,6 +3,7 @@
 class ActivityPub::Activity
   include JsonLdHelper
   include Redisable
+  include Lockable
 
   SUPPORTED_TYPES = %w(Note Question).freeze
   CONVERTED_TYPES = %w(Image Audio Video Article Page Event).freeze
@@ -71,15 +72,7 @@ class ActivityPub::Activity
   end
 
   def object_uri
-    @object_uri ||= begin
-      str = value_or_id(@object)
-
-      if str&.start_with?('bear:')
-        Addressable::URI.parse(str).query_values['u']
-      else
-        str
-      end
-    end
+    @object_uri ||= uri_from_bearcap(value_or_id(@object))
   end
 
   def unsupported_object_type?
@@ -94,57 +87,12 @@ class ActivityPub::Activity
     equals_or_includes_any?(@object['type'], CONVERTED_TYPES)
   end
 
-  def distribute(status)
-    crawl_links(status)
-
-    notify_about_reblog(status) if reblog_of_local_account?(status) && !reblog_by_following_group_account?(status)
-    notify_about_mentions(status)
-
-    # Only continue if the status is supposed to have arrived in real-time.
-    # Note that if @options[:override_timestamps] isn't set, the status
-    # may have a lower snowflake id than other existing statuses, potentially
-    # "hiding" it from paginated API calls
-    return unless @options[:override_timestamps] || status.within_realtime_window?
-
-    distribute_to_followers(status)
-  end
-
-  def reblog_of_local_account?(status)
-    status.reblog? && status.reblog.account.local?
-  end
-
-  def reblog_by_following_group_account?(status)
-    status.reblog? && status.account.group? && status.reblog.account.following?(status.account)
-  end
-
-  def notify_about_reblog(status)
-    NotifyService.new.call(status.reblog.account, :reblog, status)
-  end
-
-  def notify_about_mentions(status)
-    status.active_mentions.includes(:account).each do |mention|
-      next unless mention.account.local? && audience_includes?(mention.account)
-      NotifyService.new.call(mention.account, :mention, mention)
-    end
-  end
-
-  def crawl_links(status)
-    return if status.spoiler_text?
-
-    # Spread out crawling randomly to avoid DDoSing the link
-    LinkCrawlWorker.perform_in(rand(1..59).seconds, status.id)
-  end
-
-  def distribute_to_followers(status)
-    ::DistributionWorker.perform_async(status.id)
-  end
-
   def delete_arrived_first?(uri)
     redis.exists?("delete_upon_arrival:#{@account.id}:#{uri}")
   end
 
   def delete_later!(uri)
-    redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, uri)
+    redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, true)
   end
 
   def status_from_object
@@ -208,12 +156,6 @@ class ActivityPub::Activity
     elsif @object['url'].present?
       ::FetchRemoteStatusService.new.call(@object['url'])
     end
-  end
-
-  def lock_or_return(key, expire_after = 7.days.seconds)
-    yield if redis.set(key, true, nx: true, ex: expire_after)
-  ensure
-    redis.del(key)
   end
 
   def fetch?

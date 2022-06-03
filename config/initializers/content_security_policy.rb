@@ -51,11 +51,29 @@ Rails.application.config.content_security_policy_nonce_generator = -> request { 
 
 Rails.application.config.content_security_policy_nonce_directives = %w(style-src)
 
-PgHero::HomeController.content_security_policy do |p|
-  p.script_src :self, :unsafe_inline, assets_host
-  p.style_src  :self, :unsafe_inline, assets_host
-end
+Rails.application.reloader.to_prepare do
+  PgHero::HomeController.content_security_policy do |p|
+    p.script_src :self, :unsafe_inline, assets_host
+    p.style_src  :self, :unsafe_inline, assets_host
+  end
 
-PgHero::HomeController.after_action do
-  request.content_security_policy_nonce_generator = nil
+  PgHero::HomeController.after_action do
+    request.content_security_policy_nonce_generator = nil
+  end
+
+  if Rails.env.development?
+    LetterOpenerWeb::LettersController.content_security_policy do |p|
+      p.child_src       :self
+      p.connect_src     :none
+      p.frame_ancestors :self
+      p.frame_src       :self
+      p.script_src      :unsafe_inline
+      p.style_src       :unsafe_inline
+      p.worker_src      :none
+    end
+
+    LetterOpenerWeb::LettersController.after_action do |p|
+      request.content_security_policy_nonce_directives = %w(script-src)
+    end
+  end
 end

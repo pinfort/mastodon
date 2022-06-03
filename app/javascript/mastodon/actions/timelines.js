@@ -18,14 +18,23 @@ export const TIMELINE_LOAD_PENDING = 'TIMELINE_LOAD_PENDING';
 export const TIMELINE_DISCONNECT   = 'TIMELINE_DISCONNECT';
 export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
 
+export const TIMELINE_MARK_AS_PARTIAL = 'TIMELINE_MARK_AS_PARTIAL';
+
 export const loadPending = timeline => ({
   type: TIMELINE_LOAD_PENDING,
   timeline,
 });
 
 export function updateTimeline(timeline, status, accept) {
-  return dispatch => {
+  return (dispatch, getState) => {
     if (typeof accept === 'function' && !accept(status)) {
+      return;
+    }
+
+    if (getState().getIn(['timelines', timeline, 'isPartial'])) {
+      // Prevent new items from being added to a partial timeline,
+      // since it will be reloaded anyway
+
       return;
     }
 
@@ -115,6 +124,22 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
   };
 };
 
+export function fillTimelineGaps(timelineId, path, params = {}, done = noOp) {
+  return (dispatch, getState) => {
+    const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
+    const items = timeline.get('items');
+    const nullIndexes = items.map((statusId, index) => statusId === null ? index : null);
+    const gaps = nullIndexes.map(index => index > 0 ? items.get(index - 1) : null);
+
+    // Only expand at most two gaps to avoid doing too many requests
+    done = gaps.take(2).reduce((done, maxId) => {
+      return (() => dispatch(expandTimeline(timelineId, path, { ...params, maxId }, done)));
+    }, done);
+
+    done();
+  };
+}
+
 export const expandHomeTimeline            = ({ maxId } = {}, done = noOp) => expandTimeline('home', '/api/v1/timelines/home', { max_id: maxId }, done);
 export const expandPublicTimeline          = ({ maxId, onlyMedia, onlyRemote } = {}, done = noOp) => expandTimeline(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, max_id: maxId, only_media: !!onlyMedia }, done);
 export const expandCommunityTimeline       = ({ maxId, onlyMedia } = {}, done = noOp) => expandTimeline(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, max_id: maxId, only_media: !!onlyMedia }, done);
@@ -131,6 +156,11 @@ export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = 
     local:  local,
   }, done);
 };
+
+export const fillHomeTimelineGaps      = (done = noOp) => fillTimelineGaps('home', '/api/v1/timelines/home', {}, done);
+export const fillPublicTimelineGaps    = ({ onlyMedia, onlyRemote } = {}, done = noOp) => fillTimelineGaps(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, only_media: !!onlyMedia }, done);
+export const fillCommunityTimelineGaps = ({ onlyMedia } = {}, done = noOp) => fillTimelineGaps(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, only_media: !!onlyMedia }, done);
+export const fillListTimelineGaps      = (id, done = noOp) => fillTimelineGaps(`list:${id}`, `/api/v1/timelines/list/${id}`, {}, done);
 
 export function expandTimelineRequest(timeline, isLoadingMore) {
   return {
@@ -175,6 +205,7 @@ export function connectTimeline(timeline) {
   return {
     type: TIMELINE_CONNECT,
     timeline,
+    usePendingItems: preferPendingItems,
   };
 };
 
@@ -182,4 +213,9 @@ export const disconnectTimeline = timeline => ({
   type: TIMELINE_DISCONNECT,
   timeline,
   usePendingItems: preferPendingItems,
+});
+
+export const markAsPartial = timeline => ({
+  type: TIMELINE_MARK_AS_PARTIAL,
+  timeline,
 });

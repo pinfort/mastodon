@@ -41,6 +41,26 @@
 
 module Mastodon
   module MigrationHelpers
+    class CorruptionError < StandardError
+      attr_reader :index_name
+
+      def initialize(index_name)
+        @index_name = index_name
+
+        super "The index `#{index_name}` seems to be corrupted, it contains duplicate rows. " \
+          'For information on how to fix this, see our documentation: ' \
+          'https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/'
+      end
+
+      def cause
+        nil
+      end
+
+      def backtrace
+        []
+      end
+    end
+
     # Model that can be used for querying permissions of a SQL user.
     class Grant < ActiveRecord::Base
       self.table_name = 'information_schema.role_table_grants'
@@ -95,7 +115,7 @@ module Mastodon
             allow_null: options[:null]
           )
         else
-          add_column(table_name, column_name, :datetime_with_timezone, options)
+          add_column(table_name, column_name, :datetime_with_timezone, **options)
         end
       end
     end
@@ -120,7 +140,7 @@ module Mastodon
       options = options.merge({ algorithm: :concurrently })
       disable_statement_timeout
 
-      add_index(table_name, column_name, options)
+      add_index(table_name, column_name, **options)
     end
 
     # Removes an existed index, concurrently when supported
@@ -144,7 +164,7 @@ module Mastodon
         disable_statement_timeout
       end
 
-      remove_index(table_name, options.merge({ column: column_name }))
+      remove_index(table_name, **options.merge({ column: column_name }))
     end
 
     # Removes an existing index, concurrently when supported
@@ -168,7 +188,7 @@ module Mastodon
         disable_statement_timeout
       end
 
-      remove_index(table_name, options.merge({ name: index_name }))
+      remove_index(table_name, **options.merge({ name: index_name }))
     end
 
     # Only available on Postgresql >= 9.2
@@ -281,7 +301,7 @@ module Mastodon
       table = Arel::Table.new(table_name)
 
       total = estimate_rows_in_table(table_name).to_i
-      if total == 0
+      if total < 1
         count_arel = table.project(Arel.star.count.as('count'))
         count_arel = yield table, count_arel if block_given?
 
@@ -472,7 +492,7 @@ module Mastodon
         col_opts[:limit] = old_col.limit
       end
 
-      add_column(table, new, new_type, col_opts)
+      add_column(table, new, new_type, **col_opts)
 
       # We set the default value _after_ adding the column so we don't end up
       # updating any existing data with the default value. This isn't
@@ -510,10 +530,10 @@ module Mastodon
         new_pk_index_name = "index_#{table}_on_#{column}_cm"
 
         unless indexes_for(table, column).find{|i| i.name == old_pk_index_name}
-          add_concurrent_index(table, [temp_column], {
+          add_concurrent_index(table, [temp_column],
             unique: true,
             name: new_pk_index_name
-          })
+          )
         end
       end
     end
@@ -763,7 +783,7 @@ module Mastodon
         options[:using] = index.using if index.using
         options[:where] = index.where if index.where
 
-        add_concurrent_index(table, new_columns, options)
+        add_concurrent_index(table, new_columns, **options)
       end
     end
 
@@ -786,6 +806,27 @@ module Mastodon
       name = name.to_s
 
       columns(table).find { |column| column.name == name }
+    end
+
+    # Update the configuration of an index by creating a new one and then
+    # removing the old one
+    def update_index(table_name, index_name, columns, **index_options)
+      if index_name_exists?(table_name, "#{index_name}_new") && index_name_exists?(table_name, index_name)
+        remove_index table_name, name: "#{index_name}_new"
+      elsif index_name_exists?(table_name, "#{index_name}_new")
+        # Very unlikely case where the script has been interrupted during/after removal but before renaming
+        rename_index table_name, "#{index_name}_new", index_name
+      end
+
+      begin
+        add_index table_name, columns, **index_options.merge(name: "#{index_name}_new", algorithm: :concurrently)
+      rescue ActiveRecord::RecordNotUnique
+        remove_index table_name, name: "#{index_name}_new"
+        raise CorruptionError.new(index_name)
+      end
+
+      remove_index table_name, name: index_name if index_name_exists?(table_name, index_name)
+      rename_index table_name, "#{index_name}_new", index_name
     end
 
     # This will replace the first occurrence of a string in a column with

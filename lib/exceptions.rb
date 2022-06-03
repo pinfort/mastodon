@@ -10,9 +10,14 @@ module Mastodon
   class StreamValidationError < ValidationError; end
   class RaceConditionError < Error; end
   class RateLimitExceededError < Error; end
+  class SyntaxError < Error; end
 
   class UnexpectedResponseError < Error
+    attr_reader :response
+
     def initialize(response = nil)
+      @response = response
+
       if response.respond_to? :uri
         super("#{response.uri} returned code #{response.code}")
       else

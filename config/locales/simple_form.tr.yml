@@ -3,9 +3,9 @@ tr:
   simple_form:
     hints:
       account_alias:
-        acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
+        acct: Taşıyacağınız hesabı kullanıcıadı@alanadı şeklinde belirtin
       account_migration:
-        acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
+        acct: Yeni hesabınızı kullanıcıadı@alanadını şeklinde belirtin
       account_warning_preset:
         text: URL'ler, etiketler ve bahsedenler gibi toot sözdizimini kullanabilirsiniz
         title: İsteğe bağlı. Alıcıya görünmez
@@ -14,6 +14,12 @@ tr:
         send_email_notification: Kullanıcı, hesabına ne olduğuna dair bir açıklama alacak
         text_html: İsteğe bağlı. Toot sözdizimleri kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
         type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
+        types:
+          disable: Kullanıcının hesabını kullanmasını engelle ama içeriklerini silme veya gizleme.
+          none: Bunu, başka bir eylem tetiklemeden kullanıcıya bir uyarı göndermek için kullan.
+          sensitive: Bu kullanıcının tüm medya eklerini hassas olarak işaretlemeye zorla.
+          silence: Kullanıcının herkese açık şekilde gönderimde bulunmasını engelle, gönderilerini ve bildirimlerini onları takip etmeyen kişilerden gizle.
+          suspend: Bu hesaptan herhangi bir etkileşimi engelle ve içeriğini sil. 30 gün içerisinde geri alınabilir.
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
       announcement:
         all_day: İşaretlendiğinde, yalnızca zaman aralığındaki tarihler görüntülenir
@@ -21,6 +27,8 @@ tr:
         scheduled_at: Duyuruyu hemen yayınlamak için boş bırakın
         starts_at: İsteğe bağlı. Duyurunuzun belirli bir zaman aralığına bağlı olması durumunda
         text: Toot söz dizimini kullanabilirsiniz. Lütfen duyurunun kullanıcının ekranında yer alacağı alanı göz önünde bulundurun
+      appeal:
+        text: Bir eyleme yalnızca bir kere itiraz edebilirsiniz
       defaults:
         autofollow: Davetiyeyle kaydolan kişiler sizi otomatik olarak takip eder
         avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir
@@ -29,8 +37,8 @@ tr:
         current_password: Güvenlik nedeniyle lütfen şu anki hesabın parolasını girin
         current_username: Onaylamak için lütfen şu anki hesabın kullanıcı adını girin
         digest: Sadece uzun bir süre hareketsiz kaldıktan sonra ve yalnızca yokluğunuzda herhangi bir kişisel mesaj aldıysanız gönderilir
-        discoverable: Profil dizini, hesabınızın daha geniş bir kitleye ulaşmasının başka bir yoludur
-        email: Onay e-postası gönderilecek
+        discoverable: Hesabınızın öneriler, trendler ve diğer özellikler aracılığıyla yabancılar tarafından keşfedilmesine izin verin
+        email: Onay e-postası gönderilir
         fields: Profilinizde tablo olarak görüntülenen en fazla 4 ögeye sahip olabilirsiniz
         header: PNG, GIF ya da JPG. En fazla %{size}. %{dimensions}px boyutuna küçültülecek
         inbox_url: Kullanmak istediğiniz aktarıcının ön sayfasından URL'yi kopyalayın
@@ -41,6 +49,7 @@ tr:
         phrase: Metnin büyük/küçük harf durumundan veya tootun içerik uyarısından bağımsız olarak eşleştirilecek
         scopes: Uygulamanın erişmesine izin verilen API'ler. Üst seviye bir kapsam seçtiyseniz, bireysel kapsam seçmenize gerek yoktur.
         setting_aggregate_reblogs: Yakın zamanda boostlanmış tootlar için yeni boostları göstermeyin (yalnızca yeni alınan boostları etkiler)
+        setting_always_send_emails: Normalde, Mastodon'u aktif olarak kullanırken e-posta bildirimleri gönderilmeyecektir
         setting_default_sensitive: Hassas medya varsayılan olarak gizlidir ve bir tıklama ile gösterilebilir
         setting_display_media_default: Hassas olarak işaretlenmiş medyayı gizle
         setting_display_media_hide_all: Medyayı her zaman gizle
@@ -55,7 +64,7 @@ tr:
       domain_allow:
         domain: Bu alan adı, bu sunucudan veri alabilecek ve ondan gelen veri işlenecek ve saklanacaktır
       email_domain_block:
-        domain: Bu, e-posta adresinde görünen etki alanı adı, etki alanının çözümlediği MX kaydı veya MX kaydının çözümlediği sunucunun IP'si olabilir. Bunlar kullanıcı kaydı ile kontrol edilecek ve kayıt reddedilecektir.
+        domain: Bu e-posta adresinde görünen veya kullanılan MX kaydındaki alan adı olabilir. Kayıt sırasında denetleneceklerdir.
         with_dns_records: Belirli bir alanın DNS kayıtlarını çözmeyi deneyecek ve sonuçlar kara listeye eklenecek
       featured_tag:
         name: 'Bunlardan birini kullanmak isteyebilirsiniz:'
@@ -73,6 +82,8 @@ tr:
           no_access: Tüm kaynaklara erişimi engelle
           sign_up_requires_approval: Yeni kayıt onayınızı gerektirir
         severity: Bu IP'den gelen isteklere ne olacağını seçin
+      rule:
+        text: Bu sunucu üzerindeki kullanıcılar için bir kural veya gereksinimi tanımlayın. Kuralı kısa ve yalın tutmaya çalışın
       sessions:
         otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
         webauthn: Bir USB anahtarıysa, taktığınızdan ve gerekirse üzerine tıkladığınızdan emin olun.
@@ -101,7 +112,7 @@ tr:
           disable: Dondur
           none: Hiç birşey
           sensitive: Hassas
-          silence: Limit
+          silence: Sınırla
           suspend: Hesap verilerini askıya alın ve geri alınamaz şekilde silin
         warning_preset_id: Bir uyarı ön ayarı kullan
       announcement:
@@ -110,15 +121,17 @@ tr:
         scheduled_at: Yayınlamayı zamanla
         starts_at: Etkinliğin başlangıcı
         text: Duyuru
+      appeal:
+        text: Bu kararın neden geri alınması gerektiğini açıklayın
       defaults:
         autofollow: Hesabınızı takip etmeye davet edin
         avatar: Profil resmi
         bot: Bu bir bot hesabı
         chosen_languages: Dilleri filtrele
-        confirm_new_password: Yeni şifreyi onayla
-        confirm_password: Şifreyi onayla
+        confirm_new_password: Yeni parolayı onayla
+        confirm_password: Parolayı doğrula
         context: İçeriği filtrele
-        current_password: Geçerli şifre
+        current_password: Güncel parola
         data: Veri
         discoverable: Bu hesabı dizinde listele
         display_name: Görünen isim
@@ -128,17 +141,18 @@ tr:
         header: Kapak resmi
         honeypot: "%{label} (doldurmayın)"
         inbox_url: Aktarıcı gelen kutusunun URL'si
-        irreversible: Gizlemek yerine bırak
+        irreversible: Gizlemek yerine benim için sil
         locale: Arayüz dili
         locked: Hesabı kilitle
         max_uses: Maksimum kullanım sayısı
-        new_password: Yeni şifre
+        new_password: Yeni parola
         note: Kişisel bilgiler
         otp_attempt: İki adımlı doğrulama kodu
-        password: Şifre
+        password: Parola
         phrase: Anahtar kelime veya kelime öbeği
         setting_advanced_layout: Gelişmiş web arayüzünü etkinleştir
-        setting_aggregate_reblogs: Zaman çizelgesinde grup boostları
+        setting_aggregate_reblogs: Zaman çizelgesindeki boostları grupla
+        setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
         setting_boost_modal: Boostlamadan önce onay iletişim kutusu göster
         setting_crop_images: Genişletilmemiş tootlardaki resimleri 16x9 olarak kırp
@@ -152,7 +166,7 @@ tr:
         setting_display_media_hide_all: Tümünü gizle
         setting_display_media_show_all: Tümünü göster
         setting_expand_spoilers: İçerik uyarılarıyla işaretli tootları her zaman genişlet
-        setting_hide_network: Ağınızı gizleyin
+        setting_hide_network: Sosyal grafiğini gizle
         setting_noindex: Arama motoru dizinine eklemeyi iptal et
         setting_reduce_motion: Animasyonlarda hareketi azalt
         setting_show_application: Tootları göndermek için kullanılan uygulamayı belirt
@@ -188,15 +202,18 @@ tr:
           sign_up_requires_approval: Kayıtları sınırla
         severity: Kural
       notification_emails:
+        appeal: Birisi, bir yönetim kararına itiraz ediyor
         digest: Özet e-postaları gönder
-        favourite: Birisi durumunuzu beğendi
+        favourite: Birisi gönderinizi beğendi
         follow: Biri seni takip etti
         follow_request: Biri seni takip etmek istedi
-        mention: Biri senden bahsetti
+        mention: Birisi senden bahsetti
         pending_account: Yeni hesabın incelenmesi gerekiyor
-        reblog: Biri durumunuzu boostladı
+        reblog: Birisi gönderini boostladı
         report: Yeni rapor gönderildi
-        trending_tag: İncelenmemiş bir etiket gündem oluyor
+        trending_tag: Yeni eğilimin gözden geçmesi gerekiyor
+      rule:
+        text: Kural
       tag:
         listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
         name: Etiket
