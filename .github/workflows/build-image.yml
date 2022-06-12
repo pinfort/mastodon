@@ -23,7 +23,7 @@ jobs:
           flavor: |
             latest=auto
           tags: |
-            type=edge,branch=main
+            type=edge,branch=hyogo-master
             type=semver,pattern={{ raw }}
       - uses: docker/build-push-action@v2
         with:
