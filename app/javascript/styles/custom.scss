@@ -97,10 +97,6 @@
     @include header__remote__1kanji__area();
 }
 
-.account__header__area-remote-wakayama{
-    @include header__remote__1kanji__area();
-}
-
 .account__header__area-remote-mastodos{
     @include header__remote__1kanji__area();
 }
@@ -117,12 +113,6 @@
     color:#000000;
 }
 
-.account__header__area-remote-nico{
-    @include header__2eng__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
-}
-
 .account__header__area-remote-social{
     @include header__2eng__area();
     background-color: rgba(200,200,200,0.9);
@@ -133,14 +123,6 @@
     @include header__2eng__area();
     background-color: rgba(200,200,200,0.9);
     color:#000000;
-}
-
-.account__header__area-remote-shigadon{
-    @include header__remote__1kanji__area();
-}
-
-.account__header__area-remote-kanzaki{
-    @include header__remote__1kanji__area();
 }
 
 .account__header__area-remote-matsudai{
@@ -252,10 +234,6 @@
     @include avatar__area__remote_1kanji();
 }
 
-.account__avatar__area-remote-wakayama{
-    @include avatar__area__remote_1kanji();
-}
-
 .account__avatar__area-remote-mastodos{
     @include avatar__area__remote_1kanji();
 }
@@ -274,13 +252,6 @@
     color:#000000;
 }
 
-.account__avatar__area-remote-nico{
-    @include avatar__2eng__area();
-    margin: 0px 0px 0px -2.5px;
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
-}
-
 .account__avatar__area-remote-social{
     @include avatar__2eng__area();
     margin: 0px;
@@ -293,14 +264,6 @@
     margin: 0px;
     background-color: rgba(200,200,200,0.9);
     color:#000000;
-}
-
-.account__avatar__area-remote-shigadon{
-    @include avatar__area__remote_1kanji();
-}
-
-.account__avatar__area-remote-kanzaki{
-    @include avatar__area__remote_1kanji();
 }
 
 .account__avatar__area-remote-matsudai{

@@ -75,12 +75,6 @@
       "instance-eng-name": "remote-nara"
     },
 
-    "mastodon.wakayama.jp": {
-      "instance-name": "和歌山丼",
-      "instance-short-name": "和",
-      "instance-eng-name": "remote-wakayama"
-    },
-
     "mastodos.com": {
       "instance-name": "マストどす",
       "instance-short-name": "ど",
@@ -99,28 +93,10 @@
       "instance-eng-name": "remote-jp"
     },
 
-    "friends.nico": {
-      "instance-name": "ニコ",
-      "instance-short-name": "NC",
-      "instance-eng-name": "remote-nico"
-    },
-
     "mastodon.social": {
       "instance-name": "social",
       "instance-short-name": "SC",
       "instance-eng-name": "remote-social"
-    },
-
-    "shigadon.com": {
-      "instance-name": "滋賀丼",
-      "instance-short-name": "滋",
-      "instance-eng-name": "remote-shigadon"
-    },
-
-    "knzk.me": {
-      "instance-name": "神崎丼",
-      "instance-short-name": "兄",
-      "instance-eng-name": "remote-kanzaki"
     },
 
     "mstdn.maud.io": {
@@ -164,7 +140,6 @@
         "mstdn.osaka",
         "biwakodon.com",
         "mastodon.nara.jp",
-        "mastodon.wakayama.jp",
         "mastodos.com",
         "minohdon.jp"
       ]
