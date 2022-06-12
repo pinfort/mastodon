@@ -47,7 +47,7 @@ aliases:
             - v2-node-dependencies-
       - run:
           name: clean cache
-          command: rm -r ./node_modeules/
+          command: rm -r ./node_modules/
       - run:
           name: Install yarn dependencies
           command: yarn install --frozen-lockfile
