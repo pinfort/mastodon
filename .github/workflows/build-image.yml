@@ -36,6 +36,7 @@ jobs:
             latest=false
           tags: |
             type=edge,branch=hyogo-develop
+            type=raw,value=development
       - uses: docker/build-push-action@v2
         with:
           context: .
