@@ -17,30 +17,19 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - uses: docker/metadata-action@v3
-        if: github.ref == 'refs/heads/hyogo-master'
-        id: meta-master
-        with:
-          images: pinfort/mastodon
-          flavor: |
-            latest=auto
-          tags: |
-            type=edge,branch=hyogo-master
-            type=semver,pattern={{ raw }}
-      - uses: docker/metadata-action@v3
-        if: github.ref == 'refs/heads/hyogo-develop'
-        id: meta-develop
-        with:
-          images: pinfort/mastodon
-          flavor: |
-            latest=false
-          tags: |
-            type=edge,branch=hyogo-develop
-            type=raw,value=development
       - uses: docker/build-push-action@v2
+        if: github.ref == 'refs/heads/hyogo-master'
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: pinfort/mastodon:latest
           cache-from: type=registry,ref=pinfort/mastodon:latest
+          cache-to: type=inline
+      - uses: docker/build-push-action@v2
+        if: github.ref == 'refs/heads/hyogo-develop'
+        with:
+          context: .
+          push: true
+          tags: pinfort/mastodon:development
+          cache-from: type=registry,ref=pinfort/mastodon:development
           cache-to: type=inline
