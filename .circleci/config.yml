@@ -46,6 +46,9 @@ aliases:
             - v2-node-dependencies-{{ checksum "yarn.lock" }}
             - v2-node-dependencies-
       - run:
+          name: clean cache
+          command: rm -r ./node_modeules/
+      - run:
           name: Install yarn dependencies
           command: yarn install --frozen-lockfile
       - save_cache:
