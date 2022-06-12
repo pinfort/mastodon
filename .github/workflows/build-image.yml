@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "hyogo-master"
+      - "hyogo-develop"
     tags:
       - "*"
 jobs:
