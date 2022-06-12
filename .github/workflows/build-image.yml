@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - uses: docker/metadata-action@v3
         if: github.ref == 'refs/heads/hyogo-master'
-        id: meta
+        id: meta-master
         with:
           images: pinfort/mastodon
           flavor: |
@@ -29,7 +29,7 @@ jobs:
             type=semver,pattern={{ raw }}
       - uses: docker/metadata-action@v3
         if: github.ref == 'refs/heads/hyogo-develop'
-        id: meta
+        id: meta-develop
         with:
           images: pinfort/mastodon
           flavor: |
