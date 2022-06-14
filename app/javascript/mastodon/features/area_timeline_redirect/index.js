@@ -7,8 +7,8 @@ const mapStateToProps = state => ({
   area: state.getIn(['settings', 'area']).getIn(['area', 'body']),
 });
 
-@connect(mapStateToProps)
-export default class AreaTimelineRedirect extends React.PureComponent {
+export default @connect(mapStateToProps)
+class AreaTimelineRedirect extends React.PureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,

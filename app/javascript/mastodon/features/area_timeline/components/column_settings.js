@@ -9,6 +9,7 @@ const messages = defineMessages({
   settings: { id: 'area.settings', defaultMessage: 'Column settings' },
 });
 
+export default @injectIntl
 class ColumnSettings extends React.PureComponent {
 
   static propTypes = {
@@ -19,17 +20,17 @@ class ColumnSettings extends React.PureComponent {
   };
 
   readAreas = () => {
-    var area_data = require("../../../../area_settings.json");
+    var area_data = require('../../../../area_settings.json');
     var groups = area_data['instance-areas'];
     var areas = new Array();
     groups.map((option, index) => {
-        areas[option.group_id] = option.group_name;
+      areas[option.group_id] = option.group_name;
     });
     return areas;
   }
 
   render () {
-    const { settings, onChange, onSave, intl } = this.props;
+    const { settings, onChange } = this.props;
     var areas = this.readAreas();
 
     return (
@@ -44,5 +45,3 @@ class ColumnSettings extends React.PureComponent {
   }
 
 }
-
-export default injectIntl(ColumnSettings);

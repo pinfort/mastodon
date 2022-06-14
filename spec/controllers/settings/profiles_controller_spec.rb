@@ -25,6 +25,16 @@ RSpec.describe Settings::ProfilesController, type: :controller do
       expect(response).to redirect_to(settings_profile_path)
       expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
     end
+
+    it 'updates the user area' do
+      allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
+      account = Fabricate(:account, user: @user, area: 1)
+
+      put :update, params: { account: { area: 2 } }
+      expect(account.reload.area).to eq 2
+      expect(response).to redirect_to(settings_profile_path)
+      expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
+    end
   end
 
   describe 'PUT #update with new profile image' do
