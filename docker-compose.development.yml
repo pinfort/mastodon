@@ -76,7 +76,7 @@ services:
     image: pinfort/mastodon:development
     restart: always
     env_file: .env.production
-    command: bundle exec sidekiq -c 30
+    command: bundle exec sidekiq -c 5
     # depends_on:
       # - db
       # - redis
