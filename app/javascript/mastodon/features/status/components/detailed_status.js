@@ -8,6 +8,7 @@ import MediaGallery from '../../../components/media_gallery';
 import { Link } from 'react-router-dom';
 import { injectIntl, defineMessages, FormattedDate } from 'react-intl';
 import Card from './card';
+import Area_avatar from '../../../components/area_avatar';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
 import Audio from '../../audio';
@@ -241,7 +242,10 @@ class DetailedStatus extends ImmutablePureComponent {
       <div style={outerStyle}>
         <div ref={this.setRef} className={classNames('detailed-status', `detailed-status-${status.get('visibility')}`, { compact })}>
           <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
-            <div className='detailed-status__display-avatar'><Avatar account={status.get('account')} size={48} /></div>
+            <div className='detailed-status__display-avatar'>
+              <Avatar account={status.get('account')} size={48} />
+              <Area_avatar account={status.get('account')}/>
+            </div>
             <DisplayName account={status.get('account')} localDomain={this.props.domain} />
           </a>
 
