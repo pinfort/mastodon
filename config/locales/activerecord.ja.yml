@@ -21,6 +21,14 @@ ja:
             username:
               invalid: アルファベット・数字・アンダーバーの組み合わせで入力してください
               reserved: は予約されています
+        admin/webhook:
+          attributes:
+            url:
+              invalid: は無効なURLです
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: は無効なURLです
         status:
           attributes:
             reblog:
@@ -30,3 +38,9 @@ ja:
             email:
               blocked: は禁止されているメールプロバイダを使用しています
               unreachable: は存在しないようです
+        user_role:
+          attributes:
+            permissions_as_keys:
+              own_role: 現在と同じロールには変更できません
+            position:
+              own_role: 現在と同じロールには変更できません

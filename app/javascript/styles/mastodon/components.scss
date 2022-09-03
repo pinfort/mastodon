@@ -42,7 +42,7 @@
 }
 
 .button {
-  background-color: $ui-highlight-color;
+  background-color: darken($ui-highlight-color, 2%);
   border: 10px none;
   border-radius: 4px;
   box-sizing: border-box;
@@ -60,20 +60,16 @@
   text-align: center;
   text-decoration: none;
   text-overflow: ellipsis;
-  transition: all 100ms ease-in;
   white-space: nowrap;
   width: auto;
 
   &:active,
   &:focus,
   &:hover {
-    background-color: lighten($ui-highlight-color, 10%);
-    transition: all 200ms ease-out;
+    background-color: $ui-highlight-color;
   }
 
   &--destructive {
-    transition: none;
-
     &:active,
     &:focus,
     &:hover {
@@ -829,7 +825,7 @@
   }
 
   a.unhandled-link {
-    color: lighten($ui-highlight-color, 8%);
+    color: $highlight-text-color;
   }
 
   .status__content__spoiler-link {
@@ -899,7 +895,7 @@
     }
 
     &.unhandled-link {
-      color: lighten($ui-highlight-color, 8%);
+      color: $highlight-text-color;
     }
   }
 }
@@ -912,7 +908,7 @@
   display: block;
   font-size: 15px;
   line-height: 20px;
-  color: lighten($ui-highlight-color, 8%);
+  color: $highlight-text-color;
   border: 0;
   background: transparent;
   padding: 0;
@@ -963,6 +959,21 @@
   width: 100%;
   clear: both;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  &__button {
+    display: inline;
+    color: lighten($ui-highlight-color, 8%);
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
 }
 
 .status__prepend-icon-wrapper {
@@ -1359,6 +1370,8 @@ a .account__avatar {
 .account__avatar-overlay {
   @include avatar-size(48px);
 
+  position: relative;
+
   &-base {
     @include avatar-radius;
     @include avatar-size(36px);
@@ -1624,6 +1637,33 @@ a.account__display-name {
   }
 }
 
+.notification__report {
+  padding: 8px 10px;
+  padding-left: 68px;
+  position: relative;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  min-height: 54px;
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $darker-text-color;
+    font-size: 15px;
+    line-height: 22px;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+}
+
 .notification__message {
   margin: 0 10px 0 68px;
   padding: 8px 0 0;
@@ -1743,8 +1783,12 @@ a.account__display-name {
     object-fit: contain;
   }
 
-  .loading-bar {
+  .loading-bar__container {
     position: relative;
+  }
+
+  .loading-bar {
+    position: absolute;
   }
 
   &.image-loader--amorphous .image-loader__preview-canvas {
@@ -2364,6 +2408,16 @@ a.account__display-name {
       padding-top: 15px;
     }
 
+    .notification__report {
+      padding: 15px 15px 15px (48px + 15px * 2);
+      min-height: 48px + 2px;
+
+      &__avatar {
+        left: 15px;
+        top: 17px;
+      }
+    }
+
     .status {
       padding: 15px 15px 15px (48px + 15px * 2);
       min-height: 48px + 2px;
@@ -2437,7 +2491,7 @@ a.account__display-name {
   height: 3.9375rem;
   bottom: 1.3125rem;
   right: 1.3125rem;
-  background: darken($ui-highlight-color, 3%);
+  background: darken($ui-highlight-color, 2%);
   color: $white;
   border-radius: 50%;
   font-size: 21px;
@@ -2448,7 +2502,7 @@ a.account__display-name {
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-highlight-color, 7%);
+    background: $ui-highlight-color;
   }
 }
 
@@ -2538,7 +2592,6 @@ a.account__display-name {
   padding: 40px;
 
   .logo {
-    fill: $primary-text-color;
     width: 50px;
     margin: 0 auto;
     margin-bottom: 40px;
@@ -2882,11 +2935,11 @@ a.account__display-name {
 }
 
 .react-toggle--checked .react-toggle-track {
-  background-color: $ui-highlight-color;
+  background-color: darken($ui-highlight-color, 2%);
 }
 
 .react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
-  background-color: lighten($ui-highlight-color, 10%);
+  background-color: $ui-highlight-color;
 }
 
 .react-toggle-track-check {
@@ -2975,7 +3028,7 @@ a.account__display-name {
     }
 
     &.active {
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
     }
   }
 }
@@ -3408,14 +3461,14 @@ a.status-card.compact:hover {
   }
 
   a {
-    color: lighten($ui-highlight-color, 8%);
+    color: $highlight-text-color;
     text-decoration: none;
 
     &:hover,
     &:focus,
     &:active {
       text-decoration: underline;
-      color: lighten($ui-highlight-color, 12%);
+      color: lighten($highlight-text-color, 4%);
     }
   }
 }
@@ -5180,6 +5233,16 @@ a.status-card.compact:hover {
     line-height: 22px;
     color: lighten($inverted-text-color, 16%);
     margin-bottom: 30px;
+
+    a {
+      text-decoration: none;
+      color: $inverted-text-color;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   &__actions {
@@ -5325,6 +5388,14 @@ a.status-card.compact:hover {
     border: 0;
     background: transparent;
     margin: 15px 0;
+  }
+
+  .emoji-mart-search {
+    padding-right: 10px;
+  }
+
+  .emoji-mart-search-icon {
+    right: 10px + 5px;
   }
 }
 
@@ -5886,6 +5957,13 @@ a.status-card.compact:hover {
     height: 100%;
   }
 
+  &.inactive {
+    audio,
+    .video-player__controls {
+      visibility: hidden;
+    }
+  }
+
   .video-player__volume::before,
   .video-player__seek::before {
     background: currentColor;
@@ -6428,8 +6506,8 @@ a.status-card.compact:hover {
     vertical-align: middle;
 
     &.checked {
-      border-color: lighten($ui-highlight-color, 8%);
-      background: lighten($ui-highlight-color, 8%);
+      border-color: lighten($ui-highlight-color, 4%);
+      background: lighten($ui-highlight-color, 4%);
     }
   }
 }
@@ -7190,6 +7268,13 @@ noscript {
       padding-right: 15px;
       margin-left: 5px;
       color: $secondary-text-color;
+      text-decoration: none;
+
+      &__asterisk {
+        color: $darker-text-color;
+        font-size: 18px;
+        vertical-align: super;
+      }
     }
 
     &__sparkline {
