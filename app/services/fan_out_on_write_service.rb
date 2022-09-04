@@ -119,7 +119,7 @@ class FanOutOnWriteService < BaseService
     Rails.application.config.instances_area.each do |area|
       area_name = area["group_name"]
       if @status.in_area?(area_name)
-        redis.publish("timeline:area:#{area_name}", @payload)
+        redis.publish("timeline:area:#{area_name}", anonymous_payload)
       end
     end
   end
