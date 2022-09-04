@@ -13,7 +13,6 @@ class AboutController < ApplicationController
 
   skip_before_action :require_functional!, only: [:more, :terms]
 
-
   def show; end
 
   def more

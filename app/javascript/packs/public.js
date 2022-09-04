@@ -146,9 +146,6 @@ function main() {
     delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
     delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
 
-    delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
-    delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
-
     delegate(document, '.status__content__spoiler-link', 'click', function() {
       const statusEl = this.parentNode.parentNode;
 

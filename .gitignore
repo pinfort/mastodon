@@ -54,12 +54,6 @@
 *~
 *.swp
 
-# ignore no need file... (custom)
-Thumbs.db
-.tags
-.tags_sorted_by_file
-*.orig
-
 # Ignore npm debug log
 npm-debug.log
 
