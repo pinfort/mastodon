@@ -9,7 +9,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
 
   subject { described_class.new }
 
-  let(:status) { Fabricate(:status, account: alice, visibility: visibility, text: 'Hello @bob #hoge') }
+  let(:status) { Fabricate(:status, account: alice, visibility: visibility, text: 'Hello @bob #hoge', url: nil) }
 
   before do
     bob.follow!(alice)
