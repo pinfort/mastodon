@@ -304,7 +304,7 @@ class Status < ApplicationRecord
   around_create Mastodon::Snowflake::Callbacks
 
   def in_area?(area)
-    if local?
+    if local? or url.nil?
       status_domain = nil
     else
       status_domain = url.sub(/^https?:\/\//, "").split("/")[0]
