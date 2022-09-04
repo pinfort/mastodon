@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "hyogo-master"
-      - "hyogo-develop"
+      - 'hyogo-master'
+      - 'hyogo-develop'
     tags:
-      - "*"
+      - '*'
   pull_request:
     paths:
       - .github/workflows/build-image.yml
