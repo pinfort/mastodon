@@ -19,7 +19,7 @@ RSpec.describe Settings::ProfilesController, type: :controller do
 
   describe 'PUT #update' do
     before do
-      user.account.update(display_name: 'Old name')
+      user.account.update(display_name: 'Old name', area: 1)
     end
 
     it 'updates the user profile' do
@@ -32,7 +32,6 @@ RSpec.describe Settings::ProfilesController, type: :controller do
 
     it 'updates the user area' do
       allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
-      account = Fabricate(:account, user: @user, area: 1)
 
       put :update, params: { account: { area: 2 } }
       expect(account.reload.area).to eq 2
