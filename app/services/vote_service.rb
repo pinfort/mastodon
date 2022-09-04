@@ -3,6 +3,7 @@
 class VoteService < BaseService
   include Authorization
   include Payloadable
+  include Redisable
 
   def call(account, poll, choices)
     return if choices.empty?
@@ -79,6 +80,6 @@ class VoteService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "vote:#{@poll.id}:#{@account.id}" }
+    { redis: redis, key: "vote:#{@poll.id}:#{@account.id}" }
   end
 end
