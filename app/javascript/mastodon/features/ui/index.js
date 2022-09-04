@@ -162,8 +162,8 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
           <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
-          <WrappedRoute path='/timelines/area/:id' component={AreaTimeline} content={children} />
-          <WrappedRoute path='/timelines/area' component={AreaTimelineRedirect} content={children} />
+          <WrappedRoute path={['/areas', '/timelines/area']} component={AreaTimelineRedirect} content={children} />
+          <WrappedRoute path='/areas/:id' component={AreaTimeline} content={children} />
 
           <WrappedRoute path='/notifications' component={Notifications} content={children} />
           <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
@@ -191,6 +191,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
           <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
           <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
+          <WrappedRoute path='/timelines/area/:id' component={AreaTimeline} content={children} />
 
           <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
           <WrappedRoute path='/blocks' component={Blocks} content={children} />
