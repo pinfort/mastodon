@@ -111,6 +111,8 @@ RSpec.describe FanOutOnWriteService, type: :service do
   end
 
   it 'delivers status to area timeline' do
+    let(:visibility) { 'public' }
+
     expect(AreaFeed.new([nil], alice).get(20).map(&:id)).to include status.id
   end
 end
