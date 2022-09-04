@@ -32,7 +32,7 @@ module Extractor
       after      = $'
 
       unless Twitter::TwitterText::Regex[:end_mention_match].match?(after)
-        username, domain = screen_name.split('@')
+        _, domain = screen_name.split('@')
 
         next if domain.present? && domain.length > MAX_DOMAIN_LENGTH
 
