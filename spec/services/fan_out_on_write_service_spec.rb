@@ -48,6 +48,10 @@ RSpec.describe FanOutOnWriteService, type: :service do
       expect(redis).to have_received(:publish).with('timeline:public', anything)
       expect(redis).to have_received(:publish).with('timeline:public:local', anything)
     end
+
+    it 'is broadcast to area timeline' do
+      expect(AreaFeed.new([nil], alice).get(20).map(&:id)).to include status.id
+    end
   end
 
   context 'when status is limited' do
@@ -108,11 +112,5 @@ RSpec.describe FanOutOnWriteService, type: :service do
       expect(redis).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
       expect(redis).to_not have_received(:publish).with('timeline:public', anything)
     end
-  end
-
-  it 'delivers status to area timeline' do
-    let(:visibility) { 'public' }
-
-    expect(AreaFeed.new([nil], alice).get(20).map(&:id)).to include status.id
   end
 end
