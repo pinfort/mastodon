@@ -15,7 +15,6 @@ class ColumnSettings extends React.PureComponent {
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
     onChange: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -38,7 +37,7 @@ class ColumnSettings extends React.PureComponent {
         <span className='column-settings__section'><FormattedMessage id='area.column_settings.basic' defaultMessage='Basic' /></span>
 
         <div className='column-settings__row'>
-          <SettingSelect settings={settings} settingKey={['area', 'body']} onChange={onChange} groups={areas}/>
+          <SettingSelect settings={settings} settingKey={['area', 'body']} onChange={onChange} groups={areas} />
         </div>
       </div>
     );
