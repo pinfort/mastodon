@@ -163,7 +163,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
           <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
-          <WrappedRoute path={['/areas', '/timelines/area']} component={AreaTimelineRedirect} content={children} />
+          <WrappedRoute path={['/areas', '/timelines/area']} exact component={AreaTimelineRedirect} content={children} />
           <WrappedRoute path='/areas/:id' component={AreaTimeline} content={children} />
 
           <WrappedRoute path='/notifications' component={Notifications} content={children} />
