@@ -162,6 +162,7 @@ export const fillHomeTimelineGaps      = (done = noOp) => fillTimelineGaps('home
 export const fillPublicTimelineGaps    = ({ onlyMedia, onlyRemote } = {}, done = noOp) => fillTimelineGaps(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, only_media: !!onlyMedia }, done);
 export const fillCommunityTimelineGaps = ({ onlyMedia } = {}, done = noOp) => fillTimelineGaps(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, only_media: !!onlyMedia }, done);
 export const fillListTimelineGaps      = (id, done = noOp) => fillTimelineGaps(`list:${id}`, `/api/v1/timelines/list/${id}`, {}, done);
+export const fillAreaTimelineGaps      = (columnId, area, done = noOp) => fillTimelineGaps(`area:${columnId}:${area}`, `/api/v1/timelines/area/${area}`, {}, done);
 
 export function expandTimelineRequest(timeline, isLoadingMore) {
   return {
