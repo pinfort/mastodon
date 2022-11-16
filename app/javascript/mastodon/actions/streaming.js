@@ -11,6 +11,7 @@ import {
   fillPublicTimelineGaps,
   fillCommunityTimelineGaps,
   fillListTimelineGaps,
+  fillAreaTimelineGaps,
 } from './timelines';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
@@ -153,7 +154,7 @@ export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
  * @return {function(): void}
  */
 export const connectAreaStream = (columnId, area) => 
-  connectTimelineStream(`area:${columnId}:${area}`, 'area', { area: area });
+  connectTimelineStream(`area:${columnId}:${area}`, 'area', { area: area }, { fillGaps: () => fillAreaTimelineGaps(columnId, area) });
 
 /**
  * @param {string} columnId
