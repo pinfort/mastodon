@@ -293,38 +293,4 @@
     background: #393f4f;
 }
 
-.landing-page {
-  .header {
-    .hero {
-      .floats {
-        .float-hyogo-character {
-          width: 482px;
-          height: 300px;
-          left: -50px;
-          bottom: 0px;
-          animation-duration: 4s;
-          animation-delay: 0.5s;
-          background-image: url('../images/hyogo-character.png');
-        }
-      }
-    }
-  }
-}
-
 @import 'application';
-
-.getting-started {
-  box-sizing: border-box;
-  padding-bottom: 235px;
-  background: url('../images/hyogo-character.png') no-repeat 0 100%;
-  background-position: -85px 300px;
-  flex: 1 0 auto;
-
-  p {
-    color: $ui-secondary-color;
-  }
-
-  a {
-    color: $ui-base-lighter-color;
-  }
-}
