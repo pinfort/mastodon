@@ -39,6 +39,18 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.filter?(:home, reblog, bob)).to be false
       end
 
+      it 'returns true for post from account who blocked me' do
+        status = Fabricate(:status, text: 'Hello, World', account: alice)
+        alice.block!(bob)
+        expect(FeedManager.instance.filter?(:home, status, bob)).to be true
+      end
+
+      it 'returns true for post from blocked account' do
+        status = Fabricate(:status, text: 'Hello, World', account: alice)
+        bob.block!(alice)
+        expect(FeedManager.instance.filter?(:home, status, bob)).to be true
+      end
+
       it 'returns true for reblog by followee of blocked account' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)
@@ -126,6 +138,18 @@ RSpec.describe FeedManager do
         status = Fabricate(:status, text: 'Hello world', account: bob)
         reblog = Fabricate(:status, reblog: status, account: jeff)
         expect(FeedManager.instance.filter?(:home, reblog, alice)).to be true
+      end
+
+      it 'returns true for German post when follow is set to English only' do
+        alice.follow!(bob, languages: %w(en))
+        status = Fabricate(:status, text: 'Hallo Welt', account: bob, language: 'de')
+        expect(FeedManager.instance.filter?(:home, status, alice)).to be true
+      end
+
+      it 'returns false for German post when follow is set to German' do
+        alice.follow!(bob, languages: %w(de))
+        status = Fabricate(:status, text: 'Hallo Welt', account: bob, language: 'de')
+        expect(FeedManager.instance.filter?(:home, status, alice)).to be false
       end
     end
 
