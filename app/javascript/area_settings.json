@@ -63,18 +63,6 @@
       "instance-eng-name": "remote-osaka"
     },
 
-    "biwakodon.com": {
-      "instance-name": "琵琶湖丼",
-      "instance-short-name": "琵",
-      "instance-eng-name": "remote-biwako"
-    },
-
-    "mastodon.nara.jp": {
-      "instance-name": "鹿トドン",
-      "instance-short-name": "鹿",
-      "instance-eng-name": "remote-nara"
-    },
-
     "mastodos.com": {
       "instance-name": "マストどす",
       "instance-short-name": "ど",
@@ -138,8 +126,6 @@
       "instances": [
         null,
         "mstdn.osaka",
-        "biwakodon.com",
-        "mastodon.nara.jp",
         "mastodos.com",
         "minohdon.jp"
       ]

@@ -89,14 +89,6 @@
     @include header__remote__1kanji__area();
 }
 
-.account__header__area-remote-biwako{
-    @include header__remote__1kanji__area();
-}
-
-.account__header__area-remote-nara{
-    @include header__remote__1kanji__area();
-}
-
 .account__header__area-remote-mastodos{
     @include header__remote__1kanji__area();
 }
@@ -223,14 +215,6 @@
 }
 
 .account__avatar__area-remote-osaka{
-    @include avatar__area__remote_1kanji();
-}
-
-.account__avatar__area-remote-biwako{
-    @include avatar__area__remote_1kanji();
-}
-
-.account__avatar__area-remote-nara{
     @include avatar__area__remote_1kanji();
 }
 
