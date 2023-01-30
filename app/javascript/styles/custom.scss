@@ -129,6 +129,12 @@
     @include header__remote__1kanji__area();
 }
 
+.account__header__area-remote-fedibird{
+    @include header__2eng__area();
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
+}
+
 @mixin avatar__area(){
     will-change: transform;
     font-size: 15px;
@@ -260,6 +266,13 @@
 
 .account__avatar__area-remote-minohdon{
     @include avatar__area__remote_1kanji();
+}
+
+.account__avatar__area-remote-fedibird{
+    @include avatar__2eng__area();
+    margin: 0px;
+    background-color: rgba(200,200,200,0.9);
+    color:#000000;
 }
 
 .setting-select {
