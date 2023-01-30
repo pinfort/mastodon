@@ -109,6 +109,12 @@
       "instance-name": "箕面丼",
       "instance-short-name": "箕",
       "instance-eng-name": "remote-minohdon"
+    },
+
+    "fedibird.com": {
+      "instance-name": "fedibird",
+      "instance-short-name": "FD",
+      "instance-eng-name": "remote-fedibird"
     }
   },
 "instance-areas":
