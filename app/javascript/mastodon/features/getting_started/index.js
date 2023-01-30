@@ -115,7 +115,7 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key='area_timeline' icon='map-marker' text={intl.formatMessage(messages.area_timeline)} to='/areas' />,
       );
 
-      height += 48*2;
+      height += 48*3;
 
       navItems.push(
         <ColumnSubheading key='header-personal' text={intl.formatMessage(messages.personal)} />,
