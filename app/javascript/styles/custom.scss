@@ -130,7 +130,7 @@
 }
 
 .account__header__area-remote-fedibird{
-    @include header__remote__2eng__area();
+    @include header__2eng__area();
     background-color: rgba(200,200,200,0.9);
     color:#000000;
 }
