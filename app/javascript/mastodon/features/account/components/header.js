@@ -316,8 +316,6 @@ class Header extends ImmutablePureComponent {
               <Area_header account={account} />
             </a>
 
-            <div className='spacer' />
-
             {!suspended && (
               <div className='account__header__tabs__buttons'>
                 {!hidden && (
