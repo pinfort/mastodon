@@ -14,7 +14,7 @@ class Area extends React.PureComponent {
     var areas = area_data.areas;
     this.instances = area_data.instances;
     this.config = [];
-    areas.forEach(function(data, _, _) {
+    areas.forEach(function(data) {
       this.config[data['area-id']] = data;
     }, this);
     this.get_area_eng_name = this.get_area_eng_name.bind(this);
