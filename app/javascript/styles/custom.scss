@@ -1,293 +1,322 @@
-@mixin header__area(){
-    will-change: transform;
-    font-size: 20px;
-    padding: 3px;
-    border-radious: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    display: inline-block;
+@import 'application';
+
+@mixin header-area() {
+  will-change: transform;
+  font-size: 20px;
+  padding: 3px;
+  border-radious: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  display: inline-block;
 }
 
-@mixin header__2eng__area(){
-    will-change: transform;
-    font-size: 15px;
-    padding: 3px;
-    border-radious: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    display: inline-block;
+@mixin header-2eng-area() {
+  will-change: transform;
+  font-size: 15px;
+  padding: 3px;
+  border-radious: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  display: inline-block;
 }
 
-@mixin header__remote__1kanji__area(){
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+@mixin header-remote-1kanji-area() {
+  @include header-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__header__area-wrapper{
-    display: block;
-    margin: -27px 0px 0px 67px;
-    padding: 0px;
-    line-height: 20px;
+.account__header__area-wrapper {
+  display: block;
+  margin: -27px 0 0 67px;
+  padding: 0;
+  line-height: 20px;
 }
 
-.account__header__area-unknown{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__header__area-unknown {
+  @include header-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__header__area-kobe{
-    @include header__area();
-    background-color: rgba(255,180,255,0.9);
-    color:#000000;
+.account__header__area-kobe {
+  @include header-area;
+
+  background-color: rgba(255, 180, 255, 90%);
+  color: #000000;
 }
 
-.account__header__area-hanshin{
-    @include header__area();
-    background-color: rgba(200,200,51,0.9);
-    color:#000000;
+.account__header__area-hanshin {
+  @include header-area;
+
+  background-color: rgba(200, 200, 51, 90%);
+  color: #000000;
 }
 
-.account__header__area-tanba{
-    @include header__area();
-    background-color: rgba(160,160,160,0.9);
-    color:#111111;
+.account__header__area-tanba {
+  @include header-area;
+
+  background-color: rgba(160, 160, 160, 90%);
+  color: #111111;
 }
 
-.account__header__area-tajima{
-    @include header__area();
-    background-color: rgba(170,80,80,0.9);
-    color:#cccccc;
+.account__header__area-tajima {
+  @include header-area;
+
+  background-color: rgba(170, 80, 80, 90%);
+  color: #cccccc;
 }
 
-.account__header__area-seiban{
-    @include header__area();
-    background-color: rgba(140,190,250,0.9);
-    color:#000000;
+.account__header__area-seiban {
+  @include header-area;
+
+  background-color: rgba(140, 190, 250, 90%);
+  color: #000000;
 }
 
-.account__header__area-touban{
-    @include header__area();
-    background-color: rgba(250,190,140,0.9);
-    color:#000000;
+.account__header__area-touban {
+  @include header-area;
+
+  background-color: rgba(250, 190, 140, 90%);
+  color: #000000;
 }
 
-.account__header__area-awaji{
-    @include header__area();
-    background-color: rgba(170,80,170,0.9);
-    color:#ccccff;
+.account__header__area-awaji {
+  @include header-area;
+
+  background-color: rgba(170, 80, 170, 90%);
+  color: #ccccff;
 }
 
-.account__header__area-kengai{
-    @include header__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__header__area-kengai {
+  @include header-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__header__area-remote-osaka{
-    @include header__remote__1kanji__area();
+.account__header__area-remote-osaka {
+  @include header-remote-1kanji-area;
 }
 
-.account__header__area-remote-mastodos{
-    @include header__remote__1kanji__area();
+.account__header__area-remote-mastodos {
+  @include header-remote-1kanji-area;
 }
 
-.account__header__area-remote-pawoo{
-    @include header__2eng__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__header__area-remote-pawoo {
+  @include header-2eng-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__header__area-remote-jp{
-    @include header__2eng__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__header__area-remote-jp {
+  @include header-2eng-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__header__area-remote-social{
-    @include header__2eng__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__header__area-remote-social {
+  @include header-2eng-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__header__area-remote-bestfriends{
-    @include header__2eng__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__header__area-remote-bestfriends {
+  @include header-2eng-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__header__area-remote-matsudai{
-    @include header__remote__1kanji__area();
+.account__header__area-remote-matsudai {
+  @include header-remote-1kanji-area;
 }
 
-.account__header__area-remote-shachiku{
-    @include header__remote__1kanji__area();
+.account__header__area-remote-shachiku {
+  @include header-remote-1kanji-area;
 }
 
-.account__header__area-remote-minohdon{
-    @include header__remote__1kanji__area();
+.account__header__area-remote-minohdon {
+  @include header-remote-1kanji-area;
 }
 
-.account__header__area-remote-fedibird{
-    @include header__2eng__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__header__area-remote-fedibird {
+  @include header-2eng-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-@mixin avatar__area(){
-    will-change: transform;
-    font-size: 15px;
-    padding: 3px;
-    border-radious: 4px;
-    -webkit-border-radius: 4px;
-    display: inline-block;
+@mixin avatar-area() {
+  will-change: transform;
+  font-size: 15px;
+  padding: 3px;
+  border-radious: 4px;
+  -webkit-border-radius: 4px;
+  display: inline-block;
 }
 
-@mixin avatar__2eng__area(){
-    will-change: transform;
-    font-size: 13px;
-    padding: 3px;
-    border-radious: 4px;
-    -webkit-border-radius: 4px;
-    display: inline-block;
+@mixin avatar-2eng-area() {
+  will-change: transform;
+  font-size: 13px;
+  padding: 3px;
+  border-radious: 4px;
+  -webkit-border-radius: 4px;
+  display: inline-block;
 }
 
-@mixin avatar__area__remote_1kanji(){
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+@mixin avatar-area-remote-1kanji() {
+  @include avatar-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__avatar__area-wrapper{
-    display: block;
-    margin: -20.5px 0px 0px 27px;
-    padding:0px;
-    line-height: 15px;
+.account__avatar__area-wrapper {
+  display: block;
+  margin: -20.5px 0 0 27px;
+  padding: 0;
+  line-height: 15px;
 }
 
-.account__avatar__area-unknown{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__avatar__area-unknown {
+  @include avatar-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__avatar__area-kobe{
-    @include avatar__area();
-    background-color: rgba(255,180,255,0.9);
-    color:#000000;
+.account__avatar__area-kobe {
+  @include avatar-area;
+
+  background-color: rgba(255, 180, 255, 90%);
+  color: #000000;
 }
 
-.account__avatar__area-hanshin{
-    @include avatar__area();
-    background-color: rgba(200,200,51,0.9);
-    color:#000000;
+.account__avatar__area-hanshin {
+  @include avatar-area;
+
+  background-color: rgba(200, 200, 51, 90%);
+  color: #000000;
 }
 
-.account__avatar__area-tanba{
-    @include avatar__area();
-    background-color: rgba(160,160,160,0.9);
-    color:#111111;
+.account__avatar__area-tanba {
+  @include avatar-area;
+
+  background-color: rgba(160, 160, 160, 90%);
+  color: #111111;
 }
 
-.account__avatar__area-tajima{
-    @include avatar__area();
-    background-color: rgba(170,80,80,0.9);
-    color:#cccccc;
+.account__avatar__area-tajima {
+  @include avatar-area;
+
+  background-color: rgba(170, 80, 80, 90%);
+  color: #cccccc;
 }
 
-.account__avatar__area-seiban{
-    @include avatar__area();
-    background-color: rgba(140,190,250,0.9);
-    color:#000000;
+.account__avatar__area-seiban {
+  @include avatar-area;
+
+  background-color: rgba(140, 190, 250, 90%);
+  color: #000000;
 }
 
-.account__avatar__area-touban{
-    @include avatar__area();
-    background-color: rgba(250,190,140,0.9);
-    color:#000000;
+.account__avatar__area-touban {
+  @include avatar-area;
+
+  background-color: rgba(250, 190, 140, 90%);
+  color: #000000;
 }
 
-.account__avatar__area-awaji{
-    @include avatar__area();
-    background-color: rgba(170,80,170,0.9);
-    color:#ccccff;
+.account__avatar__area-awaji {
+  @include avatar-area;
+
+  background-color: rgba(170, 80, 170, 90%);
+  color: #ccccff;
 }
 
-.account__avatar__area-kengai{
-    @include avatar__area();
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__avatar__area-kengai {
+  @include avatar-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__avatar__area-remote-osaka{
-    @include avatar__area__remote_1kanji();
+.account__avatar__area-remote-osaka {
+  @include avatar-area-remote-1kanji;
 }
 
-.account__avatar__area-remote-mastodos{
-    @include avatar__area__remote_1kanji();
+.account__avatar__area-remote-mastodos {
+  @include avatar-area-remote-1kanji;
 }
 
-.account__avatar__area-remote-pawoo{
-    @include avatar__2eng__area();
-    margin: 0px 0px 0px -4px;
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__avatar__area-remote-pawoo {
+  @include avatar-2eng-area;
+
+  margin: 0 0 0 -4px;
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__avatar__area-remote-jp{
-    @include avatar__2eng__area();
-    margin: 0px;
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__avatar__area-remote-jp {
+  @include avatar-2eng-area;
+
+  margin: 0;
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__avatar__area-remote-social{
-    @include avatar__2eng__area();
-    margin: 0px;
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__avatar__area-remote-social {
+  @include avatar-2eng-area;
+
+  margin: 0;
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__avatar__area-remote-bestfriends{
-    @include avatar__2eng__area();
-    margin: 0px;
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__avatar__area-remote-bestfriends {
+  @include avatar-2eng-area;
+
+  margin: 0;
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
-.account__avatar__area-remote-matsudai{
-    @include avatar__area__remote_1kanji();
+.account__avatar__area-remote-matsudai {
+  @include avatar-area-remote-1kanji;
 }
 
-.account__avatar__area-remote-shachiku{
-    @include avatar__area__remote_1kanji();
+.account__avatar__area-remote-shachiku {
+  @include avatar-area-remote-1kanji;
 }
 
-.account__avatar__area-remote-minohdon{
-    @include avatar__area__remote_1kanji();
+.account__avatar__area-remote-minohdon {
+  @include avatar-area-remote-1kanji;
 }
 
-.account__avatar__area-remote-fedibird{
-    @include avatar__2eng__area();
-    margin: 0px;
-    background-color: rgba(200,200,200,0.9);
-    color:#000000;
+.account__avatar__area-remote-fedibird {
+  @include avatar-2eng-area;
+
+  margin: 0;
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
 }
 
 .setting-select {
-    color: #9baec8;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #9baec8;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    display: block;
-    font-family: inherit;
-    margin-bottom: 10px;
-    padding: 7px 0;
-    width: 100%;
-    background: #393f4f;
+  color: #9baec8;
+  border: none;
+  border-bottom: 2px solid #9baec8;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  font-family: inherit;
+  margin-bottom: 10px;
+  padding: 7px 0;
+  width: 100%;
+  background: #393f4f;
 }
-
-@import 'application';
