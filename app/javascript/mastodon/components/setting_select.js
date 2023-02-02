@@ -28,19 +28,19 @@ class SettingSelect extends React.PureComponent {
     const { settings, settingKey, groups, intl } = this.props;
 
     return (
-      <select 
+      <select
         className='setting-select'
         onChange={this.handleChange}
         value={settings.getIn(settingKey)}
       >
-      {
-        groups.map(
-          (group, index) => {
-            var message = { id: 'column.area.setting.' + group, defaultMessage: group };
-            return <option key={index} value={group}>{intl.formatMessage(message)}</option>
-          }
-        )
-      }
+        {
+          groups.map(
+            (group, index) => {
+              var message = { id: 'column.area.setting.' + group, defaultMessage: group };
+              return <option key={index} value={group}>{intl.formatMessage(message)}</option>;
+            },
+          )
+        }
       </select>
     );
   }

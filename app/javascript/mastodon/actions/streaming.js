@@ -146,10 +146,10 @@ export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
 
 /**
  * @param {string} columnId
- * @param {string} area 
+ * @param {string} area
  * @return {function(): void}
  */
-export const connectAreaStream = (columnId, area) => 
+export const connectAreaStream = (columnId, area) =>
   connectTimelineStream(`area:${columnId}:${area}`, 'area', { area: area }, { fillGaps: () => fillAreaTimelineGaps(columnId, area) });
 
 /**

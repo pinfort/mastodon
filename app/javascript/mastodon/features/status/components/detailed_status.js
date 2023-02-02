@@ -265,7 +265,7 @@ class DetailedStatus extends ImmutablePureComponent {
           <a href={`/@${status.getIn(['account', 'acct'])}`} onClick={this.handleAccountClick} className='detailed-status__display-name'>
             <div className='detailed-status__display-avatar'>
               <Avatar account={status.get('account')} size={46} />
-              <Area_avatar account={status.get('account')}/>
+              <Area_avatar account={status.get('account')} />
             </div>
             <DisplayName account={status.get('account')} localDomain={this.props.domain} />
           </a>
