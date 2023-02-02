@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl } from 'react-intl';
 
 class SettingSelect extends React.PureComponent {
 

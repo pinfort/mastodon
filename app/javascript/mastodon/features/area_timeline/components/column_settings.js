@@ -4,11 +4,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import SettingSelect from '../../../components/setting_select';
 
-const messages = defineMessages({
-  filter_area: { id: 'area.column_settings.filter_area', defaultMessage: 'Filter out by area' },
-  settings: { id: 'area.settings', defaultMessage: 'Column settings' },
-});
-
 export default @injectIntl
 class ColumnSettings extends React.PureComponent {
 
@@ -22,7 +17,7 @@ class ColumnSettings extends React.PureComponent {
     var area_data = require('../../../../area_settings.json');
     var groups = area_data['instance-areas'];
     var areas = new Array();
-    groups.map((option, index) => {
+    groups.map((option, _) => {
       areas[option.group_id] = option.group_name;
     });
     return areas;

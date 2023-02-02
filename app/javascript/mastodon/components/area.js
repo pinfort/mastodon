@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class Area extends React.PureComponent {
@@ -15,7 +14,7 @@ class Area extends React.PureComponent {
     var areas = area_data.areas;
     this.instances = area_data.instances;
     this.config = [];
-    areas.forEach(function(data, index, arr) {
+    areas.forEach(function(data, _, _) {
       this.config[data['area-id']] = data;
     }, this);
     this.get_area_eng_name = this.get_area_eng_name.bind(this);
