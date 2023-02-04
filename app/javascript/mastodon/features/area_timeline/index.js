@@ -11,6 +11,7 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectAreaStream } from '../../actions/streaming';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   title: { id: 'column.area', defaultMessage: 'Area timeline' },
@@ -123,6 +124,11 @@ class AreaTimeline extends React.PureComponent {
           emptyMessage={<FormattedMessage id='empty_column.area' defaultMessage='There is nothing in this area yet.' />}
           bindToDocument={!multiColumn}
         />
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.title)}</title>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

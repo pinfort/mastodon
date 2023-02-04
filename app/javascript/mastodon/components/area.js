@@ -1,21 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class Area extends React.PureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired
+    account: ImmutablePropTypes.map.isRequired,
   };
 
   constructor (props, context) {
     super(props, context);
     this.props = props;
-    var area_data = require("../../area_settings.json");
-    var areas = area_data['areas'];
-    this.instances = area_data['instances'];
+    var area_data = require('../../area_settings.json');
+    var areas = area_data.areas;
+    this.instances = area_data.instances;
     this.config = [];
-    areas.forEach(function(data, index, arr) {
+    areas.forEach(function(data) {
       this.config[data['area-id']] = data;
     }, this);
     this.get_area_eng_name = this.get_area_eng_name.bind(this);
@@ -40,9 +39,9 @@ class Area extends React.PureComponent {
       var area_id = 0;
     };
     try{
-      var area_eng_name = this.config[area_id]["area-eng-name"];
+      var area_eng_name = this.config[area_id]['area-eng-name'];
     } catch (e) {
-      var area_eng_name = this.config[0]["area-eng-name"];
+      var area_eng_name = this.config[0]['area-eng-name'];
     }
     return (area_eng_name);
   }
@@ -52,7 +51,7 @@ class Area extends React.PureComponent {
     var domain = splittedName[splittedName.length - 1];
     try{
       var instanceSetting = this.instances[domain];
-      var area_eng_name = instanceSetting["instance-eng-name"];
+      var area_eng_name = instanceSetting['instance-eng-name'];
     }catch (e) {
       return this.get_local_area_eng_name(0);
     }
@@ -72,9 +71,9 @@ class Area extends React.PureComponent {
       var area_id = 0;
     };
     try{
-      var area_short_name = this.config[area_id]["area-short-name"];
+      var area_short_name = this.config[area_id]['area-short-name'];
     } catch (e) {
-      var area_short_name = this.config[0]["area-short-name"];
+      var area_short_name = this.config[0]['area-short-name'];
     }
     return (area_short_name);
   }
@@ -84,7 +83,7 @@ class Area extends React.PureComponent {
     var domain = splittedName[splittedName.length - 1];
     try{
       var instanceSetting = this.instances[domain];
-      var area_short_name = instanceSetting["instance-short-name"];
+      var area_short_name = instanceSetting['instance-short-name'];
     }catch (e) {
       return this.get_local_area_short_name(0);
     }
@@ -94,6 +93,7 @@ class Area extends React.PureComponent {
   is_local(account){
     return (account.get('username') === account.get('acct'));
   }
+
 }
 
 export default Area;
