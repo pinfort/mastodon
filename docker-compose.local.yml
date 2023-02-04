@@ -1,5 +1,20 @@
 version: '3'
 services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - '127.0.0.1:80:80'
+      - '127.0.0.1:443:443'
+    networks:
+      - external_network
+      - internal_network
+    volumes:
+      - ./dist/local:/etc/nginx/conf.d
+    depends_on:
+      - web
+      - streaming
+
   db:
     restart: always
     image: postgres:14-alpine
@@ -8,10 +23,13 @@ services:
       - internal_network
     healthcheck:
       test: ['CMD', 'pg_isready', '-U', 'postgres']
-    volumes:
-      - ./postgres14:/var/lib/postgresql/data
+    # volumes:
+    #  - ./postgres14:/var/lib/postgresql/data
     environment:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
+      - 'POSTGRES_USER=mastodon'
+      - 'POSTGRES_DB=mastodon'
+      - 'POSTGRES_PASSWORD=password'
 
   redis:
     restart: always
@@ -58,7 +76,7 @@ services:
     build: .
     image: pinfort/mastodon:development
     restart: always
-    env_file: .env.production
+    env_file: .env.local
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
     networks:
       - external_network
@@ -79,7 +97,7 @@ services:
     build: .
     image: pinfort/mastodon:development
     restart: always
-    env_file: .env.production
+    env_file: .env.local
     command: node ./streaming
     networks:
       - external_network
@@ -97,7 +115,7 @@ services:
     build: .
     image: pinfort/mastodon:development
     restart: always
-    env_file: .env.production
+    env_file: .env.local
     command: bundle exec sidekiq -c 5
     depends_on:
       - db
