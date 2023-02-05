@@ -73,11 +73,13 @@ services:
   #     - '127.0.0.1:9200:9200'
 
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.local
     image: pinfort/mastodon:development
     restart: always
     env_file: .env.local
-    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
+    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -b 0.0.0.0 -p 3000"
     networks:
       - external_network
       - internal_network
@@ -94,7 +96,9 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.local
     image: pinfort/mastodon:development
     restart: always
     env_file: .env.local
@@ -112,7 +116,9 @@ services:
       - redis
 
   sidekiq:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.local
     image: pinfort/mastodon:development
     restart: always
     env_file: .env.local
