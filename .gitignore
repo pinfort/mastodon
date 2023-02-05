@@ -25,6 +25,7 @@
 .env
 .env.production
 .env.development
+.env.local
 /node_modules/
 /build/
 
@@ -69,3 +70,5 @@ yarn-debug.log
 
 # Ignore Docker option files
 docker-compose.override.yml
+
+dist/local/ssl
