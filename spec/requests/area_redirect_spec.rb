@@ -9,7 +9,7 @@ describe 'Area url redirect to top' do
         end
     end
 
-    describe 'aith area id' do
+    describe 'with area id' do
         it 'areas redirect to top' do
             get '/areas/foofoo'
 
