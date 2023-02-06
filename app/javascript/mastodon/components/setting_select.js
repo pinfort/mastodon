@@ -20,7 +20,7 @@ class SettingSelect extends React.PureComponent {
   handleChange = (e) => {
     this.props.onChange(this.props.settingKey, e.target.value);
     if (this.props.settingKey.toString() === ['area', 'body'].toString()) {
-      this.context.router.history.push('/timelines/area');
+      this.context.router.history.push('/areas');
     }
   }
 

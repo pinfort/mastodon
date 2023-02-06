@@ -202,6 +202,7 @@
   "dismissable_banner.explore_statuses": "分散型ネットワーク内の他のサーバーのこれらの投稿は現在このサーバー上で注目されています。",
   "dismissable_banner.explore_tags": "これらのハッシュタグは現在分散型ネットワークの他のサーバーの人たちに話されています。",
   "dismissable_banner.public_timeline": "これらの投稿はこのサーバーが知っている分散型ネットワークの他のサーバーの人たちの最新の公開投稿です。",
+  "dismissable_banner.area_timeline": "これらの投稿は指定した地域の他のサーバーの人たちの最新の公開投稿です。",
   "embed.instructions": "下記のコードをコピーしてウェブサイトに埋め込みます。",
   "embed.preview": "表示例:",
   "emoji_button.activity": "活動",

@@ -308,9 +308,9 @@
 }
 
 .setting-select {
-  color: #9baec8;
+  color: $primary-text-color;
   border: none;
-  border-bottom: 2px solid #9baec8;
+  border-bottom: 2px solid $classic-primary-color;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: block;
@@ -318,5 +318,5 @@
   margin-bottom: 10px;
   padding: 7px 0;
   width: 100%;
-  background: #393f4f;
+  background: lighten($ui-base-color, 8%);
 }

@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     /domain_blocks
     /mutes
     /statuses/(*any)
+    /areas
+    /areas/(*any)
   ).freeze
 
   root 'home#index'

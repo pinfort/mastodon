@@ -10,16 +10,17 @@ const mapStateToProps = (state, { columnId }) => {
 
   return {
     settings: (uuid && index >= 0) ? columns.get(index).get('params') : state.getIn(['settings', 'area']),
+    pinned: !!columnId,
   };
 };
 
 const mapDispatchToProps = (dispatch, { columnId }) => {
   return {
-    onChange (key, checked) {
+    onChange (key, areaName) {
       if (columnId) {
-        dispatch(changeColumnParams(columnId, key, checked));
+        dispatch(changeColumnParams(columnId, key, areaName));
       } else {
-        dispatch(changeSetting(['area', ...key], checked));
+        dispatch(changeSetting(['area', ...key], areaName));
       }
     },
   };
