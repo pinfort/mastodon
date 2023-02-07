@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 require_relative('account_area_helper')
-include AccountAreaHelper
 
 module SettingsHelper
+  include AccountAreaHelper
+
   def filterable_languages
     LanguagesHelper::SUPPORTED_LOCALES.keys
   end

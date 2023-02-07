@@ -312,10 +312,10 @@ class Status < ApplicationRecord
   around_create Mastodon::Snowflake::Callbacks
 
   def in_area?(area)
-    if local? or url.nil?
-      status_domain = nil
+    status_domain = if local? || url.nil?
+      nil
     else
-      status_domain = url.sub(/^https?:\/\//, "").split("/")[0]
+      url.sub(/^https?:\/\//, '').split('/')[0]
     end
     Rails.application.config.instances_area_hash[area].include?(status_domain)
   end
