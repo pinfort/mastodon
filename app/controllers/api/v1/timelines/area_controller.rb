@@ -19,11 +19,13 @@ class Api::V1::Timelines::AreaController < Api::BaseController
       areas[value['group_name']] = value['instances']
     end
 
+    # rubocop:disable Style/EmptyElse
     @instances = if areas.key?(params[:id].downcase)
                    areas[params[:id].downcase]
                  else
                    nil
                  end
+    # rubocop:enable Style/EmptyElse
   end
 
   def load_statuses
