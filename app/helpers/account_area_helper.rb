@@ -30,5 +30,4 @@ module AccountAreaHelper
   def area_id_list
     HUMAN_AREA_IDS.keys
   end
-
 end

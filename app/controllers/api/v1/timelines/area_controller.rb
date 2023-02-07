@@ -20,10 +20,10 @@ class Api::V1::Timelines::AreaController < Api::BaseController
     end
 
     @instances = if areas.key?(params[:id].downcase)
-      areas[params[:id].downcase]
-    else
-      nil
-    end
+                   areas[params[:id].downcase]
+                 else
+                   nil
+                 end
   end
 
   def load_statuses
