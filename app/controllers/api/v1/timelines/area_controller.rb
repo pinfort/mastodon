@@ -15,15 +15,17 @@ class Api::V1::Timelines::AreaController < Api::BaseController
 
   def load_area
     areas = {}
-    for value in Rails.application.config.instances_area do
-      areas[value["group_name"]] = value["instances"]
+    Rails.application.config.instances_area.each do |value|
+      areas[value['group_name']] = value['instances']
     end
 
-    if areas.has_key?(params[:id].downcase)
-      @instances = areas[params[:id].downcase]
-    else
-      @instances = nil
-    end
+    # rubocop:disable Style/EmptyElse
+    @instances = if areas.key?(params[:id].downcase)
+                   areas[params[:id].downcase]
+                 else
+                   nil
+                 end
+    # rubocop:enable Style/EmptyElse
   end
 
   def load_statuses
