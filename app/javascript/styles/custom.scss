@@ -152,6 +152,13 @@
   color: #000000;
 }
 
+.account__header__area-remote-mastodon-japan {
+  @include header-2eng-area;
+
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
+}
+
 @mixin avatar-area() {
   will-change: transform;
   font-size: 15px;
@@ -300,6 +307,14 @@
 }
 
 .account__avatar__area-remote-fedibird {
+  @include avatar-2eng-area;
+
+  margin: 0;
+  background-color: rgba(200, 200, 200, 90%);
+  color: #000000;
+}
+
+.account__avatar__area-remote-mastodon-japan {
   @include avatar-2eng-area;
 
   margin: 0;
