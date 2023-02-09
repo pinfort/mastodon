@@ -22,7 +22,6 @@ import {
   updateReaction as updateAnnouncementsReaction,
   deleteAnnouncement,
 } from './announcements';
-import { fetchFilters } from './filters';
 import { getLocale } from '../locales';
 
 const { messages } = getLocale();
@@ -98,9 +97,6 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
         case 'conversation':
           dispatch(updateConversations(JSON.parse(data.payload)));
           break;
-        case 'filters_changed':
-          dispatch(fetchFilters());
-          break;
         case 'announcement':
           dispatch(updateAnnouncements(JSON.parse(data.payload)));
           break;
@@ -150,10 +146,10 @@ export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
 
 /**
  * @param {string} columnId
- * @param {string} area 
+ * @param {string} area
  * @return {function(): void}
  */
-export const connectAreaStream = (columnId, area) => 
+export const connectAreaStream = (columnId, area) =>
   connectTimelineStream(`area:${columnId}:${area}`, 'area', { area: area }, { fillGaps: () => fillAreaTimelineGaps(columnId, area) });
 
 /**

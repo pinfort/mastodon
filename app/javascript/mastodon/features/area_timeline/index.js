@@ -11,6 +11,8 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectAreaStream } from '../../actions/streaming';
+import { Helmet } from 'react-helmet';
+import DismissableBanner from 'mastodon/components/dismissable_banner';
 
 const messages = defineMessages({
   title: { id: 'column.area', defaultMessage: 'Area timeline' },
@@ -114,6 +116,10 @@ class AreaTimeline extends React.PureComponent {
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
+        <DismissableBanner id='area_timeline'>
+          <FormattedMessage id='dismissable_banner.area_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by instances in apecified area.' />
+        </DismissableBanner>
+
         <AreaStatusListContainer
           trackScroll={!pinned}
           scrollKey={`area_timeline-${columnId}`}
@@ -123,6 +129,11 @@ class AreaTimeline extends React.PureComponent {
           emptyMessage={<FormattedMessage id='empty_column.area' defaultMessage='There is nothing in this area yet.' />}
           bindToDocument={!multiColumn}
         />
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.title)}</title>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

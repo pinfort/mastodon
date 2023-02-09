@@ -115,6 +115,12 @@
       "instance-name": "fedibird",
       "instance-short-name": "FD",
       "instance-eng-name": "remote-fedibird"
+    },
+
+    "mastodon-japan.net": {
+      "instance-name": "mastodon-japan",
+      "instance-short-name": "MJ",
+      "instance-eng-name": "remote-mastodon-japan"
     }
   },
 "instance-areas":
