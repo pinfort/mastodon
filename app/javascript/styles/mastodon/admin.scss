@@ -254,10 +254,16 @@ $content-width: 840px;
 
       &__actions {
         display: inline-flex;
+        flex-flow: wrap;
+        gap: 5px;
+      }
 
-        & > :not(:first-child) {
-          margin-left: 5px;
-        }
+      h2 small {
+        font-size: 12px;
+        display: block;
+        font-weight: 500;
+        color: $darker-text-color;
+        line-height: 18px;
       }
 
       h2 small {
@@ -1574,6 +1580,15 @@ a.sparkline {
           margin-bottom: 0;
         }
       }
+
+      a {
+        color: $highlight-text-color;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     &__actions {
@@ -1664,6 +1679,15 @@ a.sparkline {
   color: $primary-text-color;
   box-sizing: border-box;
   min-height: 100%;
+
+  a {
+    color: $highlight-text-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   p {
     margin-bottom: 20px;

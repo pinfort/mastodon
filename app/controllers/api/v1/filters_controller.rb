@@ -13,7 +13,7 @@ class Api::V1::FiltersController < Api::BaseController
 
   def create
     ApplicationRecord.transaction do
-      filter_category = current_account.custom_filters.create!(resource_params)
+      filter_category = current_account.custom_filters.create!(filter_params)
       @filter = filter_category.keywords.create!(keyword_params)
     end
 
@@ -57,6 +57,14 @@ class Api::V1::FiltersController < Api::BaseController
 
   def filter_params
     resource_params.slice(:expires_in, :irreversible, :context)
+  end
+
+  def keyword_params
+    resource_params.slice(:phrase, :whole_word)
+  end
+
+  def filter_params
+    resource_params.slice(:phrase, :expires_in, :irreversible, :context)
   end
 
   def keyword_params

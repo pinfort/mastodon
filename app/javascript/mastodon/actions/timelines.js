@@ -51,7 +51,7 @@ export function updateTimeline(timeline, status, accept) {
       dispatch(submitMarkers());
     }
   };
-};
+}
 
 export function deleteFromTimelines(id) {
   return (dispatch, getState) => {
@@ -67,13 +67,13 @@ export function deleteFromTimelines(id) {
       reblogOf,
     });
   };
-};
+}
 
 export function clearTimeline(timeline) {
   return (dispatch) => {
     dispatch({ type: TIMELINE_CLEAR, timeline });
   };
-};
+}
 
 const noOp = () => {};
 
@@ -122,7 +122,7 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
       done();
     });
   };
-};
+}
 
 export function fillTimelineGaps(timelineId, path, params = {}, done = noOp) {
   return (dispatch, getState) => {
@@ -170,7 +170,7 @@ export function expandTimelineRequest(timeline, isLoadingMore) {
     timeline,
     skipLoading: !isLoadingMore,
   };
-};
+}
 
 export function expandTimelineSuccess(timeline, statuses, next, partial, isLoadingRecent, isLoadingMore, usePendingItems) {
   return {
@@ -183,7 +183,7 @@ export function expandTimelineSuccess(timeline, statuses, next, partial, isLoadi
     usePendingItems,
     skipLoading: !isLoadingMore,
   };
-};
+}
 
 export function expandTimelineFail(timeline, error, isLoadingMore) {
   return {
@@ -193,7 +193,7 @@ export function expandTimelineFail(timeline, error, isLoadingMore) {
     skipLoading: !isLoadingMore,
     skipNotFound: timeline.startsWith('account:'),
   };
-};
+}
 
 export function scrollTopTimeline(timeline, top) {
   return {
@@ -201,7 +201,7 @@ export function scrollTopTimeline(timeline, top) {
     timeline,
     top,
   };
-};
+}
 
 export function connectTimeline(timeline) {
   return {
@@ -209,7 +209,7 @@ export function connectTimeline(timeline) {
     timeline,
     usePendingItems: preferPendingItems,
   };
-};
+}
 
 export const disconnectTimeline = timeline => ({
   type: TIMELINE_DISCONNECT,
