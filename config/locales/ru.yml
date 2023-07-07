@@ -1459,6 +1459,7 @@ ru:
     browser: Браузер
     browsers:
       alipay: Alipay
+      blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron

@@ -59,7 +59,6 @@ jobs:
       - image: cimg/ruby:3.0-node
         environment:
           RAILS_ENV: test
-          NODE_OPTIONS: --openssl-legacy-provider
     steps:
       - checkout
       - install-system-dependencies

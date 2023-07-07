@@ -87,7 +87,7 @@ ku:
       media_attachments: Pêvekên medya
       memorialize: Vegerîne bîranînê
       memorialized: Bû bîranîn
-      memorialized_msg: "%{username} bi serkeftî veguherî hesabê bîranînê"
+      memorialized_msg: "%{username} bi serkeftî veguherî ajimêra bîranînê"
       moderation:
         active: Çalak
         all: Hemû
@@ -98,7 +98,7 @@ ku:
       moderation_notes: Nîşeyên Rêvebirinê
       most_recent_activity: Çalakîyên dawî
       most_recent_ip: IP' a dawî
-      no_account_selected: Tu hesab nehat hilbijartin ji ber vê tu hesab nehat guhertin
+      no_account_selected: Tu ajimêr nehat hilbijartin ji ber vê tu ajimêr nehat guhertin
       no_limits_imposed: Sînor nay danîn
       no_role_assigned: Ti rol nehatin diyarkirin
       not_subscribed: Beşdar nebû
@@ -213,8 +213,8 @@ ku:
         reset_password_user: Borînpeyvê ji nû ve saz bike
         resolve_report: Ragihandinê çareser bike
         sensitive_account: Ajimêra hêz-hestiyar
-        silence_account: Hesab bi sînor bike
-        suspend_account: Hesab rawestîne
+        silence_account: Ajimêrê bi sînor bike
+        suspend_account: Ajimêr rawestîne
         unassigned_report: Ragihandinê diyar neke
         unblock_email_account: Astengiyê li ser navnîşana e-nameyê rake
         unsensitive_account: Medyayên di ajimêrê te de wek hestyarî nepejirîne

@@ -317,11 +317,11 @@ eo:
       created_msg: Emoĝio sukcese kreita!
       delete: Forigi
       destroyed_msg: Emoĝio sukcese forigita!
-      disable: Neebligi
-      disabled: Neebligita
-      disabled_msg: La emoĝio sukcese neebligita
+      disable: Malebligi
+      disabled: Malebligita
+      disabled_msg: Emoĝio sukcese malebligita
       emoji: Emoĝio
-      enable: Enŝalti
+      enable: Ebligi
       enabled: Ebligita
       enabled_msg: Tiu emoĝio estis sukcese ebligita
       image_hint: PNG aŭ GIF malpli granda ol %{size}
@@ -549,9 +549,9 @@ eo:
       add_new: Aldoni novan ripetilon
       delete: Forigi
       description_html: "<strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj."
-      disable: Neebligi
-      disabled: Neebligita
-      enable: Enŝalti
+      disable: Malebligi
+      disabled: Malebligita
+      enable: Ebligi
       enable_hint: Post ebligo, via servilo abonos ĉiujn publikajn mesaĝojn de tiu ripetilo, kaj komencos sendi publikajn mesaĝojn de la servilo al ĝi.
       enabled: Ebligita
       inbox_url: URL de la ripetilo
@@ -980,7 +980,7 @@ eo:
     link_to_otp: Enigu 2-faktorkodo de via telefono au regajnkodo
     link_to_webauth: Uzi vian sekurecan ŝlosilon
     log_in_with: Ensaluti per
-    login: Ensaluti
+    login: Saluti
     logout: Adiaŭi
     migrate_account: Movi al alia konto
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
@@ -1369,9 +1369,9 @@ eo:
     wrong_code: La enmetita kodo estis nevalida! Ĉu la servila tempo kaj la aparata tempo ĝustas?
   pagination:
     newer: Pli nova
-    next: Antaŭen
+    next: Sekva
     older: Malpli nova
-    prev: Malantaŭen
+    prev: Antaŭa
     truncate: "&hellip;"
   polls:
     errors:
@@ -1520,7 +1520,7 @@ eo:
       direct: Mesaĝoj kiu videbla nun al la uzantoj ne povas alpinglitis
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
-      reblog: Suprenigo ne povas esti alpinglita
+      reblog: Diskonigo ne povas esti alpinglita
     poll:
       total_people:
         one: "%{count} persono"

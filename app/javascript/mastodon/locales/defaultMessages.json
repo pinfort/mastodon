@@ -2587,7 +2587,7 @@
       {
         "defaultMessage": "Basic",
         "id": "area.column_settings.basic"
-      },
+      }
     ],
     "path": "app/javascript/mastodon/features/area_timeline/components/column_settings.json"
   },

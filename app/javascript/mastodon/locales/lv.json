@@ -357,7 +357,7 @@
   "lists.replies_policy.followed": "Jebkuram sekotajam lietotājam",
   "lists.replies_policy.list": "Saraksta dalībniekiem",
   "lists.replies_policy.none": "Nevienam",
-  "lists.replies_policy.title": "Rādīt atbildes uz:",
+  "lists.replies_policy.title": "Rādīt atbildes:",
   "lists.search": "Meklēt starp cilvēkiem, kuriem tu seko",
   "lists.subheading": "Tavi saraksti",
   "load_pending": "{count, plural, one {# jauna lieta} other {# jaunas lietas}}",

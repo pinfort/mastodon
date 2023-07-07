@@ -1409,6 +1409,7 @@ ar:
     browser: المتصفح
     browsers:
       alipay: أليباي
+      blackberry: بلاك بيري
       chrome: كروم
       edge: مايكروسوفت إيدج
       electron: إلكترون
@@ -1431,6 +1432,8 @@ ar:
     platforms:
       adobe_air: أدوبي إيير
       android: أندرويد
+      blackberry: بلاك بيري
+      chrome_os: نظام كروم أواس
       firefox_os: نظام فايرفكس أواس
       ios: نظام آي أواس
       linux: لينكس

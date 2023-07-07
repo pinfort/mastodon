@@ -323,10 +323,6 @@ export const uploadComposeProcessing = () => ({
   type: COMPOSE_UPLOAD_PROCESSING,
 });
 
-export const uploadComposeProcessing = () => ({
-  type: COMPOSE_UPLOAD_PROCESSING,
-});
-
 export const uploadThumbnail = (id, file) => (dispatch, getState) => {
   dispatch(uploadThumbnailRequest());
 

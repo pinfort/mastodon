@@ -38,6 +38,7 @@ sr:
       avatar: Аватар
       by_domain: Домен
       change_email:
+        changed_msg: Е-пошта налога успешно промењена!
         current_email: Тренутна е-пошта
         label: Промените е-пошту
         new_email: Нова e-пошта

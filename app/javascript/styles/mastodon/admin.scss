@@ -266,14 +266,6 @@ $content-width: 840px;
         line-height: 18px;
       }
 
-      h2 small {
-        font-size: 12px;
-        display: block;
-        font-weight: 500;
-        color: $darker-text-color;
-        line-height: 18px;
-      }
-
       @media screen and (max-width: $no-columns-breakpoint) {
         border-bottom: 0;
         padding-bottom: 0;
@@ -1208,7 +1200,7 @@ a.name-tag,
 
     path:first-child {
       fill: rgba($highlight-text-color, 0.25) !important;
-      fill-opacity: 100% !important;
+      fill-opacity: 1 !important;
     }
 
     path:last-child {

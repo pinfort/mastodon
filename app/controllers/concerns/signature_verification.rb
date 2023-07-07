@@ -53,10 +53,6 @@ module SignatureVerification
     render json: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_actor
   end
 
-  def require_actor_signature!
-    render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_actor
-  end
-
   def signed_request?
     request.headers['Signature'].present?
   end

@@ -546,8 +546,4 @@ class User < ApplicationRecord
   def trigger_webhooks
     TriggerWebhookWorker.perform_async('account.created', 'Account', account_id)
   end
-
-  def trigger_webhooks
-    TriggerWebhookWorker.perform_async('account.created', 'Account', account_id)
-  end
 end

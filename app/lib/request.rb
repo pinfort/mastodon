@@ -231,14 +231,6 @@ class Request
     end
   end
 
-  if ::HTTP::Response.methods.include?(:body_with_limit) && !Rails.env.production?
-    abort 'HTTP::Response#body_with_limit is already defined, the monkey patch will not be applied'
-  else
-    class ::HTTP::Response
-      include Request::ClientLimit
-    end
-  end
-
   class Socket < TCPSocket
     class << self
       def open(host, *args)

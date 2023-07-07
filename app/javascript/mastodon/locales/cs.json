@@ -19,7 +19,7 @@
   "account.block_domain": "Blokovat doménu {domain}",
   "account.blocked": "Blokovaný",
   "account.browse_more_on_origin_server": "Více na původním profilu",
-  "account.cancel_follow_request": "Odvolat žádost o sledování",
+  "account.cancel_follow_request": "Zrušit žádost o sledování",
   "account.direct": "Poslat @{name} přímou zprávu",
   "account.disable_notifications": "Přestat mě upozorňovat, když @{name} zveřejní příspěvek",
   "account.domain_blocked": "Doména blokována",

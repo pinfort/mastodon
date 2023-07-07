@@ -1443,6 +1443,7 @@ tr:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Geçerli oturum
     description: "%{platform} - %{browser}"
