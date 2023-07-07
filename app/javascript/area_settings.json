@@ -1,5 +1,5 @@
-{"areas":
-  [
+{
+  "areas": [
     {
       "area-id": 0,
       "area-name": "未設定",
@@ -55,8 +55,7 @@
       "area-eng-name": "kengai"
     }
   ],
-"instances":
-  {
+  "instances": {
     "mstdn.osaka": {
       "instance-name": "大阪丼",
       "instance-short-name": "大",
@@ -123,45 +122,31 @@
       "instance-eng-name": "remote-mastodon-japan"
     }
   },
-"instance-areas":
-  [
+  "instance-areas": [
     {
       "group_name": "hyogo",
       "group_id": 0,
-      "instances": [
-        null
-      ]
+      "instances": [null]
     },
     {
       "group_name": "kansai",
       "group_id": 1,
-      "instances": [
-        null,
-        "mstdn.osaka",
-        "mastodos.com",
-        "minohdon.jp"
-      ]
+      "instances": [null, "mstdn.osaka", "mastodos.com", "minohdon.jp"]
     },
     {
       "group_name": "bestfriends",
       "group_id": 2,
-      "instances": [
-        "best-friends.chat"
-      ]
+      "instances": ["best-friends.chat"]
     },
     {
       "group_name": "mstdnjp",
       "group_id": 3,
-      "instances": [
-        "mstdn.jp"
-      ]
+      "instances": ["mstdn.jp"]
     },
     {
       "group_name": "pawoo",
       "group_id": 4,
-      "instances": [
-        "pawoo.net"
-      ]
+      "instances": ["pawoo.net"]
     }
   ]
 }
