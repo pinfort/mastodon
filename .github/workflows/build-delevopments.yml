@@ -1,8 +1,8 @@
-name: Build container release images
+name: Build container development images
 on:
   push:
     branches:
-      - 'hyogo-master'
+      - 'hyogo-develop'
 
 permissions:
   contents: read
@@ -20,8 +20,7 @@ jobs:
       # Only tag with latest when ran against the latest stable branch
       # This needs to be updated after each minor version release
       flavor: |
-        latest=true
+        latest=false
       tags: |
-        type=pep440,pattern={{raw}}
-        type=pep440,pattern=v{{major}}.{{minor}}
+        type=raw,value=development
     secrets: inherit
