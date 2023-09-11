@@ -22,7 +22,5 @@ jobs:
       flavor: |
         latest=true
       tags: |
-        type=pep440,pattern={{raw}}
-        type=pep440,pattern=v{{major}}.{{minor}}
-        type=raw,value=latest
+        type=sha
     secrets: inherit
