@@ -24,4 +24,5 @@ jobs:
       tags: |
         type=pep440,pattern={{raw}}
         type=pep440,pattern=v{{major}}.{{minor}}
+        type=raw,value=latest
     secrets: inherit
