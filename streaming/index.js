@@ -161,6 +161,7 @@ const PUBLIC_CHANNELS = [
   'public:remote:media',
   'hashtag',
   'hashtag:local',
+  'area',
 ];
 
 // Used for priming the counters/gauges for the various metrics that are
