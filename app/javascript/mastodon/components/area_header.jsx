@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import Area from './area';
 
 class Area_header extends Area {
