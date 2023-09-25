@@ -318,7 +318,7 @@ class Status < ApplicationRecord
     status_domain = if local? || url.nil?
                       nil
                     else
-                      url.sub(/^https?:\/\//, '').split('/')[0]
+                      url.sub(%r{^https?:\/\/}, '').split('/')[0]
                     end
     Rails.application.config.instances_area_hash[area].include?(status_domain)
   end
