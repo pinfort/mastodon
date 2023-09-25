@@ -37,12 +37,13 @@ class Area extends React.PureComponent {
 
   get_local_area_eng_name(area_id){
     if (isNaN(area_id)) {
-      var area_id = 0;
+      area_id = 0;
     };
+    var area_eng_name;
     try{
-      var area_eng_name = this.config[area_id]['area-eng-name'];
+      area_eng_name = this.config[area_id]['area-eng-name'];
     } catch (e) {
-      var area_eng_name = this.config[0]['area-eng-name'];
+      area_eng_name = this.config[0]['area-eng-name'];
     }
     return (area_eng_name);
   }
@@ -69,12 +70,13 @@ class Area extends React.PureComponent {
 
   get_local_area_short_name(area_id){
     if (isNaN(area_id)) {
-      var area_id = 0;
+      area_id = 0;
     };
+    var area_short_name;
     try{
-      var area_short_name = this.config[area_id]['area-short-name'];
+      area_short_name = this.config[area_id]['area-short-name'];
     } catch (e) {
-      var area_short_name = this.config[0]['area-short-name'];
+      area_short_name = this.config[0]['area-short-name'];
     }
     return (area_short_name);
   }
