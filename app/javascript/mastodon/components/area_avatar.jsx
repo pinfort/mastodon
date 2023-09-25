@@ -1,6 +1,7 @@
 import React from 'react';
-import Area from './area';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import Area from './area';
 
 class Area_avatar extends Area {
 
