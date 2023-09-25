@@ -1,4 +1,5 @@
 import React from 'react';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class Area extends React.PureComponent {
