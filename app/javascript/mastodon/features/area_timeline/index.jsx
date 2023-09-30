@@ -36,8 +36,6 @@ const mapStateToProps = (state, { columnId }) => {
   };
 };
 
-export default @connect(mapStateToProps)
-@injectIntl
 class AreaTimeline extends React.PureComponent {
 
   static propTypes = {
@@ -146,3 +144,5 @@ class AreaTimeline extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(AreaTimeline));

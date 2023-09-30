@@ -7,7 +7,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import SettingSelect from '../../../components/setting_select';
 
-export default @injectIntl
 class ColumnSettings extends React.PureComponent {
 
   static propTypes = {
@@ -51,3 +50,5 @@ class ColumnSettings extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(ColumnSettings);
