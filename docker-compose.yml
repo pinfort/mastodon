@@ -71,7 +71,7 @@ services:
     # depends_on:
     #   - db
     #   - redis
-      # - es
+    # - es
     volumes:
       - ./public/system:/mastodon/public/system
 
@@ -100,8 +100,8 @@ services:
     env_file: .env.production
     command: bundle exec sidekiq -c 5
     # depends_on:
-      # - db
-      # - redis
+    # - db
+    # - redis
     networks:
       - external_network
       - internal_network

@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   # db:
   #   restart: always
   #   image: postgres:9.6-alpine
@@ -22,17 +21,17 @@ services:
   #   volumes:
   #     - ./redis:/data
 
-#  es:
-#    restart: always
-#    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.3
-#    environment:
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#    networks:
-#      - internal_network
-#    healthcheck:
-#      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
-#    volumes:
-#      - ./elasticsearch:/usr/share/elasticsearch/data
+  #  es:
+  #    restart: always
+  #    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.3
+  #    environment:
+  #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #    networks:
+  #      - internal_network
+  #    healthcheck:
+  #      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+  #    volumes:
+  #      - ./elasticsearch:/usr/share/elasticsearch/data
 
   web:
     build: .
@@ -44,13 +43,17 @@ services:
       - external_network
       - internal_network
     healthcheck:
-      test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:3000/health || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          'wget -q --spider --proxy=off localhost:3000/health || exit 1',
+        ]
     ports:
-      - "127.0.0.1:3000:3000"
+      - '127.0.0.1:3000:3000'
     # depends_on:
-      # - db
-      # - redis
-#      - es
+    # - db
+    # - redis
+    #      - es
     volumes:
       - ./public/system:/mastodon/public/system
 
@@ -64,12 +67,16 @@ services:
       - external_network
       - internal_network
     healthcheck:
-      test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          'wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1',
+        ]
     ports:
-      - "127.0.0.1:4000:4000"
+      - '127.0.0.1:4000:4000'
     # depends_on:
-      # - db
-      # - redis
+    # - db
+    # - redis
 
   sidekiq:
     build: .
@@ -78,8 +85,8 @@ services:
     env_file: .env.production
     command: bundle exec sidekiq -c 5
     # depends_on:
-      # - db
-      # - redis
+    # - db
+    # - redis
     networks:
       - external_network
       - internal_network

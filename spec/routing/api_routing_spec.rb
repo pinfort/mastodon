@@ -101,8 +101,8 @@ describe 'API routes' do
     end
 
     it 'routes to area timeline' do
-      expect(get('/api/v1/timelines/area/kansai')).
-        to route_to('api/v1/timelines/area#show', id: 'kansai')
+      expect(get('/api/v1/timelines/area/kansai'))
+        .to route_to('api/v1/timelines/area#show', id: 'kansai')
     end
   end
 end

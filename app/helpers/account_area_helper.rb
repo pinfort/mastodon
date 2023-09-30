@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AccountAreaHelper
-  json_file_path = Rails.root.join("app/javascript/area_settings.json")
+  json_file_path = Rails.root.join('app', 'javascript', 'area_settings.json')
   conf = File.open(json_file_path) do |io|
     JSON.parse(io.read)
   end
