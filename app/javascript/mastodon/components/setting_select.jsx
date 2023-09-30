@@ -32,7 +32,7 @@ class SettingSelect extends React.PureComponent {
     return (
       <select
         className='setting-select'
-        onChange={this.handleChange}
+        onBlur={this.handleChange}
         value={settings.getIn(settingKey)}
       >
         {
