@@ -1,18 +1,25 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import AreaStatusListContainer from '../ui/containers/area_status_list_container';
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
+import React from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import { connect } from 'react-redux';
+
+import DismissableBanner from 'mastodon/components/dismissable_banner';
+
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
+import { connectAreaStream } from '../../actions/streaming';
 import {
   expandAreaTimeline,
 } from '../../actions/timelines';
-import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import Column from '../../components/column';
+import ColumnHeader from '../../components/column_header';
+import AreaStatusListContainer from '../ui/containers/area_status_list_container';
+
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { connectAreaStream } from '../../actions/streaming';
-import { Helmet } from 'react-helmet';
-import DismissableBanner from 'mastodon/components/dismissable_banner';
+
 
 const messages = defineMessages({
   title: { id: 'column.area', defaultMessage: 'Area timeline' },

@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import Area_avatar from './area_avatar';
 
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 
@@ -20,6 +19,7 @@ import Bundle from '../features/ui/components/bundle';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
 import { displayMedia } from '../initial_state';
 
+import Area_avatar from './area_avatar';
 import { Avatar } from './avatar';
 import { AvatarOverlay } from './avatar_overlay';
 import { DisplayName } from './display_name';

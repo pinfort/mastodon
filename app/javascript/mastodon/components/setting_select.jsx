@@ -1,7 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import React from 'react';
+
 import { injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class SettingSelect extends React.PureComponent {
 

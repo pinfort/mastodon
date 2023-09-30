@@ -1,7 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import React from 'react';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import SettingSelect from '../../../components/setting_select';
 
 export default @injectIntl

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import Area_header from '../../../components/area_header';
+
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -21,6 +21,7 @@ import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 
+import Area_header from '../../../components/area_header';
 import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';
 

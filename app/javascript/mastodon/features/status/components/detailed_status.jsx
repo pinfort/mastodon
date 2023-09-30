@@ -4,7 +4,7 @@ import { injectIntl, defineMessages, FormattedDate, FormattedMessage } from 'rea
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import Area_avatar from '../../../components/area_avatar';
+
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -15,6 +15,7 @@ import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';
 import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 
+import Area_avatar from '../../../components/area_avatar';
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
 import MediaGallery from '../../../components/media_gallery';

@@ -1,7 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from 'react';
+
 import { Redirect } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+
 
 const mapStateToProps = state => ({
   area: state.getIn(['settings', 'area']).getIn(['area', 'body']),
