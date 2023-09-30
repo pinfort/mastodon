@@ -32,14 +32,14 @@ describe AreaFeed, type: :service do
     end
 
     it 'can restrict to an account' do
-      BlockService.new.call(account, status1.account)
+      BlockService.new.call(account, status_remote.account)
       results = described_class.new(instances_both, account).get(20)
       expect(results).to_not include status_remote
     end
 
     it 'can restrict to local' do
-      status1.account.update(domain: 'example.com')
-      status1.update(local: false, uri: 'example.com/toot')
+      status_remote.account.update(domain: 'example.com')
+      status_remote.update(local: false, uri: 'example.com/toot')
       results = described_class.new(instances_both, nil, local: true).get(20)
       expect(results).to_not include status_remote
     end
