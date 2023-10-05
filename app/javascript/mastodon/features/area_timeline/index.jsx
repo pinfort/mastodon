@@ -122,7 +122,7 @@ class AreaTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <DismissableBanner id='area_timeline'>
-          <FormattedMessage id='dismissable_banner.area_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by instances in apecified area.' />
+          <FormattedMessage id='dismissable_banner.area_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by instances in specified area.' />
         </DismissableBanner>
 
         <AreaStatusListContainer
