@@ -121,11 +121,8 @@ class AreaTimeline extends React.PureComponent {
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
-        <DismissableBanner id='area_timeline'>
-          <FormattedMessage id='dismissable_banner.area_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by instances in specified area.' />
-        </DismissableBanner>
-
         <AreaStatusListContainer
+          prepend={<DismissableBanner id='area_timeline'><FormattedMessage id='dismissable_banner.area_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by instances in specified area.' /></DismissableBanner>}
           trackScroll={!pinned}
           scrollKey={`area_timeline-${columnId}`}
           timelineId={`area:${columnId}:${id}`}
