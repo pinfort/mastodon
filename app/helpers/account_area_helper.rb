@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
 module AccountAreaHelper
-  json_file_path = "#{Rails.root}/app/javascript/area_settings.json"
+  json_file_path = Rails.root.join('app', 'javascript', 'area_settings.json')
   conf = File.open(json_file_path) do |io|
     JSON.parse(io.read)
   end
   HUMAN_AREAS = conf['areas']
-  HUMAN_AREA_IDS = {}
+  HUMAN_AREAS.freeze
+  human_area_ids = {}
   HUMAN_AREAS.each do |area|
-    HUMAN_AREA_IDS[area['area-id']] = area
+    human_area_ids[area['area-id']] = area
   end
+  HUMAN_AREA_IDS = human_area_ids
+  HUMAN_AREA_IDS.freeze
 
   def human_area(area_id)
     HUMAN_AREA_IDS[area_id]['area-name']

@@ -22,6 +22,10 @@ export function CommunityTimeline () {
   return import(/* webpackChunkName: "features/community_timeline" */'../../community_timeline');
 }
 
+export function Firehose () {
+  return import(/* webpackChunkName: "features/firehose" */'../../firehose');
+}
+
 export function HashtagTimeline () {
   return import(/* webpackChunkName: "features/hashtag_timeline" */'../../hashtag_timeline');
 }
@@ -80,10 +84,6 @@ export function Favourites () {
 
 export function FollowRequests () {
   return import(/* webpackChunkName: "features/follow_requests" */'../../follow_requests');
-}
-
-export function GenericNotFound () {
-  return import(/* webpackChunkName: "features/generic_not_found" */'../../generic_not_found');
 }
 
 export function FavouritedStatuses () {
@@ -162,8 +162,8 @@ export function AreaTimelineRedirect () {
   return import(/* webpackChunkName: "features/area_timeline_redirect" */ '../../area_timeline_redirect');
 }
 
-export function FollowRecommendations () {
-  return import(/* webpackChunkName: "features/follow_recommendations" */'../../follow_recommendations');
+export function Onboarding () {
+  return import(/* webpackChunkName: "features/onboarding" */'../../onboarding');
 }
 
 export function CompareHistoryModal () {
