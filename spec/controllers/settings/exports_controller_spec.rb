@@ -39,11 +39,9 @@ describe Settings::ExportsController do
     end
 
     it 'queues BackupWorker job by 1' do
-      Sidekiq::Testing.fake! do
-        expect do
-          post :create
-        end.to change(BackupWorker.jobs, :size).by(1)
-      end
+      expect do
+        post :create
+      end.to change(BackupWorker.jobs, :size).by(1)
     end
   end
 end

@@ -104,7 +104,7 @@ describe MoveWorker do
   end
 
   shared_examples 'lists handling' do
-    it 'puts the new account on the list and makes valid lists', sidekiq: :inline do
+    it 'puts the new account on the list and makes valid lists', :sidekiq_inline do
       subject.perform(source_account.id, target_account.id)
 
       expect(list.accounts.include?(target_account)).to be true
@@ -160,11 +160,8 @@ describe MoveWorker do
   describe '#perform' do
     context 'when both accounts are distant' do
       it 'calls UnfollowFollowWorker' do
-        Sidekiq::Testing.fake! do
-          subject.perform(source_account.id, target_account.id)
-          expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, false)
-          Sidekiq::Worker.drain_all
-        end
+        subject.perform(source_account.id, target_account.id)
+        expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, false)
       end
 
       include_examples 'common tests'
@@ -174,11 +171,8 @@ describe MoveWorker do
       let(:target_account) { Fabricate(:account) }
 
       it 'calls UnfollowFollowWorker' do
-        Sidekiq::Testing.fake! do
-          subject.perform(source_account.id, target_account.id)
-          expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, true)
-          Sidekiq::Worker.clear_all
-        end
+        subject.perform(source_account.id, target_account.id)
+        expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, true)
       end
 
       include_examples 'common tests'
