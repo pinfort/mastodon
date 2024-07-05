@@ -5,6 +5,10 @@ require 'rails_helper'
 describe Api::V1::Timelines::AreaController do
   render_views
 
+  subject do
+    get :show, params: { id: 'kansai' }
+  end
+
   let(:user) { Fabricate(:user) }
   let(:scopes) { 'read:statuses' }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
@@ -12,10 +16,6 @@ describe Api::V1::Timelines::AreaController do
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
     PostStatusService.new.call(user.account, text: 'It is a kansai.')
-  end
-
-  subject do
-    get :show, params: { id: 'kansai' }
   end
 
   context 'with a user context' do
