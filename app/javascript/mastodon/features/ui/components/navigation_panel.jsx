@@ -28,6 +28,7 @@ import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import StarIcon from '@/material-icons/400-24px/star.svg?react';
+import PinDropIcon from '@/material-icons/400-24px/pin-drop.svg?react';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { WordmarkLogo } from 'mastodon/components/logo';
@@ -119,6 +120,18 @@ class NavigationPanel extends Component {
     const { intl } = this.props;
     const { signedIn, disabledAccountId } = this.context.identity;
 
+    if (transientSingleColumn) {
+      banner = (
+        <div className='switch-to-advanced'>
+          {intl.formatMessage(messages.openedInClassicInterface)}
+          {" "}
+          <a href={`/deck${location.pathname}`} className='switch-to-advanced__toggle'>
+            {intl.formatMessage(messages.advancedInterface)}
+          </a>
+        </div>
+      );
+    }
+
     return (
       <div className='navigation-panel'>
         <div className='navigation-panel__logo'>
@@ -147,7 +160,10 @@ class NavigationPanel extends Component {
           )}
 
         {(signedIn || timelinePreview) && (
-          <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' text={intl.formatMessage(messages.firehose)} />
+          <>
+            <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' iconComponent={PublicIcon} text={intl.formatMessage(messages.firehose)} />
+            <ColumnLink transparent to='/areas' icon='map-marker' iconComponent={PinDropIcon} text={intl.formatMessage(messages.area)} />
+          </>
         )}
 
           {!signedIn && (

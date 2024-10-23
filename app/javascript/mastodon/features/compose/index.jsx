@@ -17,6 +17,7 @@ import LogoutIcon from '@/material-icons/400-24px/logout.svg?react';
 import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
+import PinDropIcon from '@/material-icons/400-24px/pin-drop.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import Column from 'mastodon/components/column';
@@ -111,7 +112,7 @@ class Compose extends PureComponent {
               <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' icon={PublicIcon} /></Link>
             )}
             {!columns.some(column => column.get('id') === 'AREA') && (
-              <Link to='/areas' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='map-marker' icon={PublicIcon} /></Link>
+              <Link to='/areas' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='map-marker' icon={PinDropIcon} /></Link>
             )}
             <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' icon={SettingsIcon} /></a>
             <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' icon={LogoutIcon} /></a>

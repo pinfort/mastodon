@@ -22,6 +22,7 @@ import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
 import StarIcon from '@/material-icons/400-24px/star.svg?react';
+import PinDropIcon from '@/material-icons/400-24px/pin-drop.svg?react';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
@@ -122,7 +123,7 @@ class GettingStarted extends ImmutablePureComponent {
     navItems.push(
       <ColumnLink key='community_timeline' icon='users' iconComponent={PeopleIcon} text={intl.formatMessage(messages.community_timeline)} to='/public/local' />,
       <ColumnLink key='public_timeline' icon='globe' iconComponent={PublicIcon} text={intl.formatMessage(messages.public_timeline)} to='/public' />,
-      <ColumnLink key='area_timeline' icon='map-marker' iconComponent={PublicIcon} text={intl.formatMessage(messages.area_timeline)} to='/areas' />,
+      <ColumnLink key='area_timeline' icon='map-marker' iconComponent={PinDropIcon} text={intl.formatMessage(messages.area_timeline)} to='/areas' />,
     );
 
     if (signedIn) {
