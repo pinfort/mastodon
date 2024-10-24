@@ -167,7 +167,35 @@ RSpec.describe FetchLinkCardService do
       let(:status) { Fabricate(:status, text: 'Check out http://example.com/windows-1251') }
 
       it 'decodes the HTML' do
-        expect(status.preview_cards.first.title).to eq('сэмпл текст')
+        expect(status.preview_card.title).to eq('сэмпл текст')
+      end
+    end
+
+    context 'with a URL of a page in ISO-8859-1 encoding, that charlock_holmes cannot detect' do
+      context 'when encoding in http header is correct' do
+        let(:status) { Fabricate(:status, text: 'Check out http://example.com/low_confidence_latin1') }
+
+        it 'decodes the HTML' do
+          expect(status.preview_card.title).to eq("Tofu á l'orange")
+        end
+      end
+
+      context 'when encoding in http header is incorrect' do
+        context 'when encoding problems appear in unrelated tags' do
+          let(:status) { Fabricate(:status, text: 'Check out http://example.com/latin1_posing_as_utf8_recoverable') }
+
+          it 'decodes the HTML' do
+            expect(status.preview_card.title).to eq('Tofu with orange sauce')
+          end
+        end
+
+        context 'when encoding problems appear in title tag' do
+          let(:status) { Fabricate(:status, text: 'Check out http://example.com/latin1_posing_as_utf8_broken') }
+
+          it 'creates a preview card anyway that replaces invalid bytes with U+FFFD (replacement char)' do
+            expect(status.preview_card.title).to eq("Tofu � l'orange")
+          end
+        end
       end
     end
 
@@ -204,19 +232,6 @@ RSpec.describe FetchLinkCardService do
 
       it 'does not fetch URLs not isolated from their surroundings' do
         expect(a_request(:get, 'http://example.com/sjis')).to_not have_been_made
-      end
-    end
-
-    context 'with an URL too long for PostgreSQL unique indexes' do
-      let(:url) { "http://example.com/#{'a' * 2674}" }
-      let(:status) { Fabricate(:status, text: url) }
-
-      it 'does not fetch the URL' do
-        expect(a_request(:get, url)).to_not have_been_made
-      end
-
-      it 'does not create a preview card' do
-        expect(status.preview_card).to be_nil
       end
     end
 

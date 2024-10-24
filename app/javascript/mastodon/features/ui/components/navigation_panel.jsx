@@ -23,12 +23,12 @@ import NotificationsActiveIcon from '@/material-icons/400-24px/notifications-fil
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import PersonAddActiveIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
+import PinDropIcon from '@/material-icons/400-24px/pin-drop.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import StarIcon from '@/material-icons/400-24px/star.svg?react';
-import PinDropIcon from '@/material-icons/400-24px/pin-drop.svg?react';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { WordmarkLogo } from 'mastodon/components/logo';
@@ -118,7 +118,9 @@ class NavigationPanel extends Component {
 
   render () {
     const { intl } = this.props;
-    const { signedIn, disabledAccountId } = this.context.identity;
+    const { signedIn, disabledAccountId, permissions } = this.props.identity;
+
+    let banner = undefined;
 
     if (transientSingleColumn) {
       banner = (
@@ -159,12 +161,12 @@ class NavigationPanel extends Component {
             <ColumnLink transparent to='/search' icon='search' iconComponent={SearchIcon} text={intl.formatMessage(messages.search)} />
           )}
 
-        {(signedIn || timelinePreview) && (
-          <>
-            <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' iconComponent={PublicIcon} text={intl.formatMessage(messages.firehose)} />
-            <ColumnLink transparent to='/areas' icon='map-marker' iconComponent={PinDropIcon} text={intl.formatMessage(messages.area)} />
-          </>
-        )}
+          {(signedIn || timelinePreview) && (
+            <>
+              <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' iconComponent={PublicIcon} text={intl.formatMessage(messages.firehose)} />
+              <ColumnLink transparent to='/areas' icon='map-marker' iconComponent={PinDropIcon} text={intl.formatMessage(messages.area)} />
+            </>
+          )}
 
           {!signedIn && (
             <div className='navigation-panel__sign-in-banner'>
