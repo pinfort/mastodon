@@ -3,15 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Area' do
-  render_views
-
   let(:user) { Fabricate(:user) }
   let(:scopes) { 'read:statuses' }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   describe 'GET #show' do
     subject do
