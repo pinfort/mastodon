@@ -30,7 +30,6 @@ class SettingSelect extends React.PureComponent {
     const { settings, settingKey, groups, intl } = this.props;
 
     return (
-      // eslint-disable-next-line jsx-a11y/no-onchange
       <select
         className='setting-select'
         onChange={this.handleChange}

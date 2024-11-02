@@ -18,7 +18,7 @@
         = f.input :display_name, wrapper: :with_block_label, input_html: { maxlength: Account::DISPLAY_NAME_LENGTH_LIMIT, data: { default: @account.username } }
 
       .fields-group
-        = f.input :area, collection: area_id_list, wrapper: :with_label, include_blank: false, label_method: lambda { |area_id| human_area(area_id) }, hint: t('simple_form.hints.defaults.area')
+        = f.input :area, collection: area_id_list, wrapper: :with_label, include_blank: false, label_method: ->(area_id) { human_area(area_id) }, hint: t('simple_form.hints.defaults.area')
 
       .fields-group
         = f.input :note, wrapper: :with_block_label, input_html: { maxlength: Account::NOTE_LENGTH_LIMIT }

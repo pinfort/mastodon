@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Api::V1::Timelines::AreaController do
+RSpec.describe 'Area' do
   render_views
 
   let(:user) { Fabricate(:user) }
