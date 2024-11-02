@@ -8,9 +8,9 @@ RSpec.describe 'Area' do
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  describe 'GET #show' do
+  describe 'GET /api/v1/timelines/areas/kansai' do
     subject do
-      get :show, params: { id: 'kansai' }
+      get '/api/v1/timelines/areas/kansai'
     end
 
     before do
