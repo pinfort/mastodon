@@ -38,23 +38,23 @@ class Area extends React.PureComponent {
   get_local_area_eng_name(area_id){
     if (isNaN(area_id)) {
       area_id = 0;
-    };
+    }
     var area_eng_name;
     try{
       area_eng_name = this.config[area_id]['area-eng-name'];
-    } catch (e) {
+    } catch {
       area_eng_name = this.config[0]['area-eng-name'];
     }
     return (area_eng_name);
   }
 
   get_remote_area_eng_name(account){
-    var splittedName = account.get('acct').split('@');
-    var domain = splittedName[splittedName.length - 1];
+    var splitName = account.get('acct').split('@');
+    var domain = splitName[splitName.length - 1];
     try{
       var instanceSetting = this.instances[domain];
       var area_eng_name = instanceSetting['instance-eng-name'];
-    }catch (e) {
+    } catch {
       return this.get_local_area_eng_name(0);
     }
     return (area_eng_name);
@@ -71,23 +71,23 @@ class Area extends React.PureComponent {
   get_local_area_short_name(area_id){
     if (isNaN(area_id)) {
       area_id = 0;
-    };
+    }
     var area_short_name;
-    try{
+    try {
       area_short_name = this.config[area_id]['area-short-name'];
-    } catch (e) {
+    } catch {
       area_short_name = this.config[0]['area-short-name'];
     }
     return (area_short_name);
   }
 
   get_remote_area_short_name(account){
-    var splittedName = account.get('acct').split('@');
-    var domain = splittedName[splittedName.length - 1];
-    try{
+    var splitName = account.get('acct').split('@');
+    var domain = splitName[splitName.length - 1];
+    try {
       var instanceSetting = this.instances[domain];
       var area_short_name = instanceSetting['instance-short-name'];
-    }catch (e) {
+    } catch {
       return this.get_local_area_short_name(0);
     }
     return (area_short_name);

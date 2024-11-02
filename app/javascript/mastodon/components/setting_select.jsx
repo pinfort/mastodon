@@ -24,7 +24,7 @@ class SettingSelect extends React.PureComponent {
     if (this.props.settingKey.toString() === ['area', 'body'].toString()) {
       this.context.router.history.push('/areas');
     }
-  }
+  };
 
   render () {
     const { settings, settingKey, groups, intl } = this.props;
