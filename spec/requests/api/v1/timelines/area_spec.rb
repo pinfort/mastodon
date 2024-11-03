@@ -21,7 +21,12 @@ RSpec.describe 'Area' do
       it 'returns http success', :aggregate_failures do
         subject
         expect(response).to have_http_status(200)
-        expect(response.headers['Link'].links.size).to eq(2)
+        expect(response).to include_pagination_headers(
+          prev: api_v1_timelines_area_url(limit: params[:limit], min_id: user.account.statuses.first.id),
+          next: api_v1_timelines_area_url(limit: params[:limit], max_id: user.account.statuses.first.id)
+        )
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -31,7 +36,12 @@ RSpec.describe 'Area' do
       it 'returns http success', :aggregate_failures do
         subject
         expect(response).to have_http_status(200)
-        expect(response.headers['Link'].links.size).to eq(2)
+        expect(response).to include_pagination_headers(
+          prev: api_v1_timelines_area_url(limit: params[:limit], min_id: user.account.statuses.first.id),
+          next: api_v1_timelines_area_url(limit: params[:limit], max_id: user.account.statuses.first.id)
+        )
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

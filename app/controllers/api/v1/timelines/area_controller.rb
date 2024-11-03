@@ -61,10 +61,10 @@ class Api::V1::Timelines::AreaController < Api::V1::Timelines::BaseController
   end
 
   def next_path
-    api_v1_timelines_area_url params[:id], pagination_params(max_id: pagination_max_id)
+    api_v1_timelines_area_url params[:id], next_path_params
   end
 
   def prev_path
-    api_v1_timelines_area_url params[:id], pagination_params(since_id: pagination_since_id)
+    api_v1_timelines_area_url params[:id], prev_path_params
   end
 end
