@@ -22,8 +22,8 @@ RSpec.describe 'Area' do
         subject
         expect(response).to have_http_status(200)
         expect(response).to include_pagination_headers(
-          prev: api_v1_timelines_area_url(limit: params[:limit], min_id: user.account.statuses.first.id),
-          next: api_v1_timelines_area_url(limit: params[:limit], max_id: user.account.statuses.first.id)
+          prev: api_v1_timelines_area_url(min_id: user.account.statuses.first.id),
+          next: api_v1_timelines_area_url(max_id: user.account.statuses.first.id)
         )
         expect(response.content_type)
           .to start_with('application/json')
