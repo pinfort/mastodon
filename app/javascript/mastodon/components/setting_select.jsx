@@ -5,12 +5,9 @@ import { injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { browserHistory } from './router';
+
 class SettingSelect extends React.PureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
     settingKey: PropTypes.array.isRequired,
@@ -22,7 +19,7 @@ class SettingSelect extends React.PureComponent {
   handleChange = (e) => {
     this.props.onChange(this.props.settingKey, e.target.value);
     if (this.props.settingKey.toString() === ['area', 'body'].toString()) {
-      this.context.router.history.push('/areas');
+      browserHistory.push('/areas');
     }
   };
 

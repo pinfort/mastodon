@@ -121,7 +121,7 @@ class AreaTimeline extends React.PureComponent {
           multiColumn={multiColumn}
           showBackButton
         >
-          {columnId && <ColumnSettingsContainer columnId={columnId} />}
+          <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
         <AreaStatusListContainer
