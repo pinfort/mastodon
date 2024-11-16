@@ -24,7 +24,7 @@ class ColumnSettings extends React.PureComponent {
       areas[option.group_id] = option.group_name;
     });
     return areas;
-  }
+  };
 
   render () {
     const { settings, pinned, onChange } = this.props;

@@ -1,4 +1,3 @@
-version: '3'
 services:
   nginx:
     image: nginx:latest
@@ -76,10 +75,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.local
-    image: pinfort/mastodon:development
+    image: ghcr.io/pinfort/mastodon:development
     restart: always
     env_file: .env.local
-    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -b 0.0.0.0 -p 3000"
+    command: bundle exec puma -C config/puma.rb
     networks:
       - external_network
       - internal_network
@@ -98,11 +97,11 @@ services:
   streaming:
     build:
       context: .
-      dockerfile: Dockerfile.local
-    image: pinfort/mastodon:development
+      dockerfile: ./streaming/Dockerfile
+    image: ghcr.io/pinfort/mastodon-streaming:development
     restart: always
     env_file: .env.local
-    command: node ./streaming
+    command: node ./streaming/index.js
     networks:
       - external_network
       - internal_network

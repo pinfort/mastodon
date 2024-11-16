@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-describe 'Area url shown' do
+require 'rails_helper'
+
+RSpec.describe 'Area url shown' do
   describe 'with no area id' do
     it 'shows page' do
       get '/areas'

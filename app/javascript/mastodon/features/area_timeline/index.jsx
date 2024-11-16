@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
+import PinDropIcon from '@/material-icons/400-24px/pin-drop.svg?react';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
@@ -55,16 +56,16 @@ class AreaTimeline extends React.PureComponent {
     } else {
       dispatch(addColumn('AREA', { id: this.props.params.id }));
     }
-  }
+  };
 
   handleMove = (dir) => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   componentDidMount () {
     const { columnId, dispatch } = this.props;
@@ -94,11 +95,11 @@ class AreaTimeline extends React.PureComponent {
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleLoadMore = maxId => {
     this.props.dispatch(expandAreaTimeline(this.props.columnId, this.props.params.id, { maxId }));
-  }
+  };
 
   render () {
     const { intl, hasUnread, columnId, multiColumn } = this.props;
@@ -110,6 +111,7 @@ class AreaTimeline extends React.PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='map-marker'
+          iconComponent={PinDropIcon}
           active={hasUnread}
           title={intl.formatMessage(message)}
           onPin={this.handlePin}
@@ -117,12 +119,14 @@ class AreaTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
+          showBackButton
         >
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
         <AreaStatusListContainer
           prepend={<DismissableBanner id='area_timeline'><FormattedMessage id='dismissable_banner.area_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by instances in specified area.' /></DismissableBanner>}
+          alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`area_timeline-${columnId}`}
           timelineId={`area:${columnId}:${id}`}

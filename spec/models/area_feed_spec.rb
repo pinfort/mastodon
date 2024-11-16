@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AreaFeed, type: :service do
+RSpec.describe AreaFeed, type: :service do
   describe '#get' do
     let(:account) { Fabricate(:account) }
     let(:instances_remote) { ['example.com'] }
