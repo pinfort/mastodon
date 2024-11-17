@@ -30,7 +30,7 @@ const mapStateToProps = (state, { columnId }) => {
   const uuid = columnId;
   const columns = state.getIn(['settings', 'columns']);
   const index = columns.findIndex(c => c.get('uuid') === uuid);
-  const timelineState = state.getIn(['timelines', `area:${columns.get(index).getIn(['params', 'id'])}`]);
+  const timelineState = state.getIn(['timelines', `area:${uuid}:${columns.get(index).getIn(['params', 'id'])}`]);
 
   return {
     hasUnread: !!timelineState && timelineState.get('unread') > 0,
