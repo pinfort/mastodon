@@ -22,6 +22,7 @@ import { IconLogo } from 'mastodon/components/logo';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
 
+import Area_avatar from '../../../components/area_avatar';
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
 import MediaGallery from '../../../components/media_gallery';
@@ -318,6 +319,7 @@ export const DetailedStatus: React.FC<{
         >
           <div className='detailed-status__display-avatar'>
             <Avatar account={status.get('account')} size={46} />
+            <Area_avatar account={status.get('account')} />
           </div>
           <DisplayName account={status.get('account')} localDomain={domain} />
           {withLogo && (
