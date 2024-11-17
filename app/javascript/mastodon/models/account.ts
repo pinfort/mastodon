@@ -62,6 +62,7 @@ export type Account = RecordOf<AccountShape>;
 
 export const accountDefaultValues: AccountShape = {
   acct: '',
+  area: 0,
   avatar: '',
   avatar_static: '',
   bot: false,
