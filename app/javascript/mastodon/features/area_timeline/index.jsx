@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 
 import PinDropIcon from '@/material-icons/400-24px/pin-drop.svg?react';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectAreaStream } from '../../actions/streaming';
@@ -40,6 +41,7 @@ const mapStateToProps = (state, { columnId }) => {
 class AreaTimeline extends React.PureComponent {
 
   static propTypes = {
+    identity: identityContextPropShape,
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -70,19 +72,28 @@ class AreaTimeline extends React.PureComponent {
   componentDidMount () {
     const { columnId, dispatch } = this.props;
     const { id } = this.props.params;
+    const { signedIn } = this.props.identity;
 
     dispatch(expandAreaTimeline(columnId, id));
-    this.disconnect = dispatch(connectAreaStream(columnId, id));
+
+    if (signedIn) {
+      this.disconnect = dispatch(connectAreaStream(columnId, id));
+    }
   }
 
   componentDidUpdate (prevProps) {
+    const { signedIn } = this.props.identity;
+
     if (prevProps.params.id !== this.props.params.id) {
       const { columnId, dispatch } = this.props;
       const { id } = this.props.params;
 
       this.disconnect();
       dispatch(expandAreaTimeline(columnId, id));
-      this.disconnect = dispatch(connectAreaStream(columnId, id));
+
+      if (signedIn) {
+        this.disconnect = dispatch(connectAreaStream(columnId, id));
+      }
     }
   }
 
@@ -146,4 +157,4 @@ class AreaTimeline extends React.PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(AreaTimeline));
+export default connect(mapStateToProps)(withIdentity(injectIntl(AreaTimeline)));
