@@ -116,6 +116,10 @@ class NavigationPanel extends Component {
     return match || location.pathname.startsWith('/public');
   };
 
+  isAreaActive = (match, location) => {
+    return match || location.pathname.startsWith('/areas');
+  };
+
   render () {
     const { intl } = this.props;
     const { signedIn, disabledAccountId, permissions } = this.props.identity;
@@ -164,7 +168,7 @@ class NavigationPanel extends Component {
           {(signedIn || timelinePreview) && (
             <>
               <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' iconComponent={PublicIcon} text={intl.formatMessage(messages.firehose)} />
-              <ColumnLink transparent to='/areas' icon='map-marker' iconComponent={PinDropIcon} text={intl.formatMessage(messages.area)} />
+              <ColumnLink transparent to='/areas' isActive={this.isAreaActive} icon='map-marker' iconComponent={PinDropIcon} text={intl.formatMessage(messages.area)} />
             </>
           )}
 

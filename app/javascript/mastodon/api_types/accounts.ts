@@ -15,6 +15,7 @@ export interface ApiAccountRoleJSON {
 // See app/serializers/rest/account_serializer.rb
 export interface BaseApiAccountJSON {
   acct: string;
+  area: number;
   avatar: string;
   avatar_static: string;
   bot: boolean;
