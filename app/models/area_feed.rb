@@ -27,7 +27,7 @@ class AreaFeed < PublicFeed
     scope.merge!(without_reblogs_scope) unless with_reblogs?
     scope.merge!(local_only_scope) if local_only?
     scope.merge!(remote_only_scope) if remote_only?
-    #scope.merge!(account_filters_scope) if account?
+    # scope.merge!(account_filters_scope) if account?
     scope.merge!(media_only_scope) if media_only?
 
     scope.to_a_paginated_by_id(limit, max_id: max_id, since_id: since_id, min_id: min_id)
