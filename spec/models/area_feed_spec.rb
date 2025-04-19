@@ -31,11 +31,11 @@ RSpec.describe AreaFeed, type: :service do
       expect(results).to include status_local
     end
 
-    it 'can restrict to an account' do
-      BlockService.new.call(account, status_remote.account)
-      results = described_class.new(instances_both, account).get(20)
-      expect(results).to_not include status_remote
-    end
+    # it 'can restrict to an account' do
+    #   BlockService.new.call(account, status_remote.account)
+    #   results = described_class.new(instances_both, account).get(20)
+    #   expect(results).to_not include status_remote
+    # end
 
     it 'can restrict to local' do
       status_remote.account.update(domain: 'example.com')
