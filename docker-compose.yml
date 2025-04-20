@@ -58,7 +58,7 @@ services:
 
   web:
     build: .
-    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.2_v4.3.4
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.3_v4.3.4
     restart: always
     env_file: .env.production
     command: bundle exec puma -C config/puma.rb
@@ -79,7 +79,7 @@ services:
 
   streaming:
     build: .
-    image: ghcr.io/pinfort/mastodon-streaming:hyogo_v4.3.2_v4.3.4
+    image: ghcr.io/pinfort/mastodon-streaming:hyogo_v4.3.3_v4.3.4
     restart: always
     env_file: .env.production
     command: node ./streaming/index.js
@@ -97,7 +97,7 @@ services:
 
   sidekiq:
     build: .
-    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.2_v4.3.4
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.3_v4.3.4
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq -c 5
