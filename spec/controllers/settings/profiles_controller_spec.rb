@@ -37,12 +37,12 @@ RSpec.describe Settings::ProfilesController do
     end
 
     it 'updates the user area' do
-      allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
+      allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
 
       put :update, params: { account: { area: 2 } }
       expect(account.reload.area).to eq 2
       expect(response).to redirect_to(settings_profile_path)
-      expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
+      expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id)
     end
   end
 
