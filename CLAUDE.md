@@ -258,6 +258,38 @@ docker compose exec web bin/tootctl accounts create USERNAME --email user@exampl
 docker compose exec web bash
 ```
 
+**Testing Database Migrations in Docker:**
+
+When working with database migrations in the dev container environment, use these commands:
+
+```bash
+# Check migration status (shows which migrations are up/down)
+docker compose -f .devcontainer/compose.yaml exec app bin/rails db:migrate:status
+
+# Run pending migrations
+docker compose -f .devcontainer/compose.yaml exec app bin/rails db:migrate
+
+# Check current database schema version
+docker compose -f .devcontainer/compose.yaml exec app bin/rails db:version
+
+# Rollback last migration
+docker compose -f .devcontainer/compose.yaml exec app bin/rails db:rollback
+
+# Run database-related RSpec tests
+docker compose -f .devcontainer/compose.yaml exec app bin/rspec spec/models
+docker compose -f .devcontainer/compose.yaml exec app bin/rspec spec/db
+
+# Reset database (WARNING: deletes all data)
+docker compose -f .devcontainer/compose.yaml exec app bin/rails db:reset
+```
+
+For production-like Docker Compose setup, replace `.devcontainer/compose.yaml` with the default compose file and `app` with `web`:
+
+```bash
+docker compose exec web bin/rails db:migrate:status
+docker compose exec web bin/rails db:migrate
+```
+
 **Rebuilding after code changes:**
 
 ```bash
