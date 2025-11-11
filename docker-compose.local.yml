@@ -118,7 +118,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.local
-    image: pinfort/mastodon:development
+    image: ghcr.io/pinfort/mastodon:development
     restart: always
     env_file: .env.local
     command: bundle exec sidekiq -c 5
