@@ -487,4 +487,51 @@ RSpec.describe Status do
       expect(status.uri).to start_with('https://')
     end
   end
+
+  describe '.posted_in_domains' do
+    let(:local_account) { Fabricate(:account, domain: nil) }
+    let(:remote_account_1) { Fabricate(:account, domain: 'example.com') }
+    let(:remote_account_2) { Fabricate(:account, domain: 'example2.com') }
+    let!(:local_status) { Fabricate(:status, account: local_account) }
+    let!(:remote_status_1) { Fabricate(:status, account: remote_account_1) }
+    let!(:remote_status_2) { Fabricate(:status, account: remote_account_2) }
+
+    it 'returns statuses from local domain when given nil' do
+      results = described_class.posted_in_domains([nil])
+      expect(results).to include(local_status)
+      expect(results).not_to include(remote_status_1)
+      expect(results).not_to include(remote_status_2)
+    end
+
+    it 'returns statuses from specific remote domain' do
+      results = described_class.posted_in_domains(['example.com'])
+      expect(results).to include(remote_status_1)
+      expect(results).not_to include(local_status)
+      expect(results).not_to include(remote_status_2)
+    end
+
+    it 'returns statuses from multiple domains' do
+      results = described_class.posted_in_domains(['example.com', 'example2.com'])
+      expect(results).to include(remote_status_1)
+      expect(results).to include(remote_status_2)
+      expect(results).not_to include(local_status)
+    end
+
+    it 'returns statuses from both local and remote domains' do
+      results = described_class.posted_in_domains([nil, 'example.com'])
+      expect(results).to include(local_status)
+      expect(results).to include(remote_status_1)
+      expect(results).not_to include(remote_status_2)
+    end
+
+    it 'returns empty result for empty domains array' do
+      results = described_class.posted_in_domains([])
+      expect(results).to be_empty
+    end
+
+    it 'returns empty result for non-existent domain' do
+      results = described_class.posted_in_domains(['nonexistent.com'])
+      expect(results).to be_empty
+    end
+  end
 end
