@@ -102,7 +102,7 @@ RSpec.describe AreaFeed, type: :service do
 
     context 'with media filtering' do
       let!(:status_with_media) { Fabricate(:status, account: account_local) }
-      let!(:media_attachment) { Fabricate(:media_attachment, account: account_local, status: status_with_media) }
+      let(:media_attachment) { Fabricate(:media_attachment, account: account_local, status: status_with_media) }
 
       it 'includes all statuses by default' do
         results = described_class.new(instances_local, nil).get(20)
@@ -111,6 +111,7 @@ RSpec.describe AreaFeed, type: :service do
       end
 
       it 'can restrict to only media' do
+        media_attachment # Ensure media attachment exists
         results = described_class.new(instances_local, nil, only_media: true).get(20)
         expect(results).to_not include status_local
         expect(results).to include status_with_media

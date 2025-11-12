@@ -53,7 +53,7 @@ RSpec.describe 'Area' do
     end
 
     context 'with different area names' do
-      %w[hyogo kansai bestfriends mstdnjp pawoo].each do |area_name|
+      %w(hyogo kansai bestfriends mstdnjp pawoo).each do |area_name|
         it "returns success for area: #{area_name}" do
           get "/api/v1/timelines/area/#{area_name}", headers: headers
           expect(response).to have_http_status(200)
