@@ -12,6 +12,7 @@ RSpec.describe AreaFeed, type: :service do
     let(:account_remote) { Fabricate(:account, domain: 'example.com') }
     let(:account_remote2) { Fabricate(:account, domain: 'example2.com') }
     let(:account_local) { Fabricate(:account, domain: nil) }
+    let(:account_local2) { Fabricate(:account, domain: nil) }
     let!(:status_remote) { Fabricate(:status, account: account_remote) }
     let!(:status_remote2) { Fabricate(:status, account: account_remote2) }
     let!(:status_local) { Fabricate(:status, account: account_local) }
@@ -69,7 +70,7 @@ RSpec.describe AreaFeed, type: :service do
 
     context 'with reply filtering' do
       let!(:original) { Fabricate(:status, account: account_local) }
-      let!(:reply) { Fabricate(:status, account: account_local, in_reply_to_id: original.id) }
+      let!(:reply) { Fabricate(:status, account: account_local2, in_reply_to_id: original.id) }
 
       it 'excludes replies by default' do
         results = described_class.new(instances_local, nil).get(20)
