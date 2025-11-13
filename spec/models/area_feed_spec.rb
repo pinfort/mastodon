@@ -88,13 +88,13 @@ RSpec.describe AreaFeed, type: :service do
       let!(:original_status) { Fabricate(:status, account: account_local) }
       let!(:reblog) { Fabricate(:status, account: account_local, reblog_of_id: original_status.id) }
 
-      it 'includes reblogs by default' do
-        results = described_class.new(instances_local, nil).get(20)
+      it 'can include reblogs' do
+        results = described_class.new(instances_local, nil, with_reblogs: true).get(20)
         expect(results).to include reblog
       end
 
-      it 'can exclude reblogs' do
-        results = described_class.new(instances_local, nil, with_reblogs: false).get(20)
+      it 'excludes reblogs by default' do
+        results = described_class.new(instances_local, nil).get(20)
         expect(results).to include status_local
         expect(results).to_not include reblog
       end
