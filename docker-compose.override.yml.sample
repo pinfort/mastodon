@@ -1,0 +1,18 @@
+# Fork-specific Docker Compose override configuration
+# Copy this file to docker-compose.override.yml to use Hyogo fork images
+#
+# Usage:
+#   cp docker-compose.override.yml.sample docker-compose.override.yml
+#   docker compose up -d
+#
+# This separation prevents merge conflicts when syncing with upstream Mastodon
+
+services:
+  web:
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.4_v4.3.9
+
+  streaming:
+    image: ghcr.io/pinfort/mastodon-streaming:hyogo_v4.3.4_v4.3.9
+
+  sidekiq:
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.4_v4.3.9
