@@ -1,11 +1,9 @@
 # Fork-specific Docker Compose override configuration
-# Copy this file to docker-compose.override.yml to use Hyogo fork images
-#
-# Usage:
-#   cp docker-compose.override.yml.sample docker-compose.override.yml
-#   docker compose up -d
+# This file is tracked in the repository and provides fork-specific image tags
 #
 # This separation prevents merge conflicts when syncing with upstream Mastodon
+# Docker Compose automatically applies this override file when you run:
+#   docker compose up -d
 
 services:
   web:
