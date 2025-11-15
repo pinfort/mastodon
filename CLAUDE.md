@@ -222,6 +222,19 @@ docker compose up -d
 - Streaming API: http://localhost:4000
 - Elasticsearch (if enabled): http://localhost:9200
 
+### Fork-Specific Docker Configuration
+
+This fork uses Docker Compose's override file mechanism to manage fork-specific image tags:
+
+- `docker-compose.yml` - Base configuration compatible with upstream Mastodon
+- `docker-compose.override.yml` - Fork-specific image tags (e.g., `ghcr.io/pinfort/mastodon:hyogo_v4.3.4_v4.3.9`)
+
+The override file is automatically applied when running `docker compose` commands. This separation prevents merge conflicts during upstream syncs, as the base `docker-compose.yml` can accept upstream changes while `docker-compose.override.yml` preserves fork customizations.
+
+**When syncing with upstream:**
+- Accept upstream changes to `docker-compose.yml`
+- Always preserve `docker-compose.override.yml` with fork-specific image tags
+
 ### Docker Commands Reference
 
 **Container management:**
@@ -610,7 +623,8 @@ Conflicts are common due to fork-specific changes. Focus on preserving custom fe
 - `app/javascript/area_settings.json` - Fork-specific, keep your version
 - `app/models/area_feed.rb` - Fork-specific, keep your version
 - Routes with `/areas/*` patterns - Preserve fork additions
-- `docker-compose.yml` - Fork-specific configuration, carefully merge
+- `docker-compose.yml` - Accept upstream version (fork-specific config is in docker-compose.override.yml)
+- `docker-compose.override.yml` - Fork-specific image tags, keep your version
 - Database migrations - May need careful ordering
 
 **Conflict Resolution Strategy:**
@@ -634,6 +648,7 @@ nano path/to/file  # Manually resolve conflicts
 
 - `app/javascript/area_settings.json` - Always keep fork version
 - `app/models/area_feed.rb` - Fork-specific model
+- `docker-compose.override.yml` - Fork-specific Docker image tags
 - Controllers/routes for area timelines - Preserve fork logic
 - Any files with "hyogo" or "area" in the name
 
