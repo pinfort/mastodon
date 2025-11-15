@@ -232,6 +232,7 @@ This fork uses Docker Compose's override file mechanism to manage fork-specific 
 The override file is automatically applied when running `docker compose` commands. This separation prevents merge conflicts during upstream syncs, as the base `docker-compose.yml` can accept upstream changes while `docker-compose.override.yml` preserves fork customizations.
 
 **When syncing with upstream:**
+
 - Accept upstream changes to `docker-compose.yml`
 - Always preserve `docker-compose.override.yml` with fork-specific image tags
 
