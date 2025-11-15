@@ -70,7 +70,7 @@ RSpec.describe AreaFeed, type: :service do
 
     context 'with reply filtering' do
       let!(:original) { Fabricate(:status, account: account_local) }
-      let!(:reply) { Fabricate(:status, account: account_local2, in_reply_to_id: original.id) }
+      let!(:reply) { Fabricate(:status, account: account_local2, in_reply_to_id: original.id, in_reply_to_account_id: account_local2.id) }
 
       it 'excludes replies by default' do
         results = described_class.new(instances_local, nil).get(20)
