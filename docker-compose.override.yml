@@ -1,0 +1,16 @@
+# Fork-specific Docker Compose override configuration
+# This file is tracked in the repository and provides fork-specific image tags
+#
+# This separation prevents merge conflicts when syncing with upstream Mastodon
+# Docker Compose automatically applies this override file when you run:
+#   docker compose up -d
+
+services:
+  web:
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.4_v4.3.9
+
+  streaming:
+    image: ghcr.io/pinfort/mastodon-streaming:hyogo_v4.3.4_v4.3.9
+
+  sidekiq:
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.4_v4.3.9
