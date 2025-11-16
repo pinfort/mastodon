@@ -7,10 +7,10 @@
 
 services:
   web:
-    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.4_v4.3.9
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.5_v4.3.9
 
   streaming:
-    image: ghcr.io/pinfort/mastodon-streaming:hyogo_v4.3.4_v4.3.9
+    image: ghcr.io/pinfort/mastodon-streaming:hyogo_v4.3.5_v4.3.9
 
   sidekiq:
-    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.4_v4.3.9
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.5_v4.3.9
