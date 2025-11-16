@@ -36,6 +36,6 @@ class AreaFeed < PublicFeed
   private
 
   def posted_in_domains
-    Status.group(:id).posted_in_domains(@instances)
+    Status.posted_in_domains(@instances)
   end
 end
