@@ -487,4 +487,51 @@ RSpec.describe Status do
       expect(status.uri).to start_with('https://')
     end
   end
+
+  describe '.posted_in_domains' do
+    let(:local_account) { Fabricate(:account, domain: nil) }
+    let(:remote_account_example) { Fabricate(:account, domain: 'example.com') }
+    let(:remote_account_example2) { Fabricate(:account, domain: 'example2.com') }
+    let!(:local_status) { Fabricate(:status, account: local_account) }
+    let!(:remote_status_example) { Fabricate(:status, account: remote_account_example) }
+    let!(:remote_status_example2) { Fabricate(:status, account: remote_account_example2) }
+
+    it 'returns statuses from local domain when given nil' do
+      results = described_class.posted_in_domains([nil])
+      expect(results).to include(local_status)
+      expect(results).to_not include(remote_status_example)
+      expect(results).to_not include(remote_status_example2)
+    end
+
+    it 'returns statuses from specific remote domain' do
+      results = described_class.posted_in_domains(['example.com'])
+      expect(results).to include(remote_status_example)
+      expect(results).to_not include(local_status)
+      expect(results).to_not include(remote_status_example2)
+    end
+
+    it 'returns statuses from multiple domains' do
+      results = described_class.posted_in_domains(['example.com', 'example2.com'])
+      expect(results).to include(remote_status_example)
+      expect(results).to include(remote_status_example2)
+      expect(results).to_not include(local_status)
+    end
+
+    it 'returns statuses from both local and remote domains' do
+      results = described_class.posted_in_domains([nil, 'example.com'])
+      expect(results).to include(local_status)
+      expect(results).to include(remote_status_example)
+      expect(results).to_not include(remote_status_example2)
+    end
+
+    it 'returns empty result for empty domains array' do
+      results = described_class.posted_in_domains([])
+      expect(results).to be_empty
+    end
+
+    it 'returns empty result for non-existent domain' do
+      results = described_class.posted_in_domains(['nonexistent.com'])
+      expect(results).to be_empty
+    end
+  end
 end
