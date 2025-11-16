@@ -1,0 +1,27 @@
+# Docker Compose override file example for resource limits and custom configurations
+# Copy this file to docker-compose.override.yml to use it:
+#   cp docker-compose.override.yml.example docker-compose.override.yml
+#
+# This file is automatically merged with docker-compose.yml when running docker-compose commands
+
+services:
+  sidekiq:
+    # Resource limits to prevent excessive resource usage by Sidekiq workers
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'      # Maximum 2 CPU cores
+          memory: 2G       # Maximum 2GB RAM
+        reservations:
+          cpus: '0.5'      # Reserve at least 0.5 CPU cores
+          memory: 512M     # Reserve at least 512MB RAM
+
+    # Uncomment to adjust these limits based on your server capacity:
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '4.0'    # For larger servers
+    #       memory: 4G
+    #     reservations:
+    #       cpus: '1.0'
+    #       memory: 1G
