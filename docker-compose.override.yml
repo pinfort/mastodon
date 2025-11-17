@@ -15,6 +15,7 @@ services:
   sidekiq:
     image: ghcr.io/pinfort/mastodon:hyogo_v4.3.5_v4.3.9
     mem_limit: 1g
-    memswap_limit: 1g
+    memswap_limit: 2g
     mem_reservation: 512m
     cpus: 2.0
+    cpu_shares: 512
