@@ -97,10 +97,6 @@
   color: #000000;
 }
 
-.account__header__area-remote-osaka {
-  @include header-remote-1kanji-area;
-}
-
 .account__header__area-remote-mastodos {
   @include header-remote-1kanji-area;
 }
@@ -252,10 +248,6 @@
 
   background-color: rgba(200, 200, 200, 90%);
   color: #000000;
-}
-
-.account__avatar__area-remote-osaka {
-  @include avatar-area-remote-1kanji;
 }
 
 .account__avatar__area-remote-mastodos {

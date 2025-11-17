@@ -56,12 +56,6 @@
     }
   ],
   "instances": {
-    "mstdn.osaka": {
-      "instance-name": "大阪丼",
-      "instance-short-name": "大",
-      "instance-eng-name": "remote-osaka"
-    },
-
     "mastodos.com": {
       "instance-name": "マストどす",
       "instance-short-name": "ど",
@@ -131,7 +125,7 @@
     {
       "group_name": "kansai",
       "group_id": 1,
-      "instances": [null, "mstdn.osaka", "mastodos.com", "minohdon.jp"]
+      "instances": [null, "mastodos.com", "minohdon.jp"]
     },
     {
       "group_name": "bestfriends",
