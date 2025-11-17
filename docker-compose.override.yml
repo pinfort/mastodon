@@ -14,3 +14,11 @@ services:
 
   sidekiq:
     image: ghcr.io/pinfort/mastodon:hyogo_v4.3.5_v4.3.9
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
