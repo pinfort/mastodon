@@ -24,7 +24,7 @@
   @include header-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-wrapper {
@@ -38,63 +38,63 @@
   @include header-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-kobe {
   @include header-area;
 
   background-color: rgba(255, 180, 255, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-hanshin {
   @include header-area;
 
   background-color: rgba(200, 200, 51, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-tanba {
   @include header-area;
 
   background-color: rgba(160, 160, 160, 90%);
-  color: #111111;
+  color: #111;
 }
 
 .account__header__area-tajima {
   @include header-area;
 
   background-color: rgba(170, 80, 80, 90%);
-  color: #cccccc;
+  color: #ccc;
 }
 
 .account__header__area-seiban {
   @include header-area;
 
   background-color: rgba(140, 190, 250, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-touban {
   @include header-area;
 
   background-color: rgba(250, 190, 140, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-awaji {
   @include header-area;
 
   background-color: rgba(170, 80, 170, 90%);
-  color: #ccccff;
+  color: #ccf;
 }
 
 .account__header__area-kengai {
   @include header-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-remote-mastodos {
@@ -105,28 +105,28 @@
   @include header-2eng-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-remote-jp {
   @include header-2eng-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-remote-social {
   @include header-2eng-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-remote-bestfriends {
   @include header-2eng-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-remote-matsudai {
@@ -145,14 +145,14 @@
   @include header-2eng-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__header__area-remote-mastodon-japan {
   @include header-2eng-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 @mixin avatar-area() {
@@ -177,7 +177,7 @@
   @include avatar-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-wrapper {
@@ -191,63 +191,63 @@
   @include avatar-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-kobe {
   @include avatar-area;
 
   background-color: rgba(255, 180, 255, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-hanshin {
   @include avatar-area;
 
   background-color: rgba(200, 200, 51, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-tanba {
   @include avatar-area;
 
   background-color: rgba(160, 160, 160, 90%);
-  color: #111111;
+  color: #111;
 }
 
 .account__avatar__area-tajima {
   @include avatar-area;
 
   background-color: rgba(170, 80, 80, 90%);
-  color: #cccccc;
+  color: #ccc;
 }
 
 .account__avatar__area-seiban {
   @include avatar-area;
 
   background-color: rgba(140, 190, 250, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-touban {
   @include avatar-area;
 
   background-color: rgba(250, 190, 140, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-awaji {
   @include avatar-area;
 
   background-color: rgba(170, 80, 170, 90%);
-  color: #ccccff;
+  color: #ccf;
 }
 
 .account__avatar__area-kengai {
   @include avatar-area;
 
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-remote-mastodos {
@@ -259,7 +259,7 @@
 
   margin: 0 0 0 -4px;
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-remote-jp {
@@ -267,7 +267,7 @@
 
   margin: 0;
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-remote-social {
@@ -275,7 +275,7 @@
 
   margin: 0;
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-remote-bestfriends {
@@ -283,7 +283,7 @@
 
   margin: 0;
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-remote-matsudai {
@@ -303,7 +303,7 @@
 
   margin: 0;
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .account__avatar__area-remote-mastodon-japan {
@@ -311,7 +311,7 @@
 
   margin: 0;
   background-color: rgba(200, 200, 200, 90%);
-  color: #000000;
+  color: #000;
 }
 
 .setting-select {
