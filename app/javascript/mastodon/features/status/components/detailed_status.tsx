@@ -33,7 +33,6 @@ import scheduleIdleTask from 'mastodon/features/ui/util/schedule_idle_task';
 import { Video } from 'mastodon/features/video';
 
 import Area_avatar from '../../../components/area_avatar';
-import { Avatar } from '../../../components/avatar';
 
 import Card from './card';
 

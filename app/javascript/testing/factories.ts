@@ -14,6 +14,7 @@ export const accountFactory: FactoryFunction<ApiAccountJSON> = ({
 } = {}) => ({
   id: id ?? '1',
   acct: 'testuser',
+  area: 1,
   avatar: '/avatars/original/missing.png',
   avatar_static: '/avatars/original/missing.png',
   username: 'testuser',

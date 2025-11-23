@@ -163,11 +163,11 @@ export function Directory () {
 }
 
 export function AreaTimeline () {
-  return import(/* webpackChunkName: "features/area_timeline" */ '../../area_timeline');
+  return import('../../area_timeline');
 }
 
 export function AreaTimelineRedirect () {
-  return import(/* webpackChunkName: "features/area_timeline_redirect" */ '../../area_timeline_redirect');
+  return import('../../area_timeline_redirect');
 }
 
 export function OnboardingProfile () {

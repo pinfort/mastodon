@@ -68,7 +68,9 @@ yarn-debug.log
 *-cloudimg-console.log
 
 # Ignore Docker option files
-docker-compose.override.yml
+# docker-compose.override.yml is now tracked in the repository for fork-specific config
+
+dist/local/ssl
 
 # Ignore dotenv .local files
 .env*.local
