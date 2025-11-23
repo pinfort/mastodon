@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 @mixin header-area() {
   will-change: transform;
   font-size: 20px;
