@@ -174,6 +174,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_27_132728) do
     t.boolean "locked", default: false, null: false
     t.string "header_remote_url", default: "", null: false
     t.datetime "last_webfingered_at", precision: nil
+    t.integer "area", default: 0, null: false
     t.string "inbox_url", default: "", null: false
     t.string "outbox_url", default: "", null: false
     t.string "shared_inbox_url", default: "", null: false
