@@ -5,6 +5,8 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import area_data from '../../../../area_settings.json';
+
 import SettingSelect from '../../../components/setting_select';
 
 class ColumnSettings extends React.PureComponent {
@@ -17,7 +19,6 @@ class ColumnSettings extends React.PureComponent {
   };
 
   readAreas = () => {
-    var area_data = require('../../../../area_settings.json');
     var groups = area_data['instance-areas'];
     var areas = new Array();
     groups.map((option) => {
