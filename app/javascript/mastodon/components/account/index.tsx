@@ -34,6 +34,8 @@ import { me } from 'mastodon/initial_state';
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
+import Area_avatar from '../area_avatar';
+
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -301,7 +303,10 @@ export const Account: React.FC<AccountProps> = ({
           >
             <div className='account__avatar-wrapper'>
               {account ? (
-                <Avatar account={account} size={size} />
+                <>
+                  <Avatar account={account} size={size} />
+                  <Area_avatar account={account} />
+                </>
               ) : (
                 <Skeleton width={size} height={size} />
               )}
