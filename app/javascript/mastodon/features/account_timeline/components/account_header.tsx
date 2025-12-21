@@ -64,7 +64,6 @@ import { FamiliarFollowers } from './familiar_followers';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 
-
 const messages = defineMessages({
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },

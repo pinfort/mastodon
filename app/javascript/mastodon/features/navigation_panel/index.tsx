@@ -48,7 +48,6 @@ import { MoreLink } from './components/more_link';
 import { SignInBanner } from './components/sign_in_banner';
 import { Trends } from './components/trends';
 
-
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   notifications: {
