@@ -29,6 +29,7 @@ import {
 import { openModal } from 'mastodon/actions/modal';
 import { initMuteModal } from 'mastodon/actions/mutes';
 import { initReport } from 'mastodon/actions/reports';
+import Area_header from 'mastodon/components/area_header';
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
 import { Button } from 'mastodon/components/button';
@@ -844,6 +845,7 @@ export const AccountHeader: React.FC<{
                 account={suspended || hidden ? undefined : account}
                 size={92}
               />
+              <Area_header account={account} />
             </a>
 
             <div className='account__header__tabs__buttons'>
