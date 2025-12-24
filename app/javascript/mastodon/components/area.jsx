@@ -2,6 +2,8 @@ import React from 'react';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import area_data from '../../area_settings.json';
+
 class Area extends React.PureComponent {
 
   static propTypes = {
@@ -11,7 +13,6 @@ class Area extends React.PureComponent {
   constructor (props, context) {
     super(props, context);
     this.props = props;
-    var area_data = require('../../area_settings.json');
     var areas = area_data.areas;
     this.instances = area_data.instances;
     this.config = [];
