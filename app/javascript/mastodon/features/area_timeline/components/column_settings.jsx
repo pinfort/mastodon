@@ -5,7 +5,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import area_data from '../../../../area_settings.json';
+import area_data from '../../../../area-timelines.json';
 
 import SettingSelect from '../../../components/setting_select';
 
@@ -19,10 +19,9 @@ class ColumnSettings extends React.PureComponent {
   };
 
   readAreas = () => {
-    var groups = area_data['instance-areas'];
     var areas = new Array();
-    groups.map((option) => {
-      areas[option.group_id] = option.group_name;
+    area_data.forEach((value, key) => {
+      areas[value.timeline_id] = key;
     });
     return areas;
   };
