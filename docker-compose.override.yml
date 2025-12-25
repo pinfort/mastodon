@@ -11,12 +11,12 @@ services:
 
   web:
     image: ghcr.io/pinfort/mastodon:hyogo_v4.4.0_v4.4.1
-    depends_on: []
+    depends_on: !reset []
 
   streaming:
     image: ghcr.io/pinfort/mastodon-streaming:hyogo_v4.4.0_v4.4.1
-    depends_on: []
+    depends_on: !reset []
 
   sidekiq:
     image: ghcr.io/pinfort/mastodon:hyogo_v4.4.0_v4.4.1
-    depends_on: []
+    depends_on: !reset []
