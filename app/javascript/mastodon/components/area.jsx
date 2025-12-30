@@ -2,7 +2,8 @@ import React from 'react';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import area_data from '../../area_settings.json';
+import hyogo_areas from '../../hyogo-areas.json';
+import remote_instances from '../../remote-instances.json';
 
 class Area extends React.PureComponent {
 
@@ -13,8 +14,8 @@ class Area extends React.PureComponent {
   constructor (props, context) {
     super(props, context);
     this.props = props;
-    var areas = area_data.areas;
-    this.instances = area_data.instances;
+    var areas = hyogo_areas.areas;
+    this.instances = remote_instances;
     this.config = [];
     areas.forEach(function(data) {
       this.config[data['area-id']] = data;
