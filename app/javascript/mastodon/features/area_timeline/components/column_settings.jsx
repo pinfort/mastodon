@@ -20,7 +20,7 @@ class ColumnSettings extends React.PureComponent {
 
   readAreas = () => {
     var areas = new Array();
-    area_data.entries.forEach((value, key) => {
+    Object.entries(area_data).forEach(([key, value]) => {
       areas[value.timeline_id] = key;
     });
     return areas;
