@@ -26,10 +26,6 @@ module AccountAreaHelper
     HUMAN_AREA_IDS[area_id]['area-short-name']
   end
 
-  def get_area_id_from_area_no(area_no)
-    HUMAN_AREAS[area_no]['area-id']
-  end
-
   def area_id_list
     HUMAN_AREA_IDS.keys
   end
