@@ -6,16 +6,22 @@
 #   docker compose up -d
 
 services:
+  db: !reset null # prd uses database outside of docker
+  redis: !reset null # prd uses redis outside of docker
+
   web:
-    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.5_v4.3.9
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.4.0_v4.4.1
+    depends_on: !reset []
 
   streaming:
-    image: ghcr.io/pinfort/mastodon-streaming:hyogo_v4.3.5_v4.3.9
+    image: ghcr.io/pinfort/mastodon-streaming:hyogo_v4.4.0_v4.4.1
+    depends_on: !reset []
 
   sidekiq:
-    image: ghcr.io/pinfort/mastodon:hyogo_v4.3.5_v4.3.9
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.4.0_v4.4.1
     mem_limit: 1g
     memswap_limit: 2g
     mem_reservation: 512m
     cpus: 2.0
     cpu_shares: 512
+    depends_on: !reset []

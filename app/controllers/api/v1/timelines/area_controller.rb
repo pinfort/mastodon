@@ -19,10 +19,7 @@ class Api::V1::Timelines::AreaController < Api::V1::Timelines::BaseController
   end
 
   def load_area
-    areas = {}
-    Rails.application.config.instances_area.each do |value|
-      areas[value['group_name']] = value['instances']
-    end
+    areas = Rails.application.config.instances_area_hash
 
     # rubocop:disable Style/EmptyElse
     @instances = if areas.key?(params[:id].downcase)
