@@ -4,7 +4,9 @@
     "additionalEntrypoints": [
       "~/{fonts,icons,images}/**/*",
       "~/styles/entrypoints/*.scss",
-      "~/area_settings.json"
+      "~/area-timelines.json",
+      "~/hyogo-areas.json",
+      "~/remote-instances.json"
     ],
     "watchAdditionalPaths": []
   },

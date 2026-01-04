@@ -15,7 +15,10 @@ This is a custom Mastodon fork maintained at https://github.com/pinfort/mastodon
 **Custom Features:**
 
 - **Area Timelines**: Regional timelines based on Hyogo prefecture areas (Kobe, Hanshin, Tanba, Tajima, etc.) and federated instance groupings
-- Area configuration is defined in `app/javascript/area_settings.json`
+- Area configuration is defined in separate JSON files:
+  - `app/javascript/hyogo-areas.json` - Hyogo prefecture geographic area definitions
+  - `app/javascript/area-timelines.json` - Timeline configurations mapping area/instance groups to timeline IDs
+  - `app/javascript/remote-instances.json` - Remote federated instance metadata
 - Area feed logic is implemented in `app/models/area_feed.rb`
 
 ## Development Commands
@@ -539,9 +542,60 @@ The area timeline feature allows filtering public timelines by:
 **Implementation:**
 
 - `AreaFeed` class extends `PublicFeed` with domain filtering
-- Area/instance configuration in `app/javascript/area_settings.json`
+- Area/instance configuration split into separate JSON files:
+  - `app/javascript/hyogo-areas.json` - Geographic area definitions with Japanese names, short names, and English identifiers
+  - `app/javascript/area-timelines.json` - Timeline configurations mapping area slugs to timeline IDs and instance lists
+  - `app/javascript/remote-instances.json` - Remote instance metadata (names, short names, English identifiers)
 - Routes defined with `/areas/(*any)` pattern
 - Uses `Status.posted_in_domains` scope for filtering
+
+**Configuration Structure:**
+
+Each configuration file serves a specific purpose:
+
+1. **hyogo-areas.json** - Defines Hyogo prefecture regions:
+
+   ```json
+   {
+     "areas": [
+       {
+         "area-id": 1,
+         "area-name": "神戸",
+         "area-short-name": "神",
+         "area-eng-name": "kobe"
+       }
+     ]
+   }
+   ```
+
+2. **area-timelines.json** - Maps timeline slugs to instance filters:
+
+   ```json
+   {
+     "hyogo": {
+       "timeline_id": 0,
+       "instances": [null]
+     },
+     "kansai": {
+       "timeline_id": 1,
+       "instances": [null, "mastodos.com", "minohdon.jp"]
+     }
+   }
+   ```
+
+   - `instances: [null]` means "local instance only"
+   - `instances: [null, "domain"]` includes local + specified remote instances
+
+3. **remote-instances.json** - Metadata for federated instances:
+   ```json
+   {
+     "mastodos.com": {
+       "instance-name": "マストどす",
+       "instance-short-name": "ど",
+       "instance-eng-name": "remote-mastodos"
+     }
+   }
+   ```
 
 ## Upstream Sync Process
 
@@ -621,7 +675,9 @@ Conflicts are common due to fork-specific changes. Focus on preserving custom fe
 
 **Common Conflict Areas:**
 
-- `app/javascript/area_settings.json` - Fork-specific, keep your version
+- `app/javascript/hyogo-areas.json` - Fork-specific, keep your version
+- `app/javascript/area-timelines.json` - Fork-specific, keep your version
+- `app/javascript/remote-instances.json` - Fork-specific, keep your version
 - `app/models/area_feed.rb` - Fork-specific, keep your version
 - Routes with `/areas/*` patterns - Preserve fork additions
 - `docker-compose.yml` - Accept upstream version (fork-specific config is in docker-compose.override.yml)
@@ -647,7 +703,9 @@ nano path/to/file  # Manually resolve conflicts
 
 **Critical Files to Preserve:**
 
-- `app/javascript/area_settings.json` - Always keep fork version
+- `app/javascript/hyogo-areas.json` - Always keep fork version
+- `app/javascript/area-timelines.json` - Always keep fork version
+- `app/javascript/remote-instances.json` - Always keep fork version
 - `app/models/area_feed.rb` - Fork-specific model
 - `docker-compose.override.yml` - Fork-specific Docker image tags
 - Controllers/routes for area timelines - Preserve fork logic
@@ -715,8 +773,10 @@ yarn typecheck
 bin/dev
 # - Visit http://localhost:3000/areas/kobe
 # - Verify area filtering works
-# - Test each area in area_settings.json
+# - Test each area defined in hyogo-areas.json
+# - Test each timeline configuration in area-timelines.json
 # - Check federated instance timelines
+# - Verify remote instance metadata displays correctly
 
 # 5. Test core Mastodon functionality
 # - User registration/login

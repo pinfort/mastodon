@@ -1,0 +1,22 @@
+{
+  "hyogo": {
+    "timeline_id": 0,
+    "instances": [null]
+  },
+  "kansai": {
+    "timeline_id": 1,
+    "instances": [null, "mastodos.com", "minohdon.jp"]
+  },
+  "bestfriends": {
+    "timeline_id": 2,
+    "instances": ["best-friends.chat"]
+  },
+  "mstdnjp": {
+    "timeline_id": 3,
+    "instances": ["mstdn.jp"]
+  },
+  "pawoo": {
+    "timeline_id": 4,
+    "instances": ["pawoo.net"]
+  }
+}
