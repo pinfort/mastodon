@@ -18,7 +18,8 @@ class SettingSelect extends React.PureComponent {
 
   handleChange = (e) => {
     this.props.onChange(this.props.settingKey, e.target.value);
-    if (this.props.settingKey.toString() === ['area', 'body'].toString()) {
+    const { settingKey } = this.props;
+    if (settingKey.length === 2 && settingKey[0] === 'area' && settingKey[1] === 'body') {
       browserHistory.push('/areas');
     }
   };
@@ -37,7 +38,7 @@ class SettingSelect extends React.PureComponent {
             (groupKey) => {
               const group = groups[groupKey];
 
-              var message = { id: 'column.area.setting.' + group, defaultMessage: group };
+              const message = { id: 'column.area.setting.' + group, defaultMessage: group };
               return <option key={groupKey} value={group}>{intl.formatMessage(message)}</option>;
             },
           )
