@@ -32,7 +32,7 @@ import { Audio } from 'mastodon/features/audio';
 import scheduleIdleTask from 'mastodon/features/ui/util/schedule_idle_task';
 import { Video } from 'mastodon/features/video';
 
-import Area_avatar from '../../../components/area_avatar';
+import AreaAvatar from '../../../components/area_avatar';
 
 import Card from './card';
 
@@ -337,7 +337,7 @@ export const DetailedStatus: React.FC<{
         >
           <div className='detailed-status__display-avatar'>
             <Avatar account={status.get('account')} size={46} />
-            <Area_avatar account={status.get('account')} />
+            <AreaAvatar account={status.get('account')} />
           </div>
 
           {overrideDisplayName ?? (
