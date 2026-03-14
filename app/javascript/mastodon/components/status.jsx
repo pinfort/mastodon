@@ -26,7 +26,7 @@ import { MediaGallery, Video, Audio } from '../features/ui/util/async-components
 import { SensitiveMediaContext } from '../features/ui/util/sensitive_media_context';
 import { displayMedia } from '../initial_state';
 
-import Area_avatar from './area_avatar';
+import AreaAvatar from './area_avatar';
 import { Avatar } from './avatar';
 import { AvatarOverlay } from './avatar_overlay';
 import { DisplayName } from './display_name';
@@ -538,7 +538,7 @@ class Status extends ImmutablePureComponent {
 
     if (account === undefined || account === null) {
       statusAvatar = <Avatar account={status.get('account')} size={avatarSize} />;
-      statusAreaAvatar = <Area_avatar account={status.get('account')} />;
+      statusAreaAvatar = <AreaAvatar account={status.get('account')} />;
     } else {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
