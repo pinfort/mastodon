@@ -12,13 +12,14 @@ class SettingSelect extends React.PureComponent {
     settings: ImmutablePropTypes.map.isRequired,
     settingKey: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
-    groups: ImmutablePropTypes.map.isRequired,
+    groups: PropTypes.object.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
   handleChange = (e) => {
     this.props.onChange(this.props.settingKey, e.target.value);
-    if (this.props.settingKey.toString() === ['area', 'body'].toString()) {
+    const { settingKey } = this.props;
+    if (settingKey.length === 2 && settingKey[0] === 'area' && settingKey[1] === 'body') {
       browserHistory.push('/areas');
     }
   };
@@ -33,10 +34,12 @@ class SettingSelect extends React.PureComponent {
         value={settings.getIn(settingKey)}
       >
         {
-          groups.map(
-            (group, index) => {
-              var message = { id: 'column.area.setting.' + group, defaultMessage: group };
-              return <option key={index} value={group}>{intl.formatMessage(message)}</option>;
+          Object.keys(groups).map(
+            (groupKey) => {
+              const group = groups[groupKey];
+
+              const message = { id: 'column.area.setting.' + group, defaultMessage: group };
+              return <option key={groupKey} value={group}>{intl.formatMessage(message)}</option>;
             },
           )
         }

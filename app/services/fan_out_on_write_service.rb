@@ -143,8 +143,7 @@ class FanOutOnWriteService < BaseService
       redis.publish('timeline:public:media', anonymous_payload)
       redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', anonymous_payload)
     end
-    Rails.application.config.instances_area.each do |area|
-      area_name = area['group_name']
+    Rails.application.config.instances_area_hash.each_key do |area_name|
       redis.publish("timeline:area:#{area_name}", anonymous_payload) if @status.in_area?(area_name)
     end
   end

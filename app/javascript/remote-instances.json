@@ -1,0 +1,61 @@
+{
+  "mastodos.com": {
+    "instance-name": "マストどす",
+    "instance-short-name": "ど",
+    "instance-eng-name": "remote-mastodos"
+  },
+
+  "pawoo.net": {
+    "instance-name": "パゥー",
+    "instance-short-name": "PW",
+    "instance-eng-name": "remote-pawoo"
+  },
+
+  "mstdn.jp": {
+    "instance-name": ".jp",
+    "instance-short-name": "JP",
+    "instance-eng-name": "remote-jp"
+  },
+
+  "mastodon.social": {
+    "instance-name": "social",
+    "instance-short-name": "SC",
+    "instance-eng-name": "remote-social"
+  },
+
+  "mstdn.maud.io": {
+    "instance-name": "末代鯖",
+    "instance-short-name": "代",
+    "instance-eng-name": "remote-matsudai"
+  },
+
+  "mstdn-workers.com": {
+    "instance-name": "社畜丼",
+    "instance-short-name": "畜",
+    "instance-eng-name": "remote-shachiku"
+  },
+
+  "best-friends.chat": {
+    "instance-name": "ベスフレ",
+    "instance-short-name": "BF",
+    "instance-eng-name": "remote-bestfriends"
+  },
+
+  "minohdon.jp": {
+    "instance-name": "箕面丼",
+    "instance-short-name": "箕",
+    "instance-eng-name": "remote-minohdon"
+  },
+
+  "fedibird.com": {
+    "instance-name": "fedibird",
+    "instance-short-name": "FD",
+    "instance-eng-name": "remote-fedibird"
+  },
+
+  "mastodon-japan.net": {
+    "instance-name": "mastodon-japan",
+    "instance-short-name": "MJ",
+    "instance-eng-name": "remote-mastodon-japan"
+  }
+}

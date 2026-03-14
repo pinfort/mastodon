@@ -4,7 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import Area from './area';
 
-class Area_header extends Area {
+class AreaHeader extends Area {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
@@ -28,4 +28,4 @@ class Area_header extends Area {
 
 }
 
-export default Area_header;
+export default AreaHeader;
