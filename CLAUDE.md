@@ -71,7 +71,7 @@ Fork-specific Docker config lives in `docker-compose.override.yml` (image tags l
 
 ## Upstream Sync
 
-Tag format after merging to `hyogo-master`: `hyogo_<upstream-tag>_<fork-version>` (e.g., `hyogo_v4.3.4_v4.3.5`)
+Tag format after merging to `hyogo-master`: `hyogo_<fork-version>_<upstream-tag>` (e.g., `hyogo_v4.3.4_v4.3.5`)
 
 **Conflict resolution — always keep fork version (`--ours`):**
 
