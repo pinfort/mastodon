@@ -31,4 +31,5 @@ class AreaAvatar extends Area {
   }
 }
 
+// es-lint-disable-next-line import/no-default-export
 export default AreaAvatar;
