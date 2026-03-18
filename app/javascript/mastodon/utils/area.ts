@@ -12,6 +12,13 @@ interface AreaConfig {
   'area-eng-name': string;
 }
 
+const defaultAreaConfig: AreaConfig = {
+  'area-id': 0,
+  'area-name': '未設定',
+  'area-short-name': '未',
+  'area-eng-name': 'unknown',
+};
+
 interface InstanceConfig {
   'instance-name': string;
   'instance-short-name': string;
@@ -28,10 +35,7 @@ const instances: Record<InstanceDomain, InstanceConfig> =
   remote_instances satisfies Record<InstanceDomain, InstanceConfig>;
 
 function getFromConfigOrDefault(key: AreaId): AreaConfig {
-  // 存在しない場合は0にフォールバック。0は未設定の値が入っている
-  const result = config.get(key) ?? config.get(0);
-  if (!result) throw new Error('No valid area config found');
-  return result;
+  return config.get(key) ?? defaultAreaConfig;
 }
 
 function isLocal(account: Account): boolean {
