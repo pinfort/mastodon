@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { Account } from 'mastodon/models/account';
 
 import hyogo_areas from '../../hyogo-areas.json';
@@ -22,76 +20,45 @@ interface InstanceConfig {
 
 type InstanceDomain = string;
 
-interface Props {
-  account: Account;
+const config: Record<AreaId, AreaConfig> = Object.fromEntries(
+  hyogo_areas.areas.map((data) => [data['area-id'], data]),
+);
+
+const instances = remote_instances as Record<InstanceDomain, InstanceConfig>;
+
+function getFromConfigOrDefault(key: AreaId): AreaConfig {
+  // 存在しない場合は0にフォールバック。0は未設定の値が入っている
+  return (
+    config[key] ??
+    config[0] ??
+    (() => {
+      throw new Error('No valid area config found');
+    })()
+  );
 }
 
-class Area extends React.PureComponent<Props> {
-  private config: Record<AreaId, AreaConfig>;
-  private instances: Record<InstanceDomain, InstanceConfig>;
-
-  constructor(props: Props) {
-    super(props);
-    this.instances = remote_instances as Record<InstanceDomain, InstanceConfig>;
-    this.config = Object.fromEntries(
-      hyogo_areas.areas.map((data) => [data['area-id'], data]),
-    );
-  }
-
-  protected getAreaEngName(account: Account): string {
-    if (this.isLocal(account)) {
-      return this.getLocalAreaEngName(account.area);
-    } else {
-      return this.getRemoteAreaEngName(account);
-    }
-  }
-
-  private getLocalAreaEngName(area_id: AreaId): string {
-    return this.getFromConfigOrDefault(area_id)['area-eng-name'];
-  }
-
-  private getRemoteAreaEngName(account: Account): string {
-    const domain = account.acct.split('@').at(-1) ?? '';
-    return (
-      this.instances[domain]?.['instance-eng-name'] ??
-      this.getLocalAreaEngName(0)
-    );
-  }
-
-  protected getAreaShortName(account: Account): string {
-    if (this.isLocal(account)) {
-      return this.getLocalAreaShortName(account.area);
-    } else {
-      return this.getRemoteAreaShortName(account);
-    }
-  }
-
-  private getLocalAreaShortName(area_id: AreaId): string {
-    return this.getFromConfigOrDefault(area_id)['area-short-name'];
-  }
-
-  private getRemoteAreaShortName(account: Account): string {
-    const domain = account.acct.split('@').at(-1) ?? '';
-    return (
-      this.instances[domain]?.['instance-short-name'] ??
-      this.getLocalAreaShortName(0)
-    );
-  }
-
-  private getFromConfigOrDefault(key: AreaId): AreaConfig {
-    // 存在しない場合は0にフォールバック。0は未設定の値が入っている
-    return (
-      this.config[key] ??
-      this.config[0] ??
-      (() => {
-        throw new Error('No valid area config found');
-      })()
-    );
-  }
-
-  private isLocal(account: Account): boolean {
-    return account.username === account.acct;
-  }
+function isLocal(account: Account): boolean {
+  return account.username === account.acct;
 }
 
-export { Area };
+export function getAreaEngName(account: Account): string {
+  if (isLocal(account)) {
+    return getFromConfigOrDefault(account.area)['area-eng-name'];
+  }
+  const domain = account.acct.split('@').at(-1) ?? '';
+  return (
+    instances[domain]?.['instance-eng-name'] ??
+    getFromConfigOrDefault(0)['area-eng-name']
+  );
+}
+
+export function getAreaShortName(account: Account): string {
+  if (isLocal(account)) {
+    return getFromConfigOrDefault(account.area)['area-short-name'];
+  }
+  const domain = account.acct.split('@').at(-1) ?? '';
+  return (
+    instances[domain]?.['instance-short-name'] ??
+    getFromConfigOrDefault(0)['area-short-name']
+  );
+}

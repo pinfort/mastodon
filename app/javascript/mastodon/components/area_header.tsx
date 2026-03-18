@@ -1,21 +1,15 @@
 import type { Account } from 'mastodon/models/account';
 
-import { Area } from './area';
+import { getAreaEngName, getAreaShortName } from './area';
 
-class AreaHeader extends Area {
-  private getAreaClassName(account: Account): string {
-    return 'account__header__area-' + this.getAreaEngName(account);
-  }
-
-  override render() {
-    return (
-      <span className='account__header__area-wrapper'>
-        <span className={this.getAreaClassName(this.props.account)}>
-          {this.getAreaShortName(this.props.account)}
-        </span>
-      </span>
-    );
-  }
+interface Props {
+  account: Account;
 }
 
-export { AreaHeader };
+export const AreaHeader = ({ account }: Props) => (
+  <span className='account__header__area-wrapper'>
+    <span className={'account__header__area-' + getAreaEngName(account)}>
+      {getAreaShortName(account)}
+    </span>
+  </span>
+);
