@@ -2,15 +2,7 @@ import type { Account } from 'mastodon/models/account';
 
 import Area from './area';
 
-interface Props {
-  account: Account;
-}
-
 class AreaAvatar extends Area {
-  declare props: Props;
-  declare get_area_eng_name: (account: Account) => string;
-  declare get_area_short_name: (account: Account) => string;
-
   get_area_class_name(account: Account): string {
     return 'account__avatar__area-' + this.get_area_eng_name(account);
   }
