@@ -11,11 +11,6 @@ class AreaAvatar extends Area {
   declare get_area_eng_name: (account: Account) => string;
   declare get_area_short_name: (account: Account) => string;
 
-  constructor(props: Props) {
-    super(props);
-    this.get_area_class_name = this.get_area_class_name.bind(this);
-  }
-
   get_area_class_name(account: Account): string {
     return 'account__avatar__area-' + this.get_area_eng_name(account);
   }

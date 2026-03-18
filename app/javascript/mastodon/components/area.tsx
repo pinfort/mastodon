@@ -38,14 +38,6 @@ class Area extends React.PureComponent<Props> {
     areas.forEach(function (this: Area, data) {
       this.config[data['area-id']] = data;
     }, this);
-    this.get_area_eng_name = this.get_area_eng_name.bind(this);
-    this.get_area_short_name = this.get_area_short_name.bind(this);
-    this.get_local_area_eng_name = this.get_local_area_eng_name.bind(this);
-    this.get_remote_area_eng_name = this.get_remote_area_eng_name.bind(this);
-    this.get_local_area_short_name = this.get_local_area_short_name.bind(this);
-    this.get_remote_area_short_name =
-      this.get_remote_area_short_name.bind(this);
-    this.is_local = this.is_local.bind(this);
   }
 
   get_area_eng_name(account: Account): string {
