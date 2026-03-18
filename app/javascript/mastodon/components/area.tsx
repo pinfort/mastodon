@@ -5,8 +5,10 @@ import type { Account } from 'mastodon/models/account';
 import hyogo_areas from '../../hyogo-areas.json';
 import remote_instances from '../../remote-instances.json';
 
+type AreaId = number;
+
 interface AreaConfig {
-  'area-id': number;
+  'area-id': AreaId;
   'area-name': string;
   'area-short-name': string;
   'area-eng-name': string;
@@ -25,7 +27,7 @@ interface Props {
 }
 
 class Area extends React.PureComponent<Props> {
-  config: Record<number, AreaConfig>;
+  config: Record<AreaId, AreaConfig>;
   instances: Record<InstanceDomain, InstanceConfig>;
 
   constructor(props: Props) {
@@ -55,31 +57,15 @@ class Area extends React.PureComponent<Props> {
   }
 
   get_local_area_eng_name(area_id: number): string {
-    if (isNaN(area_id)) {
-      area_id = 0;
-    }
-    let area_eng_name: string;
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      area_eng_name = this.config[area_id]!['area-eng-name'];
-    } catch {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      area_eng_name = this.config[0]!['area-eng-name'];
-    }
-    return area_eng_name;
+    return this.getFromConfigOrDefault(area_id)['area-eng-name'];
   }
 
   get_remote_area_eng_name(account: Account): string {
-    const splitName = account.acct.split('@');
-    const domain = splitName.at(-1) ?? '';
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const instanceSetting = this.instances[domain]!;
-      const area_eng_name = instanceSetting['instance-eng-name'];
-      return area_eng_name;
-    } catch {
-      return this.get_local_area_eng_name(0);
-    }
+    const domain = account.acct.split('@').at(-1) ?? '';
+    return (
+      this.instances[domain]?.['instance-eng-name'] ??
+      this.get_local_area_eng_name(0)
+    );
   }
 
   get_area_short_name(account: Account): string {
@@ -91,31 +77,26 @@ class Area extends React.PureComponent<Props> {
   }
 
   get_local_area_short_name(area_id: number): string {
-    if (isNaN(area_id)) {
-      area_id = 0;
-    }
-    let area_short_name: string;
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      area_short_name = this.config[area_id]!['area-short-name'];
-    } catch {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      area_short_name = this.config[0]!['area-short-name'];
-    }
-    return area_short_name;
+    return this.getFromConfigOrDefault(area_id)['area-short-name'];
   }
 
   get_remote_area_short_name(account: Account): string {
-    const splitName = account.acct.split('@');
-    const domain = splitName.at(-1) ?? '';
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const instanceSetting = this.instances[domain]!;
-      const area_short_name = instanceSetting['instance-short-name'];
-      return area_short_name;
-    } catch {
-      return this.get_local_area_short_name(0);
-    }
+    const domain = account.acct.split('@').at(-1) ?? '';
+    return (
+      this.instances[domain]?.['instance-short-name'] ??
+      this.get_local_area_short_name(0)
+    );
+  }
+
+  getFromConfigOrDefault(key: AreaId): AreaConfig {
+    // 存在しない場合は0にフォールバック。0は未設定の値が入っている
+    return (
+      this.config[key] ??
+      this.config[0] ??
+      (() => {
+        throw new Error('No valid area config found');
+      })()
+    );
   }
 
   is_local(account: Account): boolean {
