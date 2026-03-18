@@ -25,15 +25,14 @@ interface Props {
 }
 
 class Area extends React.PureComponent<Props> {
-  config: AreaConfig[];
+  config: Record<number, AreaConfig>;
   instances: Record<InstanceDomain, InstanceConfig>;
 
-  constructor(props: Props, context: unknown) {
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
-    super(props, context);
+  constructor(props: Props) {
+    super(props);
     const areas = hyogo_areas.areas;
     this.instances = remote_instances as Record<InstanceDomain, InstanceConfig>;
-    this.config = [];
+    this.config = {};
     areas.forEach(function (this: Area, data) {
       this.config[data['area-id']] = data;
     }, this);

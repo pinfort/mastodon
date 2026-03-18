@@ -11,8 +11,8 @@ class AreaHeader extends Area {
   declare get_area_eng_name: (account: Account) => string;
   declare get_area_short_name: (account: Account) => string;
 
-  constructor(props: Props, context: unknown) {
-    super(props, context);
+  constructor(props: Props) {
+    super(props);
     this.get_area_class_name = this.get_area_class_name.bind(this);
   }
 
