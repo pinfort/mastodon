@@ -32,12 +32,10 @@ class Area extends React.PureComponent<Props> {
 
   constructor(props: Props) {
     super(props);
-    const areas = hyogo_areas.areas;
     this.instances = remote_instances as Record<InstanceDomain, InstanceConfig>;
-    this.config = {};
-    areas.forEach(function (this: Area, data) {
-      this.config[data['area-id']] = data;
-    }, this);
+    this.config = Object.fromEntries(
+      hyogo_areas.areas.map((data) => [data['area-id'], data]),
+    );
   }
 
   get_area_eng_name(account: Account): string {
@@ -48,7 +46,7 @@ class Area extends React.PureComponent<Props> {
     }
   }
 
-  get_local_area_eng_name(area_id: number): string {
+  get_local_area_eng_name(area_id: AreaId): string {
     return this.getFromConfigOrDefault(area_id)['area-eng-name'];
   }
 
@@ -68,7 +66,7 @@ class Area extends React.PureComponent<Props> {
     }
   }
 
-  get_local_area_short_name(area_id: number): string {
+  get_local_area_short_name(area_id: AreaId): string {
     return this.getFromConfigOrDefault(area_id)['area-short-name'];
   }
 
