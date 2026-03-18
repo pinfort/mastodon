@@ -20,7 +20,7 @@ interface InstanceConfig {
 
 type InstanceDomain = string;
 
-const config: Record<AreaId, AreaConfig> = Object.fromEntries(
+const config = new Map<AreaId, AreaConfig>(
   hyogo_areas.areas.map((data) => [data['area-id'], data]),
 );
 
@@ -28,7 +28,7 @@ const instances = remote_instances as Record<InstanceDomain, InstanceConfig>;
 
 function getFromConfigOrDefault(key: AreaId): AreaConfig {
   // 存在しない場合は0にフォールバック。0は未設定の値が入っている
-  const result = config[key] ?? config[0];
+  const result = config.get(key) ?? config.get(0);
   if (!result) throw new Error('No valid area config found');
   return result;
 }
