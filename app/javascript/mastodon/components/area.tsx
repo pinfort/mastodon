@@ -39,42 +39,42 @@ class Area extends React.PureComponent<Props> {
   }
 
   protected get_area_eng_name(account: Account): string {
-    if (this.is_local(account)) {
-      return this.get_local_area_eng_name(account.area);
+    if (this.isLocal(account)) {
+      return this.getLocalAreaEngName(account.area);
     } else {
-      return this.get_remote_area_eng_name(account);
+      return this.getRemoteAreaEngName(account);
     }
   }
 
-  private get_local_area_eng_name(area_id: AreaId): string {
+  private getLocalAreaEngName(area_id: AreaId): string {
     return this.getFromConfigOrDefault(area_id)['area-eng-name'];
   }
 
-  private get_remote_area_eng_name(account: Account): string {
+  private getRemoteAreaEngName(account: Account): string {
     const domain = account.acct.split('@').at(-1) ?? '';
     return (
       this.instances[domain]?.['instance-eng-name'] ??
-      this.get_local_area_eng_name(0)
+      this.getLocalAreaEngName(0)
     );
   }
 
   protected get_area_short_name(account: Account): string {
-    if (this.is_local(account)) {
-      return this.get_local_area_short_name(account.area);
+    if (this.isLocal(account)) {
+      return this.getLocalAreaShortName(account.area);
     } else {
-      return this.get_remote_area_short_name(account);
+      return this.getRemoteAreaShortName(account);
     }
   }
 
-  private get_local_area_short_name(area_id: AreaId): string {
+  private getLocalAreaShortName(area_id: AreaId): string {
     return this.getFromConfigOrDefault(area_id)['area-short-name'];
   }
 
-  private get_remote_area_short_name(account: Account): string {
+  private getRemoteAreaShortName(account: Account): string {
     const domain = account.acct.split('@').at(-1) ?? '';
     return (
       this.instances[domain]?.['instance-short-name'] ??
-      this.get_local_area_short_name(0)
+      this.getLocalAreaShortName(0)
     );
   }
 
@@ -89,7 +89,7 @@ class Area extends React.PureComponent<Props> {
     );
   }
 
-  private is_local(account: Account): boolean {
+  private isLocal(account: Account): boolean {
     return account.username === account.acct;
   }
 }
