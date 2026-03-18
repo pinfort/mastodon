@@ -94,5 +94,4 @@ class Area extends React.PureComponent<Props> {
   }
 }
 
-// eslint-disable-next-line import/no-default-export
-export default Area;
+export { Area };

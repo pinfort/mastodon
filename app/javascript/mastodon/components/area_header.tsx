@@ -1,6 +1,6 @@
 import type { Account } from 'mastodon/models/account';
 
-import Area from './area';
+import { Area } from './area';
 
 class AreaHeader extends Area {
   get_area_class_name(account: Account): string {
@@ -18,5 +18,4 @@ class AreaHeader extends Area {
   }
 }
 
-// eslint-disable-next-line import/no-default-export
-export default AreaHeader;
+export { AreaHeader };
