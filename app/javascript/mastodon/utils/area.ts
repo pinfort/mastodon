@@ -28,13 +28,9 @@ const instances = remote_instances as Record<InstanceDomain, InstanceConfig>;
 
 function getFromConfigOrDefault(key: AreaId): AreaConfig {
   // 存在しない場合は0にフォールバック。0は未設定の値が入っている
-  return (
-    config[key] ??
-    config[0] ??
-    (() => {
-      throw new Error('No valid area config found');
-    })()
-  );
+  const result = config[key] ?? config[0];
+  if (!result) throw new Error('No valid area config found');
+  return result;
 }
 
 function isLocal(account: Account): boolean {
