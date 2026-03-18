@@ -38,7 +38,7 @@ class Area extends React.PureComponent<Props> {
     );
   }
 
-  protected get_area_eng_name(account: Account): string {
+  protected getAreaEngName(account: Account): string {
     if (this.isLocal(account)) {
       return this.getLocalAreaEngName(account.area);
     } else {
@@ -58,7 +58,7 @@ class Area extends React.PureComponent<Props> {
     );
   }
 
-  protected get_area_short_name(account: Account): string {
+  protected getAreaShortName(account: Account): string {
     if (this.isLocal(account)) {
       return this.getLocalAreaShortName(account.area);
     } else {
