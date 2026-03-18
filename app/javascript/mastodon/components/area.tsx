@@ -12,33 +12,27 @@ interface AreaConfig {
   'area-eng-name': string;
 }
 
+interface InstanceConfig {
+  'instance-name': string;
+  'instance-short-name': string;
+  'instance-eng-name': string;
+}
+
+type InstanceDomain = string;
+
 interface Props {
   account: Account;
 }
 
 class Area extends React.PureComponent<Props> {
   config: AreaConfig[];
-  instances: Record<
-    string,
-    {
-      'instance-name': string;
-      'instance-short-name': string;
-      'instance-eng-name': string;
-    }
-  >;
+  instances: Record<InstanceDomain, InstanceConfig>;
 
   constructor(props: Props, context: unknown) {
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     super(props, context);
     const areas = hyogo_areas.areas;
-    this.instances = remote_instances as Record<
-      string,
-      {
-        'instance-name': string;
-        'instance-short-name': string;
-        'instance-eng-name': string;
-      }
-    >;
+    this.instances = remote_instances as Record<InstanceDomain, InstanceConfig>;
     this.config = [];
     areas.forEach(function (this: Area, data) {
       this.config[data['area-id']] = data;
