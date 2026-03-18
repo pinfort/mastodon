@@ -31,11 +31,12 @@ const config = new Map<AreaId, AreaConfig>(
   hyogo_areas.areas.map((data) => [data['area-id'], data]),
 );
 
-const instances: Record<InstanceDomain, InstanceConfig> =
-  remote_instances satisfies Record<InstanceDomain, InstanceConfig>;
+const instances: Record<InstanceDomain, InstanceConfig> = remote_instances;
 
 function getFromConfigOrDefault(key: AreaId): AreaConfig {
-  return config.get(key) ?? defaultAreaConfig;
+  // 存在しない場合は0にフォールバック。0は未設定の値が入っている
+  const safeKey = Number.isFinite(key) ? key : 0;
+  return config.get(safeKey) ?? config.get(0) ?? defaultAreaConfig;
 }
 
 function isLocal(account: Account): boolean {
