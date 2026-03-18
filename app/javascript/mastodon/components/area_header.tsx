@@ -1,6 +1,5 @@
 import type { Account } from 'mastodon/models/account';
-
-import { getAreaEngName, getAreaShortName } from './area';
+import { getAreaEngName, getAreaShortName } from 'mastodon/utils/area';
 
 interface Props {
   account: Account;
