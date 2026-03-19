@@ -26,7 +26,7 @@ import { MediaGallery, Video, Audio } from '../features/ui/util/async-components
 import { SensitiveMediaContext } from '../features/ui/util/sensitive_media_context';
 import { displayMedia } from '../initial_state';
 
-import AreaAvatar from './area_avatar';
+import { AreaAvatar } from './area_avatar';
 import { Avatar } from './avatar';
 import { AvatarOverlay } from './avatar_overlay';
 import { DisplayName } from './display_name';
