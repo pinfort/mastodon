@@ -1,5 +1,3 @@
-import { describe, it, expect } from 'vitest';
-
 import type { Account } from 'mastodon/models/account';
 
 import { getAreaEngName, getAreaShortName } from '../area';
