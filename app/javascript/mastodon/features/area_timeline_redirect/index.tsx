@@ -14,3 +14,6 @@ export const AreaTimelineRedirect: React.FC = () => {
 
   return <Redirect to={`/areas/${area}`} />;
 };
+
+// eslint-disable-next-line import/no-default-export
+export default AreaTimelineRedirect; // required for async bundle loading via bundle.jsx
