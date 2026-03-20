@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<AreaHeader /> > renders wrapper span with correct class 1`] = `
+<span
+  class="account__header__area-wrapper"
+>
+  <span
+    class="account__header__area-kobe"
+  >
+    神
+  </span>
+</span>
+`;
