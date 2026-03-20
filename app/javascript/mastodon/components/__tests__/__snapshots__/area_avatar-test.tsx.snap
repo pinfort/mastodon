@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<AreaAvatar /> > renders wrapper div with correct class 1`] = `
+<div
+  class="account__avatar__area-wrapper"
+>
+  <span
+    class="account__avatar__area-kobe"
+  >
+    神
+  </span>
+</div>
+`;
