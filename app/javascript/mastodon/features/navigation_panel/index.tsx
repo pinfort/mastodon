@@ -21,6 +21,7 @@ import NotificationsActiveIcon from '@/material-icons/400-24px/notifications-fil
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import PersonAddActiveIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
+import PinDropIcon from '@/material-icons/400-24px/pin-drop.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
@@ -60,6 +61,7 @@ const messages = defineMessages({
     defaultMessage: 'Notifications',
   },
   explore: { id: 'explore.title', defaultMessage: 'Trending' },
+  area: { id: 'tabs_bar.area_timeline', defaultMessage: 'Area' },
   firehose: { id: 'column.firehose', defaultMessage: 'Live feeds' },
   firehose_singular: {
     id: 'column.firehose_singular',
@@ -193,6 +195,10 @@ const isFirehoseActive = (
   return !!match || pathname.startsWith('/public');
 };
 
+const isAreaActive = (match: unknown, { pathname }: { pathname: string }) => {
+  return !!match || pathname.startsWith('/areas');
+};
+
 const MENU_WIDTH = 284;
 
 export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
@@ -269,23 +275,33 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 
         {(canViewFeed(signedIn, permissions, localLiveFeedAccess) ||
           canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) && (
-          <ColumnLink
-            transparent
-            to={
-              canViewFeed(signedIn, permissions, localLiveFeedAccess)
-                ? '/public/local'
-                : '/public/remote'
-            }
-            icon='globe'
-            iconComponent={PublicIcon}
-            isActive={isFirehoseActive}
-            text={intl.formatMessage(
-              canViewFeed(signedIn, permissions, localLiveFeedAccess) &&
-                canViewFeed(signedIn, permissions, remoteLiveFeedAccess)
-                ? messages.firehose
-                : messages.firehose_singular,
-            )}
-          />
+            <>
+              <ColumnLink
+                transparent
+                to={
+                  canViewFeed(signedIn, permissions, localLiveFeedAccess)
+                    ? '/public/local'
+                    : '/public/remote'
+                }
+                icon='globe'
+                iconComponent={PublicIcon}
+                isActive={isFirehoseActive}
+                text={intl.formatMessage(
+                  canViewFeed(signedIn, permissions, localLiveFeedAccess) &&
+                    canViewFeed(signedIn, permissions, remoteLiveFeedAccess)
+                    ? messages.firehose
+                    : messages.firehose_singular,
+                )}
+              />
+              <ColumnLink
+                transparent
+                to='/areas'
+                icon='map-marker'
+                iconComponent={PinDropIcon}
+                isActive={isAreaActive}
+                text={intl.formatMessage(messages.area)}
+              />
+            </>
         )}
 
         {signedIn && (
