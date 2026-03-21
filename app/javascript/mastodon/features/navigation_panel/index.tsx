@@ -275,33 +275,33 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 
         {(canViewFeed(signedIn, permissions, localLiveFeedAccess) ||
           canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) && (
-            <>
-              <ColumnLink
-                transparent
-                to={
-                  canViewFeed(signedIn, permissions, localLiveFeedAccess)
-                    ? '/public/local'
-                    : '/public/remote'
-                }
-                icon='globe'
-                iconComponent={PublicIcon}
-                isActive={isFirehoseActive}
-                text={intl.formatMessage(
-                  canViewFeed(signedIn, permissions, localLiveFeedAccess) &&
-                    canViewFeed(signedIn, permissions, remoteLiveFeedAccess)
-                    ? messages.firehose
-                    : messages.firehose_singular,
-                )}
-              />
-              <ColumnLink
-                transparent
-                to='/areas'
-                icon='map-marker'
-                iconComponent={PinDropIcon}
-                isActive={isAreaActive}
-                text={intl.formatMessage(messages.area)}
-              />
-            </>
+          <>
+            <ColumnLink
+              transparent
+              to={
+                canViewFeed(signedIn, permissions, localLiveFeedAccess)
+                  ? '/public/local'
+                  : '/public/remote'
+              }
+              icon='globe'
+              iconComponent={PublicIcon}
+              isActive={isFirehoseActive}
+              text={intl.formatMessage(
+                canViewFeed(signedIn, permissions, localLiveFeedAccess) &&
+                  canViewFeed(signedIn, permissions, remoteLiveFeedAccess)
+                  ? messages.firehose
+                  : messages.firehose_singular,
+              )}
+            />
+            <ColumnLink
+              transparent
+              to='/areas'
+              icon='map-marker'
+              iconComponent={PinDropIcon}
+              isActive={isAreaActive}
+              text={intl.formatMessage(messages.area)}
+            />
+          </>
         )}
 
         {signedIn && (
