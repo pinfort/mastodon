@@ -107,6 +107,7 @@ const CHANNEL_NAMES = [
   'public:remote:media',
   'hashtag',
   'hashtag:local',
+  'area',
 ];
 
 const startServer = async () => {
@@ -432,6 +433,8 @@ const startServer = async () => {
       return 'direct';
     case '/api/v1/streaming/list':
       return 'list';
+    case '/api/v1/streaming/area':
+      return 'area';
     default:
       return undefined;
     }
@@ -1032,6 +1035,7 @@ const startServer = async () => {
    * @property {string} [tag]
    * @property {string} [list]
    * @property {string} [only_media]
+   * @property {string} [area]
    */
 
   /**
@@ -1129,6 +1133,15 @@ const startServer = async () => {
       resolveFeed('hashtag', `timeline:hashtag:${normalizeHashtag(params.tag)}:local`, { needsFiltering: true });
 
       break;
+
+    case 'area':
+      if (!params.area) {
+        reject(new RequestError('Missing tag name parameter'));
+        return;
+      }
+
+      resolveFeed('area', `timeline:area:${params.area}`, { needsFiltering: true })
+      break;
     case 'list':
       if (!params.list) {
         reject(new RequestError('Missing list name parameter'));
@@ -1160,6 +1173,8 @@ const startServer = async () => {
       return [channelName, params.list];
     } else if (['hashtag', 'hashtag:local'].includes(channelName) && params.tag) {
       return [channelName, params.tag];
+    } else if (['area'].includes(channelName) && params.area) {
+      return [channelName, params.area];
     } else {
       return [channelName];
     }
