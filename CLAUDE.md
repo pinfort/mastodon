@@ -86,6 +86,40 @@ Tag format after merging to `hyogo-master`: `hyogo_<fork-version>_<upstream-tag>
 
 - `docker-compose.yml`
 
+**Shared files with fork-specific additions (require manual merge — do NOT blindly take `--theirs`):**
+
+These files are primarily upstream but contain fork-specific lines that must be preserved after every merge:
+
+| File                                                                              | Fork-specific additions                                                                                              |
+| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `.github/workflows/build-releases.yml`                                            | Image names `ghcr.io/pinfort/mastodon` and `ghcr.io/pinfort/mastodon-streaming`; `latest=auto` flavor                |
+| `app/javascript/mastodon/features/account_timeline/components/account_header.tsx` | `AreaHeader` import and `<AreaHeader account={account} />` usage                                                     |
+| `app/javascript/mastodon/features/navigation_panel/index.tsx`                     | `PinDropIcon` import; `area` message; `isAreaActive` function; area `ColumnLink` in nav panel                        |
+| `app/javascript/mastodon/features/ui/index.jsx`                                   | `AreaTimeline`, `AreaTimelineRedirect` imports; `/areas` and `/timelines/area` routes                                |
+| `app/javascript/mastodon/locales/en.json`                                         | All `area.*`, `column.area*`, `dismissable_banner.area_timeline`, `empty_column.area`, `tabs_bar.area_timeline` keys |
+| `app/javascript/mastodon/locales/ja.json`                                         | Same area keys in Japanese; `navigation_bar.area_timeline`                                                           |
+| `app/models/account.rb`                                                           | `area` column comment; `validates :area` line                                                                        |
+| `config/locales/simple_form.en.yml`                                               | `area:` hint and label entries                                                                                       |
+| `streaming/index.js`                                                              | `'area'` in channel list; `/api/v1/streaming/area` case; `area` channel resolution and params                        |
+
+**Post-merge verification — run these checks after every upstream merge:**
+
+```bash
+# Verify fork-specific patterns still exist in shared files
+grep -r "AreaTimeline\|AreaAvatar\|AreaHeader\|AreaFeed\|area_feed" app/javascript app/controllers app/models --include="*.rb" --include="*.tsx" --include="*.jsx" --include="*.ts" -l
+
+# Check locale files contain area keys
+grep "area_timeline\|column\.area\|empty_column\.area" app/javascript/mastodon/locales/en.json
+
+# Check streaming server has area channel
+grep "area" streaming/index.js
+
+# Check build workflow uses fork image names
+grep "pinfort/mastodon" .github/workflows/build-releases.yml
+```
+
+If any of these return no results, the fork-specific lines were lost in the merge and must be restored before committing.
+
 ## Important Notes
 
 - **ActivityPub Federation:** Changes to `Account` or `Status` models may need corresponding updates to ActivityPub serializers and delivery workers.
