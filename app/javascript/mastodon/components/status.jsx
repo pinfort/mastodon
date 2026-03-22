@@ -550,7 +550,9 @@ class Status extends ImmutablePureComponent {
 
     if (account === undefined || account === null) {
       statusAvatar = <Avatar account={status.get('account')} size={avatarSize} />;
-      statusAreaAvatar = <AreaAvatar account={status.get('account')} />;
+      if(!isQuotedPost) { // 引用の子ポストのときは地域表示をしない
+        statusAreaAvatar = <AreaAvatar account={status.get('account')} />;
+      }
     } else {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
