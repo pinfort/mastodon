@@ -10,13 +10,13 @@ services:
   redis: !reset null # prd uses redis outside of docker
 
   web:
-    image: ghcr.io/pinfort/mastodon:hyogo_v4.4.3_v4.4.8
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.5.0_v4.5.0
     depends_on: !reset []
 
   streaming:
-    image: ghcr.io/pinfort/mastodon-streaming:hyogo_v4.4.3_v4.4.8
+    image: ghcr.io/pinfort/mastodon-streaming:hyogo_v4.5.0_v4.5.0
     depends_on: !reset []
 
   sidekiq:
-    image: ghcr.io/pinfort/mastodon:hyogo_v4.4.3_v4.4.8
+    image: ghcr.io/pinfort/mastodon:hyogo_v4.5.0_v4.5.0
     depends_on: !reset []

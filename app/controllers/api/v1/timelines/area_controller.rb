@@ -2,6 +2,7 @@
 
 class Api::V1::Timelines::AreaController < Api::V1::Timelines::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
+  before_action :require_user!, if: :require_auth?
   before_action :load_area
 
   PERMITTED_PARAMS = %i(local limit only_media).freeze
@@ -15,19 +16,13 @@ class Api::V1::Timelines::AreaController < Api::V1::Timelines::BaseController
   private
 
   def require_auth?
-    !Setting.timeline_preview
+    Setting.local_live_feed_access != 'public' || Setting.remote_live_feed_access != 'public'
   end
 
   def load_area
     areas = Rails.application.config.instances_area_hash
 
-    # rubocop:disable Style/EmptyElse
-    @instances = if areas.key?(params[:id].downcase)
-                   areas[params[:id].downcase]
-                 else
-                   nil
-                 end
-    # rubocop:enable Style/EmptyElse
+    @instances = areas[params[:id].downcase]
   end
 
   def load_statuses
