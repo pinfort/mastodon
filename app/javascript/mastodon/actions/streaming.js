@@ -54,7 +54,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
   const { messages } = getLocale();
 
   // Public streams are currently not returning personalized quote policies
-  const bogusQuotePolicy = channelName.startsWith('public') || channelName.startsWith('hashtag');
+  const bogusQuotePolicy = channelName.startsWith('public') || channelName.startsWith('hashtag') || channelName.startsWith('area');
 
   return connectStream(channelName, params, (dispatch, getState) => {
     // @ts-ignore
