@@ -74,7 +74,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.local
+      dockerfile: Dockerfile
     image: ghcr.io/pinfort/mastodon:development
     restart: always
     env_file: .env.local
@@ -117,7 +117,7 @@ services:
   sidekiq:
     build:
       context: .
-      dockerfile: Dockerfile.local
+      dockerfile: Dockerfile
     image: ghcr.io/pinfort/mastodon:development
     restart: always
     env_file: .env.local
