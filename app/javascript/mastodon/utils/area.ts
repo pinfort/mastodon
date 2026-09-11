@@ -1,4 +1,4 @@
-import type { Account } from 'mastodon/models/account';
+import type { Account, AccountShapeFull } from 'mastodon/models/account';
 
 import hyogo_areas from '../../hyogo-areas.json';
 import remote_instances from '../../remote-instances.json';
@@ -39,11 +39,11 @@ function getFromConfigOrDefault(key: AreaId): AreaConfig {
   return config.get(safeKey) ?? config.get(0) ?? defaultAreaConfig;
 }
 
-function isLocal(account: Account): boolean {
+function isLocal(account: Account | AccountShapeFull): boolean {
   return account.username === account.acct;
 }
 
-export function getAreaEngName(account: Account): string {
+export function getAreaEngName(account: Account | AccountShapeFull): string {
   if (isLocal(account)) {
     return getFromConfigOrDefault(account.area)['area-eng-name'];
   }
@@ -54,7 +54,7 @@ export function getAreaEngName(account: Account): string {
   );
 }
 
-export function getAreaShortName(account: Account): string {
+export function getAreaShortName(account: Account | AccountShapeFull): string {
   if (isLocal(account)) {
     return getFromConfigOrDefault(account.area)['area-short-name'];
   }
