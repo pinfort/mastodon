@@ -77,6 +77,8 @@ RSpec.describe FanOutOnWriteService do
     end
 
     it 'is broadcast to area timeline' do
+      subject.call(status)
+
       expect(AreaFeed.new([nil], alice).get(20).map(&:id)).to include status.id
       expect(redis).to have_received(:publish).with('timeline:area:kansai', anything)
     end
