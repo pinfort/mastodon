@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { injectIntl } from 'react-intl';
-
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { injectIntl } from './intl';
 import { browserHistory } from './router';
 
 class SettingSelect extends React.PureComponent {
