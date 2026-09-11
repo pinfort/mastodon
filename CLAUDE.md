@@ -71,7 +71,9 @@ Fork-specific Docker config lives in `docker-compose.override.yml` (image tags l
 
 ## Upstream Sync
 
-Tag format after merging to `hyogo-master`: `hyogo_<fork-version>_<upstream-tag>` (e.g., `hyogo_v4.3.4_v4.3.5`)
+Tag format after merging to `hyogo-master`: `hyogo_<fork-version>_<upstream-tag>` (e.g., `hyogo_v4.3.4_v4.3.5`). Since the v4.7.1 sync, the fork-version segment's minor tracks upstream's minor directly (e.g. `hyogo_v4.7.0_v4.7.1`), rather than drifting independently across multiple patch-level syncs within the same upstream minor line.
+
+If the jump spans multiple upstream minor versions (as v4.5.8 → v4.7.1 did), expect the merge-base to land *before* the currently-synced tag, not on it — Mastodon's `stable-X.Y` branches carry cherry-picked backports that aren't the same commit objects as their `main`-line equivalents, so `git merge-base` often resolves to an earlier common ancestor. This can turn what looks like a routine sync into one with 100+ conflicting files, including files the fork has never touched. When that happens: resolve pure-upstream conflicts (no fork stake) by taking the incoming tag's version wholesale rather than hand-splicing hunks, since the incoming version is usually a substantial rewrite rather than a small diff (e.g. a `res` object replacing manual string parsing). Then specifically grep every remaining conflicted file's current side for `area`/`hyogo` markers before resolving it — files with real fork logic won't always match this doc's shared-files table below, since files that merge cleanly in one sync can still carry fork-specific lines that only surface as conflicts in a later, bigger sync.
 
 **Conflict resolution — always keep fork version (`--ours`):**
 
@@ -92,15 +94,27 @@ These files are primarily upstream but contain fork-specific lines that must be 
 
 | File                                                                              | Fork-specific additions                                                                                              |
 | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `.github/workflows/build-releases.yml`                                            | Image names `ghcr.io/pinfort/mastodon` and `ghcr.io/pinfort/mastodon-streaming`; `latest=auto` flavor                |
-| `app/javascript/mastodon/features/account_timeline/components/account_header.tsx` | `AreaHeader` import and `<AreaHeader account={account} />` usage                                                     |
+| `.github/workflows/build-releases.yml`                                            | Image names `ghcr.io/pinfort/mastodon` and `ghcr.io/pinfort/mastodon-streaming`                                      |
+| `app/javascript/mastodon/components/account_header/index.tsx`                     | `AreaHeader` import and `<AreaHeader account={account} />` usage inside the avatar wrapper (was `features/account_timeline/components/account_header.tsx` before upstream split that file up in v4.7.0) |
+| `app/javascript/mastodon/components/status/header.tsx`                            | `AreaAvatar` import and conditional render in `StatusDisplayName` (gated on `!friendAccount && !isQuotedPost`); `isQuotedPost` threaded through `StatusHeaderProps` (was inline in `components/status.jsx` before upstream extracted the header in v4.7.0) |
+| `app/javascript/mastodon/components/status.jsx`                                   | Passes `isQuotedPost` into `<StatusHeader>` so `status/header.tsx` can gate the area badge                           |
+| `app/javascript/mastodon/features/ui/components/columns_area.tsx`                 | `AreaTimeline` import and `AREA` entry in `componentMap` (was `columns_area.jsx` before upstream converted it to TypeScript in v4.7.0) |
 | `app/javascript/mastodon/features/navigation_panel/index.tsx`                     | `PinDropIcon` import; `area` message; `isAreaActive` function; area `ColumnLink` in nav panel                        |
 | `app/javascript/mastodon/features/ui/index.jsx`                                   | `AreaTimeline`, `AreaTimelineRedirect` imports; `/areas` and `/timelines/area` routes                                |
+| `app/javascript/mastodon/actions/streaming.js`                                    | `area` in the `bogusQuotePolicy` channel-name check; `connectAreaStream`, `fillAreaTimelineGaps` import              |
+| `app/javascript/mastodon/actions/timelines.js`                                    | `expandAreaTimeline`, `fillAreaTimelineGaps` action creators                                                         |
 | `app/javascript/mastodon/locales/en.json`                                         | All `area.*`, `column.area*`, `dismissable_banner.area_timeline`, `empty_column.area`, `tabs_bar.area_timeline` keys |
 | `app/javascript/mastodon/locales/ja.json`                                         | Same area keys in Japanese; `navigation_bar.area_timeline`                                                           |
 | `app/models/account.rb`                                                           | `area` column comment; `validates :area` line                                                                        |
+| `app/serializers/rest/account_serializer.rb`                                      | `:area` in the `attributes` list                                                                                     |
+| `app/services/fan_out_on_write_service.rb`                                        | Per-area `redis.publish("timeline:area:#{area_name}", ...)` loop in `broadcast_to_public_streams!`                   |
+| `app/views/settings/profiles/show.html.haml`                                      | Whole legacy simple_form profile-edit page is kept (fork did not adopt upstream's v4.7 redesign-notice + `/profile/edit` SPA flow, since the `area` picker lives only in this form) |
 | `config/locales/simple_form.en.yml`                                               | `area:` hint and label entries                                                                                       |
+| `config/routes/web_app.rb`                                                        | `/areas` and `/areas/(*any)` in the React-app path list                                                              |
+| `db/schema.rb`                                                                    | `area` column on the `accounts` table (kept in sync with the `account.rb` annotation whenever migrations are run)    |
 | `streaming/index.js`                                                              | `'area'` in channel list; `/api/v1/streaming/area` case; `area` channel resolution and params                        |
+
+Note: this table was audited and substantially expanded during the v4.5.8 → v4.7.1 sync (2026-09-11) — a plain `git merge` conflict scan surfaced several fork touchpoints (`status/header.tsx`, `actions/streaming.js`, `actions/timelines.js`, `account_serializer.rb`, `fan_out_on_write_service.rb`, `profiles/show.html.haml`, `routes/web_app.rb`) that earlier versions of this table missed because they'd merged cleanly without conflicts in past syncs. Treat this table as a best-effort snapshot, not a guarantee — after any future sync, prefer re-running a scan like `git grep -n "area\|hyogo" <conflicted-files>` over trusting this table blindly.
 
 **Post-merge verification — run these checks after every upstream merge:**
 
