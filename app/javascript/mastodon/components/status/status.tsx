@@ -151,6 +151,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       avatarSize,
       onHeaderClick,
       featured,
+      isQuotedPost,
     })
   ) : (
     <StatusHeader
@@ -158,6 +159,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       account={account}
       avatarSize={avatarSize}
       onHeaderClick={onHeaderClick}
+      isQuotedPost={isQuotedPost}
     />
   );
 

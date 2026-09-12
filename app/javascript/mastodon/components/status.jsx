@@ -578,7 +578,7 @@ class Status extends ImmutablePureComponent {
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
 
     const header = this.props.headerRenderFn
-      ? this.props.headerRenderFn({ statusId: status.get('id'), account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured })
+      ? this.props.headerRenderFn({ statusId: status.get('id'), account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured, isQuotedPost })
       : (
         <StatusHeader
           statusId={status.get('id')}
