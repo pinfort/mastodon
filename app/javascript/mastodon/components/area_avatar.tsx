@@ -1,8 +1,8 @@
-import type { Account } from 'mastodon/models/account';
+import type { Account, AccountShapeFull } from 'mastodon/models/account';
 import { getAreaEngName, getAreaShortName } from 'mastodon/utils/area';
 
 interface Props {
-  account: Account;
+  account: Account | AccountShapeFull;
 }
 
 export const AreaAvatar = ({ account }: Props) => (
