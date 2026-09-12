@@ -195,7 +195,7 @@ export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
 /**
  * @param {string} columnId
  * @param {string} area
- * @returns {function(): void}
+ * @returns {() => void}
  */
 export const connectAreaStream = (columnId, area) =>
   connectTimelineStream(`area:${columnId}:${area}`, 'area', { area: area }, {
