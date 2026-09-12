@@ -111,20 +111,22 @@ export const AccountHeader: React.FC<{
 
         <div className={classes.barWrapper}>
           <div className={classes.avatarWrapper}>
-            <a
-              href={account.avatar}
-              rel='noopener'
-              target='_blank'
-              onClick={handleOpenAvatar}
-            >
-              <Avatar
-                className={classes.avatar}
-                account={suspendedOrHidden ? undefined : account}
-                alt={account.avatar_description}
-                size={80}
-              />
-            </a>
-            <AreaHeader account={account} />
+            <div>
+              <a
+                href={account.avatar}
+                rel='noopener'
+                target='_blank'
+                onClick={handleOpenAvatar}
+              >
+                <Avatar
+                  className={classes.avatar}
+                  account={suspendedOrHidden ? undefined : account}
+                  alt={account.avatar_description}
+                  size={80}
+                />
+              </a>
+              <AreaHeader account={account} />
+            </div>
           </div>
 
           <div className={classes.displayNameWrapper}>
