@@ -1,3 +1,6 @@
+// Fork-specific file. Modeled after upstream: app/javascript/mastodon/features/community_timeline/index.jsx
+// When that file changes upstream, check whether this file needs the same update.
+
 import PropTypes from 'prop-types';
 import React from 'react';
 
