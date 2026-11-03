@@ -1,3 +1,6 @@
+// Fork-specific file. Modeled after upstream: app/javascript/mastodon/features/ui/containers/status_list_container.js
+// When that file changes upstream, check whether this file needs the same update.
+
 import { createSelector } from '@reduxjs/toolkit';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
