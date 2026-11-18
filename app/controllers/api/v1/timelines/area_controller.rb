@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Fork-specific file. Modeled after upstream: app/controllers/api/v1/timelines/public_controller.rb
+# When that file changes upstream, check whether this file needs the same update.
+
 class Api::V1::Timelines::AreaController < Api::V1::Timelines::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :require_user!, if: :require_auth?

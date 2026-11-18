@@ -1,3 +1,6 @@
+// Fork-specific file. Modeled after upstream: app/javascript/mastodon/features/community_timeline/containers/column_settings_container.js
+// When that file changes upstream, check whether this file needs the same update.
+
 import { connect } from 'react-redux';
 
 import { changeColumnParams } from '../../../actions/columns';

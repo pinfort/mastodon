@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Fork-specific file. Modeled after upstream: app/models/public_feed.rb (extends it)
+# When that file changes upstream, check whether this file needs the same update.
+
 class AreaFeed < PublicFeed
   # @param [Array<String>] instances
   # @param [Account] account

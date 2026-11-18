@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Fork-specific file. Modeled after upstream: spec/models/public_feed_spec.rb
+# When that file changes upstream, check whether this file needs the same update.
+
 require 'rails_helper'
 
 RSpec.describe AreaFeed, type: :service do
